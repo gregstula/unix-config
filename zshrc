@@ -49,7 +49,7 @@ plugins=(themes)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/Users/greg-d-stula/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -106,3 +106,7 @@ alias archey="archey --offline"
 
 alias copy="pbcopy <"
 alias paste="pbcopy >"
+
+# View file permissions
+alias prm="stat -f '%A %a %N' *"
+
