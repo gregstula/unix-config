@@ -1,0 +1,105 @@
+" vim not vi
+set nocompatible
+
+filetype plugin indent on    " required
+
+syntax on
+set number
+
+" Auto indent
+set ai
+" Smart indent
+set si
+
+" Treats tabs like buffers ... questionable
+tab sball
+
+" Allow backspacing over autoindent, line breaks and start of insert action
+set backspace=indent,eol,start
+
+" This shows what you are typing as a command. 
+set showcmd
+
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+
+" Show matching brackets when text indicator is over them
+set showmatch 
+
+" How many tenths of a second to blink when matching brackets
+set mat=1
+
+" And reset the terminal code for the visual bell. If visualbell is set, and
+" this line is also included, vim will neither flash nor beep. If visualbell
+" is unset, this does nothing.
+set t_vb=
+
+"===========================================================================
+" Tabs, Indents, and Files Specific things
+"===========================================================================
+
+" Visualize tabs
+"syntax match Tab /\t/
+hi Tab gui=underline guifg=blue ctermbg=blue
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" tab == 4 spaces
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" default character width 100
+set tw=100
+set colorcolumn=100
+set cursorline
+set ruler
+
+" 8 spaces for C
+autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
+
+" two spaces for ruby
+autocmd BufRead,BufNewFile *.rb,*.lua set sw=2 
+
+" Settings for C++
+autocmd BufRead,BufNewFile *.cpp,*hpp set tw=80 colorcolumn=80 cindent
+
+" special settings for Objective-C and Objective-C++ files
+autocmd BufRead,BufNewFile *.m,*mm set filetype=objc
+
+" Swift
+autocmd BufRead,BufNewFile *.swift set filetype=swift
+
+" Golang
+autocmd BufRead,BufNewFile *.go set tw=80 colorcolumn=80 cindent noexpandtab
+
+" set .md as.markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown tw=9999
+
+" makefiles need tabs 
+autocmd FileType make setlocal noexpandtab
+
+" MASM
+autocmd BufRead,BufNewFile *.asm set ft=masm
+
+
+"===========================END TAB STUFF===================================
+
+" default goey settings
+color molokaisg
+set guifont=Consolas:h16
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" echo echo
+echo "\~\/\.vimrc loaded!"
