@@ -90,7 +90,7 @@ autocmd BufRead,BufNewFile *.asm set ft=masm
 "===========================END TAB STUFF===================================
 
 " default goey settings
-color molokaisg
+color molokai
 set guifont=Consolas:h16
 
 " With a map leader it's possible to do extra key combinations
@@ -101,5 +101,3 @@ let g:mapleader = ","
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" echo echo
-echo "\~\/\.vimrc loaded!"

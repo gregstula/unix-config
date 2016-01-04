@@ -110,3 +110,4 @@ alias paste="pbcopy >"
 # View file permissions
 alias prm="stat -f '%A %a %N' *"
 
+alias -s rb=vim
