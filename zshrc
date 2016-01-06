@@ -108,10 +108,22 @@ source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias ls="ls -AG"
 alias archey="archey --offline"
 
-alias copy="pbcopy <"
-alias paste="pbcopy >"
+alias pbcopy="pbcopy <"
+alias pbpaste="pbcopy >"
 
 # View file permissions
-alias prm="stat -f '%A %a %N' *"
+alias prm="stat -f '%A %a %N'"
 
-alias -s rb=vim
+
+alias -s rb=mvim
+alias -s py=mvim
+alias -s makefile=mvim
+alias -s sh=mvim
+alias -s go=mvim
+alias -s zsh=mvim
+alias -s vim=mvim
+alias -s sql=mvim
+alias -s md=mvim
+alias -s tex=mvim
+alias -s c=mvim
+
