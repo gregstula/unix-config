@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# setup-environment
+# The MIT License (MIT) [https://opensource.org/licenses/MIT]
+# Copyright (c) 2016 Gregory D. Stula
+#  
+#
+#  Created by Gregory D. Stula on 1/4/16.
+#  
+
+topleveldir= `git rev-parse --show-toplevel`.chomp
+home = ENV["HOME"] + "/"
+
+if topleveldir.empty?
+   $stderr.puts "# No .git/ found! #"
+   exit(1)
+end
+
+
+filenames = [".vimrc",".zshrc", ".vim", ".oh-my-zsh"].map { |x| home + x }
+
+filenames.each do |name|
+   puts name
+   if File.exists?(name) && !File.symlink?(name)
+      now = Time.now.to_s.split(" ").join("-")
+      newname = "#{name}.old-#{now}"
+      `mv #{name} #{newname}`
+      $stderr.puts "Previous #{name} was saved as #{newname}"
+   end
+
+   `rm #{name}` if File.symlink?(name)
+   name =~ /(vim|zsh|git)/i
+   source = "#{name.split(".")[1]}"
+
+   `ln -s #{topleveldir}/#{$1}-config/#{source} #{name}`
+end
+ 
