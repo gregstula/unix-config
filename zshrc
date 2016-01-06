@@ -94,8 +94,12 @@ zstyle :compinstall filename '/Users/Greg-D-Stula/.zshrc'
 
 autoload -Uz compinit
 # End of lines added by compinstall 
+
 #kill vi mode lag
 export KEYTIMEOUT=1
+
+# Latest xtoolchain for Swift
+export swiftlatest="/Library/Developer/Toolchains/swift-latest.xctoolchain"
  
  # Syntax highlight
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
