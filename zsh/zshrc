@@ -1,33 +1,23 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt appendhistory autocd extendedglob nomatch notify
 unsetopt beep
-bindkey -v
+bindkey -v # vi
+export KEYTIMEOUT=1 # kills vi mode lag
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
-export ZSH=$HOME/.oh-my-zsh
-
+export ZSH=$HOME/.zsh/
 ZSH_THEME="evan"
 DISABLE_AUTO_TITLE="true"
-#ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm.dd.yyyy"
-
-ZSH_CUSTOM=$ZSH/stula
 plugins=(themes zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-#kill vi mode lag
-export KEYTIMEOUT=1
  
- # Syntax highlight
-#source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Aliases
 alias ls="ls -AG"
 alias archey="archey --offline"
@@ -40,12 +30,14 @@ alias pbpaste="pbcopy >"
 alias prm="stat -f '%A %a %N'"
 
 # AVOID SUFFIX ALIASES, THEY CAN CONFLICT WITH FILE NAMES / COMMANDS - HARMFUL!
-#alias -s tex=mvim
+# alias -s sh=mvim
+# ...auto cd is bad enough as it is
 
 # xtoolchain
 export swift_latest="/Library/Developer/Toolchains/swift-latest.xctoolchain"
 alias xclaunch="xcrun launch-with-toolchain /Library/Developer/Toolchains/swift-latest.xctoolchain"
 
+# Why not?
 alias vimrc="$HOME/.vimrc"
 alias zshrc="$HOME/.zshrc"
 

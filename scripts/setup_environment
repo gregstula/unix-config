@@ -17,7 +17,7 @@ if topleveldir.empty?
 end
 
 
-filenames = [".vimrc",".zshrc", ".vim", ".oh-my-zsh"].map { |x| home + x }
+filenames = [".vimrc",".zshrc", ".vim", ".zsh"].map { |x| home + x }
 
 filenames.each do |name|
    puts name
@@ -32,6 +32,6 @@ filenames.each do |name|
    name =~ /(vim|zsh|git)/i
    source = "#{name.split(".")[1]}"
 
-   `ln -s #{topleveldir}/#{$1}-config/#{source} #{name}`
+   `ln -s #{topleveldir}/#{$1}/#{source} #{name}`
 end
  
