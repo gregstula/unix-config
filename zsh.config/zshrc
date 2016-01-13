@@ -24,6 +24,6 @@ then
     eval "$(rbenv init -)"
 fi
  
-source $ZSH/public_aliases.zsh
-source $ZSH/private_aliases.zsh
+source $ZSH/zsh/public_aliases.zsh
+source $ZSH/zsh/private_aliases.zsh
 

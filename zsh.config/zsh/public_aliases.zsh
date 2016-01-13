@@ -10,7 +10,7 @@
 # ...auto cd is enough laziness for one shell, 
 # let's not get carried away
 
-KERNAL = `../scripts/get-kernal`
+KERNAL = `../scripts/get_kernal`
 
 if [$KERNAL == "Darwin"]; then 
     # Aliases
