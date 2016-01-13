@@ -1,0 +1,29 @@
+HISTFILE=~/.histfile
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt appendhistory autocd extendedglob nomatch notify
+unsetopt beep
+
+bindkey -v # vi
+export KEYTIMEOUT=1 # kills vi mode lag
+
+zstyle :compinstall filename "$HOME/.zshrc"
+autoload -Uz compinit
+export ZSH=$HOME/.zsh
+ZSH_THEME="evan"
+DISABLE_AUTO_TITLE="true"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+HIST_STAMPS="mm.dd.yyyy"
+plugins=(themes zsh-syntax-highlighting git)
+source $ZSH/oh-my-zsh.sh
+
+# Ruby version manager
+if [ -x /usr/local/bin/benv ];
+then
+    eval "$(rbenv init -)"
+fi
+ 
+source $ZSH/public_aliases.zsh
+source $ZSH/private_aliases.zsh
+
