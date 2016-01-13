@@ -39,7 +39,7 @@ filenames.each do |file|
    file =~ /(vim|zsh|git)/i   
    `ln -s #{topleveldir}/#{$1}.config/#{source} #{file}`
 
-    puts "#{file}|".jjust(spacing)
+    puts "#{file}|".rjust(spacing)
 end
 
 success_message = "| were successfully symlinked."
