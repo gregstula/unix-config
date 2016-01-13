@@ -27,3 +27,4 @@ fi
 source $ZSH/zsh/public_aliases.zsh
 source $ZSH/zsh/private_aliases.zsh
 
+alias rmDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
