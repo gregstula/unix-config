@@ -1,30 +1,38 @@
+# Essential exports for config functionality
+export ZSH=$HOME/.zsh
+export UNIX_CONFIG_DIR=$(<$HOME/.unix_config_dir)
+echo $UNIX_CONFIG_DIR
+
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt appendhistory autocd extendedglob nomatch notify
 unsetopt beep
 
-bindkey -v # vi
+bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
 
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
-export ZSH=$HOME/.zsh
 ZSH_THEME="evan"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
 HIST_STAMPS="mm.dd.yyyy"
 plugins=(themes zsh-syntax-highlighting git)
 source $ZSH/oh-my-zsh.sh
 
 # Ruby version manager
-if [ -x /usr/local/bin/benv ];
+if [ -x /usr/local/bin/rbenv ];
 then
     eval "$(rbenv init -)"
 fi
  
-source $ZSH/zsh/public_aliases.zsh
-source $ZSH/zsh/private_aliases.zsh
+source $ZSH/public_aliases.zsh
 
-alias rmDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
+# Add private aliases to private_aliases.zsh in your $ZSH directory
+if [ -f $ZSH/private_aliases.zsh ];
+then
+    source $ZSH/private_aliases.zsh
+fi
+

@@ -1,4 +1,0 @@
-#!/bin/env/ruby
-
-print `uname -i`.split(" ")[0].chomp
-
