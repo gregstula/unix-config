@@ -7,7 +7,8 @@
 #  Created by Gregory D. Stula on 1/4/16.
 #  
 
-back_updisabled = (ARGV[1] == "--no-back-up") || (ARGV[1] == "-nb")
+# ghetto option parsing
+backup_disabled = (ARGV[1] == "--no-back-up") || (ARGV[1] == "-nb")
 
 topleveldir= `git rev-parse --show-toplevel`.chomp
 if topleveldir.empty?
@@ -15,8 +16,12 @@ if topleveldir.empty?
    exit(1)
 end
 
+ucd = "#{ENV['HOME']}/.unix_config_dir"
+
+`echo #{topleveldir} > #{ucd}`
+
 homedir = ENV["HOME"] + "/"
-filenames = [".zshrc", ".zsh", ".vimrc", ".vim"].map { |name| homedir + name } 
+filenames = [".zshrc", ".zsh", ".vimrc", ".vim"].map { |name| homedir + name }
 
 spacing = filenames.max_by(&:length).length + 1
 
@@ -36,7 +41,7 @@ filenames.each do |file|
    `rm #{file}` if File.symlink?(file)
    
    source = "#{ file.split( "." )[1] }"
-   file =~ /(vim|zsh|git)/i   
+   file =~ /(vim|zsh|git)/i
    `ln -s #{topleveldir}/#{$1}.config/#{source} #{file}`
 
     puts "#{file}|".rjust(spacing)
