@@ -35,10 +35,23 @@ if [[ $KERNAL == "Darwin" ]]; then
     alias vimrc="$HOME/.vimrc"
     alias zshrc="$HOME/.zshrc"
 
-    # Keep last
     export PATH=$swift_latest:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
+
+    # Ruby version manager
+    if [ -x /usr/local/bin/rbenv ];
+    then
+        export: $HOME/.rbenv/bin:$PATH
+        eval "$(rbenv init -)"
+    fi
 
 elif [[ $KERNAL == "FreeBSD" ]]; then
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
 fi
+
+# Add private aliases to private_aliases.zsh in your $ZSH directory
+if [ -f $ZSH/private_aliases.zsh ];
+then
+    source $ZSH/private_aliases.zsh
+fi
+
 

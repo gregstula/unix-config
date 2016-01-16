@@ -22,17 +22,7 @@ HIST_STAMPS="mm.dd.yyyy"
 plugins=(themes zsh-syntax-highlighting git)
 source $ZSH/oh-my-zsh.sh
 
-# Ruby version manager
-if [ -x /usr/local/bin/rbenv ];
-then
-    eval "$(rbenv init -)"
-fi
+
  
 source $ZSH/public_aliases.zsh
-
-# Add private aliases to private_aliases.zsh in your $ZSH directory
-if [ -f $ZSH/private_aliases.zsh ];
-then
-    source $ZSH/private_aliases.zsh
-fi
 
