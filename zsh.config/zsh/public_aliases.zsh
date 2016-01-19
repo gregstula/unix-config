@@ -40,7 +40,7 @@ if [[ $KERNAL == "Darwin" ]]; then
     # Ruby version manager
     if [ -x /usr/local/bin/rbenv ];
     then
-        export $HOME/.rbenv/bin:$PATH
+        export PATH=$HOME/.rbenv/bin:$PATH
         eval "$(rbenv init -)"
     fi
 
