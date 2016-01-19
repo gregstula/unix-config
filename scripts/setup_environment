@@ -9,7 +9,7 @@ exec ruby -x "$0" "$@"
 #  
 
 # ghetto option parsing
-backup_disabled = (ARGV[1] == "--no-back-up") || (ARGV[1] == "-nb")
+backup_enabled = (ARGV[1] == "--back-up") || (ARGV[1] == "-b")
 
 topleveldir= `git rev-parse --show-toplevel`.chomp
 if topleveldir.empty?
@@ -32,7 +32,7 @@ filenames.each do |file|
         backup = "#{file}.old-#{now}"
         action = ''
 
-        backup_disabled ? action = "rm #{file}" : action = "mv #{file} #{backup}"
+        backup_enabled ? action = "mv #{file} #{backup}" : action = "rm #{file}"
 
         `#{action}`
 
