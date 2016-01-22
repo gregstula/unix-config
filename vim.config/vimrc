@@ -40,10 +40,6 @@ set mat=1
 " is unset, this does nothing.
 set t_vb=
 
-"===========================================================================
-" Tabs, Indents, and Files Specific things
-"===========================================================================
-
 " Visualize tabs
 "syntax match Tab /\t/
 hi Tab gui=underline guifg=blue ctermbg=blue
@@ -65,7 +61,16 @@ set colorcolumn=100
 set cursorline
 set ruler
 
-" TODO: Language specific stuff should all be in submodules of plugin forks
+" Hide the mouse pointer while typing
+set mousehide
+
+" Make the command-line completion better
+set wildmenu
+
+" Zee greatest shell
+set shell=zsh
+
+" TODO: the remaining language specific stuff should all be in submodules of plugin forks
 " C
 autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
 " makefiles need tabs 

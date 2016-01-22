@@ -31,3 +31,6 @@
 [submodule "vim.config/vim/bundle/gitv"]
 	path = vim.config/vim/bundle/gitv
 	url = git@github.com:gregstula/gitv.git
+[submodule "vim.config/vim/bundle/vimwiki"]
+	path = vim.config/vim/bundle/vimwiki
+	url = git@github.com:vimwiki/vimwiki.git
