@@ -13,3 +13,21 @@
 [submodule "vim.config/vim/bundle/vim-markdown"]
 	path = vim.config/vim/bundle/vim-markdown
 	url = git@github.com:gregstula/vim-markdown.git
+[submodule "vim.config/vim/bundle/vim-objc"]
+	path = vim.config/vim/bundle/vim-objc
+	url = git@github.com:gregstula/vim-objc.git
+[submodule "vim.config/vim/bundle/vim-erlang-runtime"]
+	path = vim.config/vim/bundle/vim-erlang-runtime
+	url = git@github.com:gregstula/vim-erlang-runtime.git
+[submodule "vim.config/vim/bundle/vim-cpp-enhanced-highlight"]
+	path = vim.config/vim/bundle/vim-cpp-enhanced-highlight
+	url = git@github.com:gregstula/vim-cpp-enhanced-highlight.git
+[submodule "vim.config/vim/bundle/vim-indent-guides"]
+	path = vim.config/vim/bundle/vim-indent-guides
+	url = git@github.com:gregstula/vim-indent-guides.git
+[submodule "vim.config/vim/bundle/vim-json"]
+	path = vim.config/vim/bundle/vim-json
+	url = git@github.com:gregstula/vim-json.git
+[submodule "vim.config/vim/bundle/gitv"]
+	path = vim.config/vim/bundle/gitv
+	url = git@github.com:gregstula/gitv.git
