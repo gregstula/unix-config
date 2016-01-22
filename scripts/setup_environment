@@ -1,6 +1,7 @@
 #!/bin/sh
 exec ruby -x "$0" "$@"
 #!ruby -W0
+
 # setup-environment
 # The MIT License (MIT) [https://opensource.org/licenses/MIT]
 # Copyright (c) 2016 Gregory D. Stula

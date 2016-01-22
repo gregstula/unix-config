@@ -1,4 +1,5 @@
 execute pathogen#infect()
+set sessionoptions-=options
 " vim not vi
 set nocompatible
 
