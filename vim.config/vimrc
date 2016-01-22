@@ -68,20 +68,11 @@ set ruler
 " C
 autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
 
-" Ruby
-autocmd BufRead,BufNewFile *.rb,*.lua set sw=2 
-
 " C++
 autocmd BufRead,BufNewFile *.cpp,*hpp set tw=120 colorcolumn=120 cindent
 
 " Objective-C/Objective-C++
 autocmd BufRead,BufNewFile *.m,*mm set filetype=objc
-
-" Swift
-autocmd BufRead,BufNewFile *.swift set filetype=swift
-
-" Golang
-autocmd BufRead,BufNewFile *.go set tw=80 colorcolumn=80 cindent noexpandtab
 
 " Markdown
 autocmd BufRead,BufNewFile *.md set filetype=markdown tw=9999
