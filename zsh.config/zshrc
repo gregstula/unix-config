@@ -3,6 +3,20 @@ export ZSH=$HOME/.zsh
 export UNIX_CONFIG_DIR=$(<$HOME/.unix_config_dir)
 echo $UNIX_CONFIG_DIR
 
+
+zstyle :compinstall filename "$HOME/.zshrc"
+autoload -Uz compinit
+
+ZSH_THEME="evan"
+DISABLE_AUTO_TITLE="true"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
+HIST_STAMPS="mm.dd.yyyy"
+plugins=(themes zsh-syntax-highlighting git)
+
+source $ZSH/oh-my-zsh.sh
+source $ZSH/public_aliases.zsh
+
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -11,18 +25,4 @@ unsetopt beep
 
 bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
-
-zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
-ZSH_THEME="evan"
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
-HIST_STAMPS="mm.dd.yyyy"
-plugins=(themes zsh-syntax-highlighting git)
-source $ZSH/oh-my-zsh.sh
-
-
- 
-source $ZSH/public_aliases.zsh
 
