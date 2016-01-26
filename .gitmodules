@@ -37,3 +37,6 @@
 [submodule "vim.config/vim/bundle/YouCompleteMe"]
 	path = vim.config/vim/bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "vim.config/vim/bundle/rust.vim"]
+	path = vim.config/vim/bundle/rust.vim
+	url = git@github.com:gregstula/rust.vim.git
