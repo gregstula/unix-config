@@ -35,7 +35,7 @@ if [[ $KERNAL == "Darwin" ]]; then
     alias vimrc="$HOME/.vimrc"
     alias zshrc="$HOME/.zshrc"
 
-    export PATH=$swift_latest:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
+    export PATH=$swift_latest
 
     # Ruby version manager
     if [ -x /usr/local/bin/rbenv ];
