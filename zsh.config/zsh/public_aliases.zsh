@@ -1,20 +1,20 @@
-# AVOID SUFFIX ALIASES, 
+# Note to self: AVOID SUFFIX ALIASES, their not that cool
 # Unfortunateley there are people who haven't realized that putting suffixes
 # on executables is a horrible idea. 
 # Therefore doing something like this
 #
 # alias -s sh=vim
 #
-# will make ./install.sh open vim, which is abhorrent.
+# will make ./install.sh open vim, which is gross.
 #
-# ...auto cd is enough laziness for one shell, 
-# let's not get carried away
 
-KERNAL=`uname -a | head -n1 | awk '{print $1;}'`
+# Global
+alias ls="ls -AG"
+
+KERNAL=`uname`
 
 if [[ $KERNAL == "Darwin" ]]; then 
-    # Aliases
-    alias ls="ls -AG"
+    # OS X Aliases
     alias archey="archey --offline"
 
     # Because wiping your SSH key when you meant to copy it is too painful
@@ -24,16 +24,12 @@ if [[ $KERNAL == "Darwin" ]]; then
     alias cp="cp -rp"
 
     # View file permissions
-    alias prm="stat -f '%A %a %N'"
+    alias permissions="stat -f '%A %a %N'"
 
     # xtoolchain for bleeding edge iOS and OS X development
     export swift_latest="/Library/Developer/Toolchains/swift-latest.xctoolchain"
     alias rmDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
     alias xclaunch="xcrun launch-with-toolchain /Library/Developer/Toolchains/swift-latest.xctoolchain"
-
-    # Why not?
-    alias vimrc="$HOME/.vimrc"
-    alias zshrc="$HOME/.zshrc"
 
     export PATH=$swift_latest
 
