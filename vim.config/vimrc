@@ -97,3 +97,4 @@ map <leader>ss :setlocal spell!<cr>
 " Toggle tree with C-n
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
