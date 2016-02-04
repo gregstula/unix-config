@@ -40,3 +40,15 @@
 [submodule "vim.config/vim/bundle/rust.vim"]
 	path = vim.config/vim/bundle/rust.vim
 	url = git@github.com:gregstula/rust.vim.git
+[submodule "vim.config/vim/bundle/nerdcommenter"]
+	path = vim.config/vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim.config/vim/bundle/vim-surround"]
+	path = vim.config/vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim.config/vim/bundle/color_coded"]
+	path = vim.config/vim/bundle/color_coded
+	url = https://github.com/jeaye/color_coded.git
+[submodule "vim.config/vim/bundle/vim-rubocop"]
+	path = vim.config/vim/bundle/vim-rubocop
+	url = https://github.com/ngmy/vim-rubocop.git
