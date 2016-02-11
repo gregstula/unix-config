@@ -77,6 +77,8 @@ autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
 autocmd FileType make setlocal noexpandtab
 " MASM
 autocmd BufRead,BufNewFile *.asm set ft=masm
+" Obj-C++
+autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc++
 
 " default goey settings
 color molokai
