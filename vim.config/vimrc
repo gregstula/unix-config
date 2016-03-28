@@ -82,7 +82,7 @@ autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc+
 
 " default goey settings
 color molokai
-set guifont=Consolas:h16
+set guifont=Menlo:h16
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
