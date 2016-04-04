@@ -1,0 +1,9 @@
+[submodule "vim.config/vim/bundle/YouCompleteMe"]
+	path = vim.config/vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim.config/vim/bundle/haskell-vim"]
+	path = vim.config/vim/bundle/haskell-vim
+	url = https://github.com/neovimhaskell/haskell-vim.git
+[submodule "vim.config/vim/bundle/nerdtree"]
+	path = vim.config/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
