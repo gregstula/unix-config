@@ -7,3 +7,18 @@
 [submodule "vim.config/vim/bundle/nerdtree"]
 	path = vim.config/vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim.config/vim/bundle/vim-rails"]
+	path = vim.config/vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "vim.config/vim/bundle/vim-bundler"]
+	path = vim.config/vim/bundle/vim-bundler
+	url = git://github.com/tpope/vim-bundler.git
+[submodule "vim.config/vim/bundle/vim-rake"]
+	path = vim.config/vim/bundle/vim-rake
+	url = git://github.com/tpope/vim-rake.git
+[submodule "vim.config/vim/bundle/vim-projectionist"]
+	path = vim.config/vim/bundle/vim-projectionist
+	url = git://github.com/tpope/vim-projectionist.git
+[submodule "vim.config/vim/bundle/vim-ruby"]
+	path = vim.config/vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
