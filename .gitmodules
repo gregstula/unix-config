@@ -22,3 +22,6 @@
 [submodule "vim.config/vim/bundle/vim-ruby"]
 	path = vim.config/vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "vim.config/vim/bundle/vim-swift"]
+	path = vim.config/vim/bundle/vim-swift
+	url = https://github.com/toyamarinyon/vim-swift.git
