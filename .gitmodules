@@ -25,3 +25,6 @@
 [submodule "vim.config/vim/bundle/vim-swift"]
 	path = vim.config/vim/bundle/vim-swift
 	url = https://github.com/toyamarinyon/vim-swift.git
+[submodule "vim.config/vim/bundle/vim-elixir"]
+	path = vim.config/vim/bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
