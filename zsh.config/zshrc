@@ -1,7 +1,6 @@
 # Essential exports for config functionality
 export ZSH=$HOME/.zsh
 export UNIX_CONFIG_DIR=$(<$HOME/.unix_config_dir)
-echo $UNIX_CONFIG_DIR
 
 
 zstyle :compinstall filename "$HOME/.zshrc"
