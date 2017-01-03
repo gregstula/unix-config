@@ -33,23 +33,22 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     export PATH=$swift_latest
 
-    # Ruby version manager
-    if [ -x /usr/local/bin/rbenv ];
-    then
-        export PATH=$HOME/.rbenv/bin:$PATH
-        eval "$(rbenv init -)"
-    fi
-
-elif [[ $KERNAL == "FreeBSD" ]]; then
+    elif [[ $KERNAL == "FreeBSD" ]]; then
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
 fi
+
+# Ruby version manager
+if [ -x /usr/local/bin/rbenv ]; then
+    export PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
+fi
+
 
 # Add private aliases to private_aliases.zsh in your $ZSH directory
 if [ -f $ZSH/private_aliases.zsh ];
 then
     source $ZSH/private_aliases.zsh
 fi
-
 
