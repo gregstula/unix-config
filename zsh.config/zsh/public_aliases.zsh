@@ -45,6 +45,11 @@ if [ -x /usr/local/bin/rbenv ]; then
     eval "$(rbenv init -)"
 fi
 
+# open command opens current window in thunar (xfce's "finder")
+if [[ $DESKTOP_SESSION == "xfce" ]]; then
+    alias open="thunar"
+fi
+
 
 # Add private aliases to private_aliases.zsh in your $ZSH directory
 if [ -f $ZSH/private_aliases.zsh ];
