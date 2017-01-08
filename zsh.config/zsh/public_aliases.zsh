@@ -34,7 +34,21 @@ if [[ $KERNAL == "Darwin" ]]; then
     export PATH=$swift_latest
 
     elif [[ $KERNAL == "FreeBSD" ]]; then
+    
+    # Same as above but FreeBSD version
+    export cp=cp -R
+
+    # cbcopy works like pbcopy in OS X/macOS
+    autoreleasepoolcopy() {
+        cat $1 | xclip session   
+    }
+
+    cbcopy=autoreleasepoolcopy
+
+    # A sane path
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
+
+    # UTF-8 all the things!
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
 fi
