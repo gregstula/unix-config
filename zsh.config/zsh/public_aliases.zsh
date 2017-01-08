@@ -44,9 +44,10 @@ if [ -x /usr/local/bin/rbenv ]; then
     export PATH=$HOME/.rbenv/bin:$PATH
     eval "$(rbenv init -)"
 
-    if [[ $KERNAL == "freebsd"; ]] then 
-        # temporary work around for https://github.com/rbenv/rbenv/issues/881
+    if [[ $KERNAL == "FreeBSD"; ]] then 
+  # temporary work around for https://github.com/rbenv/rbenv/issues/881
         export RUBY_CONFIGURE_OPTS=—with-opt-dir=/usr/local
+    fi
 fi
 
 # open command opens current window in thunar (xfce's "finder")
@@ -60,4 +61,3 @@ if [ -f $ZSH/private_aliases.zsh ];
 then
     source $ZSH/private_aliases.zsh
 fi
-

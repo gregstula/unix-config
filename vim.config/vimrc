@@ -56,10 +56,11 @@ set softtabstop=4
 set tabstop=4
 
 " default character width 100
-set tw=100
-set colorcolumn=100
+set tw=120
+set colorcolumn=120
 set cursorline
 set ruler
+set wrap
 
 " Hide the mouse pointer while typing
 set mousehide
@@ -82,7 +83,16 @@ autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc+
 
 " default goey settings
 color molokai
-set guifont=Menlo:h16
+
+if has("gui_running")
+    if has("gui_gtk2")
+       set guifont=Consolas\ 14
+    elseif has("gui_macvim")
+       set guifont=Consolas:h16
+    elseif has("gui_win32")
+        set guifont=Consolas:h16:cANSI
+    endif 
+endif
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
