@@ -36,11 +36,11 @@ if [[ $KERNAL == "Darwin" ]]; then
     elif [[ $KERNAL == "FreeBSD" ]]; then
     
     # cbcopy works like pbcopy in OS X/macOS
-    autoreleasepoolcopy() {
-        cat $1 | xclip session   
-    }
+    #autoreleasepoolcopy() {
+    #    cat $1 | xclip session   
+    # }
 
-    export cbcopy=autoreleasepoolcopy
+    # export cbcopy=autoreleasepoolcopy
 
     # A sane path
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
@@ -57,7 +57,7 @@ if [ -x /usr/local/bin/rbenv ]; then
 
     if [[ $KERNAL == "FreeBSD"; ]] then 
   # temporary work around for https://github.com/rbenv/rbenv/issues/881
-        export RUBY_CONFIGURE_OPTS=—with-opt-dir=/usr/local
+        export RUBY_CONFIGURE_OPTS=with-opt-dir=/usr/local
     fi
 fi
 
