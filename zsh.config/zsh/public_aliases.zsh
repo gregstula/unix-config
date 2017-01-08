@@ -66,6 +66,8 @@ if [[ $DESKTOP_SESSION == "xfce" ]]; then
     alias open="thunar"
 fi
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # Add private aliases to private_aliases.zsh in your $ZSH directory
 if [ -f $ZSH/private_aliases.zsh ];
