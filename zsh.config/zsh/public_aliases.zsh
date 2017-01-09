@@ -28,12 +28,15 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     # xtoolchain for bleeding edge iOS and OS X development
     export swift_latest="/Library/Developer/Toolchains/swift-latest.xctoolchain"
-    alias rmDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
+    alias nukeDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
     alias xclaunch="xcrun launch-with-toolchain /Library/Developer/Toolchains/swift-latest.xctoolchain"
 
     export PATH=$swift_latest
-
-    elif [[ $KERNAL == "FreeBSD" ]]; then
+ 
+    elif [[ $KERNAL == "FreeBSD" ]]; then      
+    
+    #archey alias for *BSD
+    export archey = bsdinfo
     
     # autocopy works like pbcopy in OS X/macOS
     _autoreleasepoolcopy() {
