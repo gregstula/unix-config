@@ -35,12 +35,12 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     elif [[ $KERNAL == "FreeBSD" ]]; then
     
-    # cbcopy works like pbcopy in OS X/macOS
-    #autoreleasepoolcopy() {
-    #    cat $1 | xclip session   
-    # }
+    # autocopy works like pbcopy in OS X/macOS
+    _autoreleasepoolcopy() {
+        cat $1 | xclip -selection clipboard 
+     }
 
-    # export cbcopy=autoreleasepoolcopy
+    export autocopy=_autoreleasepoolcopy
 
     # A sane path
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
