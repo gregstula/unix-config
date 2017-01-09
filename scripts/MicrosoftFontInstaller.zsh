@@ -26,7 +26,7 @@ if [ ! -d ~/fonts ]; then
     mkdir ~/.fonts
 fi
 
-mv *.TTY ~/.fonts/
+mv *.TTF ~/.fonts/
 cd ~/.fonts
 mkfontsdir
 xset fp+ ~/.fonts
