@@ -47,6 +47,13 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     # A sane path
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
+    
+    # open command opens current window in thunar (xfce's "finder")
+    # Linux already has an open command, so we'll just use thunar on that platform, unfortunatley 
+    if [[ $DESKTOP_SESSION == "xfce" ]]; then
+        alias open="thunar"
+    fi
+
 
     # UTF-8 all the things!
     export MM_CHARSET=UTF-8
@@ -64,11 +71,7 @@ if [ -x /usr/local/bin/rbenv ]; then
     fi
 fi
 
-# open command opens current window in thunar (xfce's "finder")
-if [[ $DESKTOP_SESSION == "xfce" ]]; then
-    alias open="thunar"
-fi
-
+# set vim as editor for everything ever
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
