@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/sh
 
 # MicrosoftFontInstaller.zsh
 # The MIT License (MIT) [https://opensource.org/licenses/MIT]
@@ -28,7 +28,8 @@ fi
 
 mv *.TTF ~/.fonts/
 cd ~/.fonts
-mkfontsdir
+mkfontscale
+mkfontdir
 xset fp+ ~/.fonts
 xset fp rehash
 
