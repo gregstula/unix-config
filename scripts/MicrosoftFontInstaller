@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+
+# MicrosoftFontInstaller.zsh
+# The MIT License (MIT) [https://opensource.org/licenses/MIT]
+# Copyright (c) 2016 Gregory D. Stula
+#  
+#  Created by Gregory D. Stula on 1/4/16.
+#  
+
+echo "Attempting to grab Microsoft fonts..."
+
+# Search for dependencies
+KERNAL=`uname`
+
+if [[ $KERNAL == "Linux" ]]; then
+    if [ ! -f /usr/bin/cabextract ] || [ -f /usr/bin/mkfontsdir ]; then
+        echo "Dependencies missing! Please run \`\$PACKAGE_MANAGER install cabextract mkfontsdir curl\` and try again."
+        exit
+    fi
+fi
+
+
+if [[ $KERNAL == "Darwin" ]] || [[ $KERNAL == "FreeBSD" ]]; then
+    if [ ! -f /usr/local/bin/cabextract ] || [ -f /usr/local/bin/mkfontsdir ]; then
+        echo "Dependencies missing! Please run \`\$PACKAGE_MANAGER install cabextract mkfontsdir curl\` and try again."
+        exit
+    fi
+fi
+
+# Download PowerPointViewer.exe and extract it's contents
+set -e
+set -x
+LOCATION=`pwd`
+mkdir temp
+cd temp
+curl -O http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27C9F8C8F696/PowerPointViewer.exe
+cabextract -L -F ppviewer.cab PowerPointViewer.exe
+cabextract ppviewer.cab
+
+# Make fonts directory for true type fonts
+if [ ! -d ~/.fonts ]; then
+    mkdir ~/.fonts
+fi
+
+mv *.TTF ~/.fonts/
+cd ~/.fonts
+mkfontscale
+mkfontdir
+xset fp+ ~/.fonts
+xset fp rehash
+cd "$LOCATION"
+rm -rf temp
+echo "Successfully installed Microsoft Fonts"

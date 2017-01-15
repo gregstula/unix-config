@@ -52,3 +52,18 @@ end
 success_message = "| were successfully symlinked."
 puts success_message.rjust(success_message.length + spacing - 1)
 
+puts
+
+puts "Would you like to install Microsoft Fonts now? (requires cabextract)"
+answer = STDIN.gets.chomp
+
+if answer == 'y'
+    `./MicrosoftFontInstaller`
+elsif answer == 'n'
+    puts "You can always install later by running MicrosoftFontInstaller in ../unix-config/scripts"
+    puts "Aborting ..."
+else
+    puts "Aborting ..."
+end
+
+    

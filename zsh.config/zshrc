@@ -6,7 +6,7 @@ export UNIX_CONFIG_DIR=$(<$HOME/.unix_config_dir)
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 
-ZSH_THEME="evan"
+ZSH_THEME="greg"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
