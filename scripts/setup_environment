@@ -54,7 +54,7 @@ puts success_message.rjust(success_message.length + spacing - 1)
 
 puts
 
-puts "Would you like to install Microsoft Fonts now? (requires cabextract)"
+puts "Would you like to install Microsoft Fonts now? (Y/n)"
 answer = STDIN.gets.chomp
 
 if answer == 'y'
