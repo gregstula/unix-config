@@ -14,7 +14,7 @@ KERNAL=`uname`
 
 if [[ $KERNAL == "Linux" ]]; then
     if [ ! -f /usr/bin/cabextract ] || [ -f /usr/bin/mkfontsdir ]; then
-        echo "Dependencies missing! Please run \`\$PACKAGE_MANAGER install cabextract mkfontsdir curl\` and try again."
+        echo "Dependencies missing! Please run \`\$PACKAGE_MANAGER install cabextract curl\` and try again."
         exit
     fi
 fi
