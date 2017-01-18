@@ -27,7 +27,7 @@ export KEYTIMEOUT=1 # kills vi mode lag
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin:$PATH
 
-if [[ `which archey | wc -l` != 0 ]]; then
+if type archey >/dev/null 2>&1; then
     archey
 fi
 
