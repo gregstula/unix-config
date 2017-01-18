@@ -20,9 +20,6 @@ if [[ $KERNAL == "Darwin" ]]; then
     # Because wiping your SSH key when you meant to copy it is too painful
     alias pbcopy="pbcopy <"
 
-    # Because I like sane default behavior
-    alias cp="cp -rp"
-
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
 
