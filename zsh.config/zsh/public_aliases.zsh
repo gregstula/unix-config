@@ -36,7 +36,7 @@ if [[ $KERNAL == "Darwin" ]]; then
     alias autocopy=_autoreleasepoolcopy
 
     # A sane path
-    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
+    export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin
     
     # open command opens current window in thunar (xfce's "finder")
     # Linux already has an open command, so we'll just use thunar on that platform, unfortunatley 
