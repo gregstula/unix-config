@@ -64,7 +64,7 @@ if [ -x /usr/local/bin/rbenv ]; then
 
     if [[ $KERNAL == "FreeBSD" ]]; then 
   # temporary work around for https://github.com/rbenv/rbenv/issues/881
-        export RUBY_CONFIGURE_OPTS=with-opt-dir=/usr/local
+        export RUBY_CONFIGURE_OPTS=--with-opt-dir=/usr/local
     fi
 fi
 
