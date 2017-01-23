@@ -81,7 +81,8 @@ autocmd FileType make setlocal noexpandtab
 autocmd BufRead,BufNewFile *.asm set ft=masm
 " Obj-C++
 autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc++
-
+" Ruby
+autocmd BufRead,BufNewFile *.rb, *.erb set tw=120 colorcolumn=120 tabstop=2 softtabstop=2 shiftwidth=2
 
 " default gui settings
 if has("gui_running")
