@@ -9,7 +9,7 @@
 #
 
 # Global
-alias ls="ls -AG"
+alias lsa="ls -AG"
 
 KERNAL=`uname`
 
@@ -18,18 +18,11 @@ if [[ $KERNAL == "Darwin" ]]; then
     alias archey="archey --offline"
 
     # Because wiping your SSH key when you meant to copy it is too painful
-    alias pbcopy="pbcopy <"
+    alias autocopy="pbcopy <"
 
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
 
-    # xtoolchain for bleeding edge iOS and OS X development
-    export swift_latest="/Library/Developer/Toolchains/swift-latest.xctoolchain"
-    alias nukeDerivedData="rm -rf ~/Library/Developer/Xcode/DerivedData"
-    alias xclaunch="xcrun launch-with-toolchain /Library/Developer/Toolchains/swift-latest.xctoolchain"
-
-    export PATH=$swift_latest
- 
     elif [[ $KERNAL == "FreeBSD" ]]; then      
     
     #archey alias for *BSD
@@ -40,7 +33,7 @@ if [[ $KERNAL == "Darwin" ]]; then
         cat $1 | xclip -selection clipboard 
      }
 
-    export autocopy=_autoreleasepoolcopy
+    alias autocopy=_autoreleasepoolcopy
 
     # A sane path
     export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin
