@@ -57,9 +57,9 @@ puts
 puts "Would you like to install Microsoft Fonts now? (Y/n)"
 answer = STDIN.gets.chomp
 
-if answer == 'y'
+if answer.downcase == 'y'
     `./MicrosoftFontInstaller`
-elsif answer == 'n'
+elsif answer.downcase == 'n'
     puts "You can always install later by running MicrosoftFontInstaller in ../unix-config/scripts"
     puts "Aborting ..."
 else
