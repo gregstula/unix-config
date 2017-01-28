@@ -34,3 +34,6 @@
 [submodule "vim.config/vim/bundle/vim-surround"]
 	path = vim.config/vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "vim.config/vim/bundle/rust.vim"]
+	path = vim.config/vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
