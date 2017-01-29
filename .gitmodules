@@ -40,3 +40,6 @@
 [submodule "vim.config/vim/bundle/vim-go"]
 	path = vim.config/vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "vim.config/vim/bundle/delimitMate"]
+	path = vim.config/vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
