@@ -48,13 +48,12 @@ hi Tab gui=underline guifg=blue ctermbg=blue
 " Use spaces instead of tabs
 set expandtab
 
+set ts=4
+set softtabstop=0 noexpandtab
+set sw=4
+
 " Be smart when using tabs ;)
 set smarttab
-
-" tab == 4 spaces
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
 
 " default character width 100
 set tw=120
@@ -73,7 +72,6 @@ set wildmenu
 set shell=zsh
 
 " TODO: the remaining language specific stuff should all be in submodules of plugin forks
-" C
 autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
 " makefiles need tabs 
 autocmd FileType make setlocal noexpandtab
@@ -81,6 +79,9 @@ autocmd FileType make setlocal noexpandtab
 autocmd BufRead,BufNewFile *.asm set ft=masm
 " Obj-C++
 autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc++
+
+autocmd FileType ruby setlocal expandtab tabstop=2 sw=2
+autocmd FileType eruby setlocal expandtab tabstop=2 sw=2
 
 " default gui settings
 if has("gui_running")
