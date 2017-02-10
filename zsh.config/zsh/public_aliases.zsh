@@ -72,5 +72,3 @@ then
     source $ZSH/private_aliases.zsh
 fi
 
-alias vimelixir='vim -u ~/.vimrc.elixir'
-
