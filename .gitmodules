@@ -43,3 +43,6 @@
 [submodule "vim.config/vim/bundle/delimitMate"]
 	path = vim.config/vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim.config/vim/bundle/scss-syntax.vim"]
+	path = vim.config/vim/bundle/scss-syntax.vim
+	url = https://github.com/cakebaker/scss-syntax.vim.git
