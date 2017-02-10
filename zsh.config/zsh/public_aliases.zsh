@@ -71,3 +71,6 @@ if [ -f $ZSH/private_aliases.zsh ];
 then
     source $ZSH/private_aliases.zsh
 fi
+
+alias vimelixir='vim -u ~/.vimrc.elixir'
+
