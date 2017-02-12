@@ -51,9 +51,9 @@ if [[ $KERNAL == "Darwin" ]]; then
 fi
 
 # Ruby version manager
-if [ -x /usr/local/bin/rbenv ]; then
+if hash rbenv 2>/dev/null; then
     export PATH=$HOME/.rbenv/bin:$PATH
-    eval "$(rbenv init -)"
+	eval "$(rbenv init -)"
 
     if [[ $KERNAL == "FreeBSD" ]]; then 
   # temporary work around for https://github.com/rbenv/rbenv/issues/881

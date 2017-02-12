@@ -25,9 +25,7 @@ unsetopt beep
 bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$HOME/bin:$PATH
-
-if type archey >/dev/null 2>&1; then
+if hash archey 2>/dev/null; then
     archey
 fi
 
