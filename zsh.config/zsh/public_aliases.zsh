@@ -26,7 +26,9 @@ if [[ $KERNAL == "Darwin" ]]; then
     elif [[ $KERNAL == "FreeBSD" ]]; then      
     
     #archey alias for *BSD
-    alias archey="bsdinfo"
+	if hash bsdinfo 2>/dev/null; then
+    	alias archey="bsdinfo"
+	fi
     
     # autocopy works like pbcopy in OS X/macOS
     _autoreleasepoolcopy() {
