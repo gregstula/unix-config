@@ -23,7 +23,7 @@ if [[ $KERNAL == "Darwin" ]]; then
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
 
-    elif [[ $KERNAL == "FreeBSD" ]]; then      
+elif [[ $KERNAL == "FreeBSD" ]]; then      
     
     #archey alias for *BSD
 	if hash bsdinfo 2>/dev/null; then
@@ -50,6 +50,8 @@ if [[ $KERNAL == "Darwin" ]]; then
     # UTF-8 all the things!
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
+elif [[ $KERNAL == "Linux" ]]; then  
+	export PATH=$PATH:$HOME/bin
 fi
 
 # Ruby version manager
