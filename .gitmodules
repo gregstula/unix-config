@@ -46,3 +46,6 @@
 [submodule "vim.config/vim/bundle/scss-syntax.vim"]
 	path = vim.config/vim/bundle/scss-syntax.vim
 	url = https://github.com/cakebaker/scss-syntax.vim.git
+[submodule "vim.config/vim/bundle/local_vimrc"]
+	path = vim.config/vim/bundle/local_vimrc
+	url = https://github.com/LucHermitte/local_vimrc.git

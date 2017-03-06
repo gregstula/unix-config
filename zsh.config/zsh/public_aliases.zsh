@@ -66,13 +66,15 @@ if hash rbenv 2>/dev/null; then
     fi
 fi
 
+#Elixir version manager
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
 # set vim as editor for everything ever
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Add private aliases to private_aliases.zsh in your $ZSH directory
-if [ -f $ZSH/private_aliases.zsh ];
-then
+if [ -f $ZSH/private_aliases.zsh ]; then
     source $ZSH/private_aliases.zsh
 fi
 
