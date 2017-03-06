@@ -49,3 +49,6 @@
 [submodule "vim.config/vim/bundle/local_vimrc"]
 	path = vim.config/vim/bundle/local_vimrc
 	url = https://github.com/LucHermitte/local_vimrc.git
+[submodule "vim.config/vim/bundle/lh-vim-lib"]
+	path = vim.config/vim/bundle/lh-vim-lib
+	url = https://github.com/LucHermitte/lh-vim-lib
