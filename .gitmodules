@@ -52,6 +52,3 @@
 [submodule "vim.config/vim/bundle/lh-vim-lib"]
 	path = vim.config/vim/bundle/lh-vim-lib
 	url = https://github.com/LucHermitte/lh-vim-lib
-[submodule "vim.config/vim/bundle/vim-colors-solarized"]
-	path = vim.config/vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
