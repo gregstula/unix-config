@@ -11,6 +11,7 @@ filetype plugin indent on    " required
 
 syntax on
 set number
+
 color monokai
 color molokai
 
