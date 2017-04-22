@@ -85,6 +85,12 @@ autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc+
 autocmd FileType ruby setlocal expandtab tabstop=2 sw=2
 autocmd FileType eruby setlocal expandtab tabstop=2 sw=2
 
+" C++ specific settings
+
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+
 " default gui settings
 if has("gui_running")
     if has("gui_gtk2")
