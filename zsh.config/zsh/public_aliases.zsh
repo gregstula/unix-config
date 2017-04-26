@@ -66,6 +66,11 @@ if hash rbenv 2>/dev/null; then
     fi
 fi
 
+# Yarn package manager
+if hash yarn 2>/dev/null; then
+	export PATH="$PATH:`yarn global bin`"
+fi
+
 #Elixir version manager
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
