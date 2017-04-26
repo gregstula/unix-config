@@ -86,7 +86,11 @@ autocmd FileType ruby setlocal expandtab tabstop=2 sw=2
 autocmd FileType eruby setlocal expandtab tabstop=2 sw=2
 " JS
 autocmd FileType javascript setlocal expandtab tabstop=2 sw=2
+autocmd FileType json setlocal expandtab tabstop=2 sw=2
 let g:jsx_ext_required = 0
+let g:js_context_colors_jsx=1
+"HTML
+autocmd FileType html setlocal expandtab tabstop=2 sw=2
 
 " C++ specific settings
 
