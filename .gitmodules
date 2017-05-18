@@ -73,3 +73,6 @@
 [submodule "vim.config/vim/bundle/vim-autoformat"]
 	path = vim.config/vim/bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat.git
+[submodule "vim.config/vim/bundle/powerline"]
+	path = vim.config/vim/bundle/powerline
+	url = https://github.com/powerline/powerline.git
