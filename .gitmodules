@@ -76,3 +76,6 @@
 [submodule "vim.config/vim/bundle/powerline"]
 	path = vim.config/vim/bundle/powerline
 	url = https://github.com/powerline/powerline.git
+[submodule "zsh.config/zsh/plugins/zsh-git-prompt"]
+	path = zsh.config/zsh/plugins/zsh-git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt.git

@@ -11,9 +11,14 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
 HIST_STAMPS="mm.dd.yyyy"
-plugins=(themes zsh-syntax-highlighting git)
+plugins=(themes zsh-syntax-highlighting)
+GIT_PROMPT_EXECUTABLE="haskell"
 
+# OMZ
 source $ZSH/oh-my-zsh.sh
+# git prompt
+source $ZSH/plugins/zsh-git-prompt/zshrc.sh
+# Aliases
 source $ZSH/public_aliases.zsh
 
 HISTFILE=~/.histfile
