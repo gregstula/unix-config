@@ -76,3 +76,6 @@
 [submodule "zsh.config/zsh/plugins/zsh-git-prompt"]
 	path = zsh.config/zsh/plugins/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt.git
+[submodule "vim.config/vim/bundle/vim-airline"]
+	path = vim.config/vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
