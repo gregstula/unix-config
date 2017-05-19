@@ -26,14 +26,14 @@ tab sball
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
-" This shows what you are typing as a command. 
+" This shows what you are typing as a command.
 set showcmd
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 
 " How many tenths of a second to blink when matching brackets
 set mat=1
@@ -62,7 +62,12 @@ set tw=120
 set colorcolumn=120
 set cursorline
 set ruler
+
+" Autotrim trailing whitespace on exit
+autocmd BufWritePre * %s/\s\+$//e
 set wrap
+set linebreak
+set showbreak=>\ \ \
 
 " Hide the mouse pointer while typing
 set mousehide
@@ -75,7 +80,7 @@ set shell=zsh
 
 " TODO: the remaining language specific stuff should all be in submodules of plugin forks
 autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
-" makefiles need tabs 
+" makefiles need tabs
 autocmd FileType make setlocal noexpandtab
 " MASM
 autocmd BufRead,BufNewFile *.asm set ft=masm
@@ -106,13 +111,13 @@ if has("gui_running")
        set guifont=Consolas:h16
     elseif has("gui_win32")
         set guifont=Consolas:h16:cANSI
-    endif 
+    endif
 endif
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = ",,"
+let g:mapleader = ",,"
 
 "" Let powerline appear in non-split buffers (hack)
 set laststatus=2
@@ -132,10 +137,15 @@ let g:NERDTreeChDirMode=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list=0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+
+" YouCompleteMe
 let g:EclimCompletionMethod = 'omnifunc'
+
+" Airline
+let g:airline#extensions#syntastic#enabled = 1
 

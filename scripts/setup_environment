@@ -18,9 +18,9 @@ if topleveldir.empty?
    exit(1)
 end
 
-ucd = "#{ENV['HOME']}/.unix_config_dir"
+unix_config_dir = "#{ENV['HOME']}/.unix_config_dir"
 
-`echo #{topleveldir} > #{ucd}`
+`echo #{topleveldir} > #{unix_config_dir}`
 
 homedir = ENV["HOME"] + "/"
 filenames = [".zshrc", ".zsh", ".vimrc", ".vim"].map { |name| homedir + name }
@@ -61,7 +61,6 @@ if answer.downcase == 'y'
 	system('./MicrosoftFontInstaller')
 elsif answer.downcase == 'n'
     puts "You can always install later by running MicrosoftFontInstaller in ../unix-config/scripts"
-    puts "Aborting ..."
 else
     puts "Aborting ..."
 end
