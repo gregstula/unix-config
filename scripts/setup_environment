@@ -5,9 +5,9 @@ exec ruby -x "$0" "$@"
 # setup-environment
 # The MIT License (MIT) [https://opensource.org/licenses/MIT]
 # Copyright (c) 2016 Gregory D. Stula
-#  
+#
 #  Created by Gregory D. Stula on 1/4/16.
-#  
+#
 
 # ghetto option parsing
 backup_enabled = (ARGV[1] == "--back-up") || (ARGV[1] == "-b")
@@ -41,7 +41,7 @@ filenames.each do |file|
     end
 
    `rm #{file}` if File.symlink?(file)
-   
+
    source = "#{ file.split( "." )[1] }"
    file =~ /(vim|zsh|git)/i
    `ln -s #{topleveldir}/#{$1}.config/#{source} #{file}`
@@ -65,4 +65,4 @@ else
     puts "Aborting ..."
 end
 
-    
+

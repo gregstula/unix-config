@@ -1,6 +1,6 @@
 # Note to self: AVOID SUFFIX ALIASES, their not that cool
 # Unfortunateley there are people who haven't realized that putting suffixes
-# on executables is a horrible idea. 
+# on executables is a horrible idea.
 # Therefore doing something like this
 #
 # alias -s sh=vim
@@ -13,7 +13,7 @@ alias lsa="ls -AG"
 
 KERNAL=`uname`
 
-if [[ $KERNAL == "Darwin" ]]; then 
+if [[ $KERNAL == "Darwin" ]]; then
     # OS X Aliases
     alias archey="archey --offline"
 
@@ -23,25 +23,25 @@ if [[ $KERNAL == "Darwin" ]]; then
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
 
-elif [[ $KERNAL == "FreeBSD" ]]; then      
-    
+elif [[ $KERNAL == "FreeBSD" ]]; then
+
     #archey alias for *BSD
 	if hash bsdinfo 2>/dev/null; then
     	alias archey="bsdinfo"
 	fi
-    
+
     # autocopy works like pbcopy in OS X/macOS
     _autoreleasepoolcopy() {
-        cat $1 | xclip -selection clipboard 
+        cat $1 | xclip -selection clipboard
      }
 
     alias autocopy=_autoreleasepoolcopy
 
     # A sane path
     export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin
-    
+
     # open command opens current window in thunar (xfce's "finder")
-    # Linux already has an open command, so we'll just use thunar on that platform, unfortunatley 
+    # Linux already has an open command, so we'll just use thunar on that platform, unfortunatley
     if [[ $DESKTOP_SESSION == "xfce" ]]; then
         alias open="thunar"
     fi
@@ -50,25 +50,21 @@ elif [[ $KERNAL == "FreeBSD" ]]; then
     # UTF-8 all the things!
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
-elif [[ $KERNAL == "Linux" ]]; then  
+elif [[ $KERNAL == "Linux" ]]; then
 	export PATH=$PATH:$HOME/bin
 fi
 
 # Ruby version manager
 if hash rbenv 2>/dev/null; then
+
     export PATH=$HOME/.rbenv/bin:$PATH
 	eval "$(rbenv init -)"
 
-    if [[ $KERNAL == "FreeBSD" ]]; then 
+    if [[ $KERNAL == "FreeBSD" ]]; then
   # temporary work around for https://github.com/rbenv/rbenv/issues/881
         export RUBY_CONFIGURE_OPTS=--with-opt-dir=/usr/local
         export CC=clang
     fi
-fi
-
-# Yarn package manager
-if hash yarn 2>/dev/null; then
-	export PATH="$PATH:`yarn global bin`"
 fi
 
 #Elixir version manager
