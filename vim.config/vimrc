@@ -79,26 +79,38 @@ set wildmenu
 set shell=zsh
 
 " TODO: the remaining language specific stuff should all be in submodules of plugin forks
-autocmd BufRead,BufNewFile *.c,*.h set tw=80 colorcolumn=80 cindent
+autocmd FileType c setlocal tw=80 colorcolumn=80 cindent
+
 " makefiles need tabs
 autocmd FileType make setlocal noexpandtab
-" MASM
-autocmd BufRead,BufNewFile *.asm set ft=masm
+
 " Obj-C++
-autocmd BufRead,BufNewFile *.mm,*.mpp set tw=120 colorcolumn=80 cindent ft=objc++
+autocmd BufRead,BufNewFile *.mm,*.mpp setlocal cindent filetype=objc++
+
 " Ruby
-autocmd FileType ruby setlocal expandtab tabstop=2 sw=2
-autocmd FileType eruby setlocal expandtab tabstop=2 sw=2
-" JS
-autocmd FileType javascript setlocal expandtab tabstop=2 sw=2
-autocmd FileType json setlocal expandtab tabstop=2 sw=2
+autocmd FileType ruby setlocal  tabstop=2 sw=2
+autocmd FileType eruby setlocal tabstop=2 sw=2
+
+" JS and JSON
+autocmd FileType javascript setlocal tabstop=2 sw=2
+autocmd FileType json setlocal tabstop=2 sw=2
+autocmd BufRead,BufNewFile .eslintrc,.babelrc setlocal filetype=json
+
 let g:jsx_ext_required = 0
 let g:js_context_colors_jsx=1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:synstastic_json_checkers = ['jsonlint']
+let g:vim_json_syntax_conceal = 0
+
+if executable('node_modules/.bin/eslint')
+  let b:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
+endif
+
 "HTML
-autocmd FileType html setlocal expandtab tabstop=2 sw=2
+autocmd FileType html setlocal tabstop=2 sw=2
 
-" C++ specific settings
-
+" C++
+autocmd FileType c++ setlocal cindent
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
@@ -133,7 +145,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:NERDTreeChDirMode=2
 
 
-" Syntastic
+" Misc Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -141,7 +153,7 @@ let g:syntastic_always_populate_loc_list=0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+
 
 " YouCompleteMe
 let g:EclimCompletionMethod = 'omnifunc'

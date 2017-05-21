@@ -79,3 +79,6 @@
 [submodule "vim.config/vim/bundle/vim-airline"]
 	path = vim.config/vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim.config/vim/bundle/vim-json"]
+	path = vim.config/vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json.git
