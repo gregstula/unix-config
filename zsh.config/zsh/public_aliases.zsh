@@ -12,6 +12,7 @@
 alias lsa="ls -AG"
 
 KERNAL=`uname`
+DISTRO=`uname -s`
 
 if [[ $KERNAL == "Darwin" ]]; then
     # OS X Aliases
@@ -52,6 +53,11 @@ elif [[ $KERNAL == "FreeBSD" ]]; then
     export LANG=en_US.UTF-8
 elif [[ $KERNAL == "Linux" ]]; then
 	export PATH=$PATH:$HOME/bin
+	if [[ $DISTRO == "Manjaro" ]]; then
+		if ! hash archey 2>/dev/null; then
+			alias archey="screenfetch"
+		fi
+	fi
 fi
 
 # Ruby version manager
