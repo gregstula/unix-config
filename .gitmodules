@@ -82,3 +82,9 @@
 [submodule "vim.config/vim/bundle/vim-json"]
 	path = vim.config/vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
+[submodule "vim.config/vim/bundle/Colorizer"]
+	path = vim.config/vim/bundle/Colorizer
+	url = https://github.com/chrisbra/Colorizer.git
+[submodule "vim.config/vim/bundle/vim-css3-syntax"]
+	path = vim.config/vim/bundle/vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
