@@ -1,4 +1,4 @@
-# Note to self: AVOID SUFFIX ALIASES, their not that cool
+# Note to self: AVOID SUFFIX ALIASES, they're not that cool
 # Unfortunateley there are people who haven't realized that putting suffixes
 # on executables is a horrible idea.
 # Therefore doing something like this
@@ -12,7 +12,6 @@
 alias lsa="ls -AG"
 
 KERNAL=`uname`
-DISTRO=`uname -s`
 
 if [[ $KERNAL == "Darwin" ]]; then
     # OS X Aliases
@@ -23,13 +22,22 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
+    
+    # for homebrew and local executables
+    export PATH=/usr/local/bin:$PATH:~/bin
+    
+    # Android: adb and fastboot binaries
+    if [[ -a ~/Library/Android/sdk/platform-tools ]]; then
+        export PATH=$PATH:~/Library/Android/sdk/platform-tools
+    fi
+    	
 
 elif [[ $KERNAL == "FreeBSD" ]]; then
 
     #archey alias for *BSD
-	if hash bsdinfo 2>/dev/null; then
-    	alias archey="bsdinfo"
-	fi
+    if hash bsdinfo 2>/dev/null; then
+        alias archey="bsdinfo"
+    fi
 
     # autocopy works like pbcopy in OS X/macOS
     _autoreleasepoolcopy() {
@@ -53,7 +61,9 @@ elif [[ $KERNAL == "FreeBSD" ]]; then
     export LANG=en_US.UTF-8
 elif [[ $KERNAL == "Linux" ]]; then
 	export PATH=$PATH:$HOME/bin
-	if [[ $DISTRO == "Manjaro" ]]; then
+	
+	# Set archey to screenfetch in manjaro
+	if [[ `uname -a` =~ "(manjaro)" ]]; then
 		if ! hash archey 2>/dev/null; then
 			alias archey="screenfetch"
 		fi
