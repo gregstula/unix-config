@@ -22,15 +22,15 @@ if [[ $KERNAL == "Darwin" ]]; then
 
     # View file permissions
     alias permissions="stat -f '%A %a %N'"
-    
+
     # for homebrew and local executables
     export PATH=/usr/local/bin:$PATH:~/bin
-    
+
     # Android: adb and fastboot binaries
     if [[ -a ~/Library/Android/sdk/platform-tools ]]; then
         export PATH=$PATH:~/Library/Android/sdk/platform-tools
     fi
-    	
+
 
 elif [[ $KERNAL == "FreeBSD" ]]; then
 
@@ -49,19 +49,18 @@ elif [[ $KERNAL == "FreeBSD" ]]; then
     # A sane path
     export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin
 
-    # open command opens current window in thunar (xfce's "finder")
-    # Linux already has an open command, so we'll just use thunar on that platform, unfortunatley
-    if [[ $DESKTOP_SESSION == "xfce" ]]; then
-        alias open="thunar"
-    fi
-
-
     # UTF-8 all the things!
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
 elif [[ $KERNAL == "Linux" ]]; then
 	export PATH=$PATH:$HOME/bin
-	
+
+	# use clang if possible
+	if hash clang 2>/dev/null; then
+		export CC=clang
+		export CXX=clang++
+	fi
+
 	# Set archey to screenfetch in manjaro
 	if [[ `uname -a` =~ "(manjaro)" ]]; then
 		if ! hash archey 2>/dev/null; then

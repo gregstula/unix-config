@@ -1,6 +1,6 @@
 # Essential exports for config functionality
 export ZSH=$HOME/.zsh
-export UNIX_CONFIG_DIR=$(<$HOME/.unix_config_dir)
+export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 
 
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -12,7 +12,11 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
 HIST_STAMPS="mm.dd.yyyy"
 plugins=(themes zsh-syntax-highlighting)
-GIT_PROMPT_EXECUTABLE="haskell"
+
+# Use haskell for git-prompt when available
+if [[ -f $ZSH/plugins/zsh-git-prompt/src/.bin/gitstatus ]]; then
+	GIT_PROMPT_EXECUTABLE="haskell"
+fi
 
 # OMZ
 source $ZSH/oh-my-zsh.sh
