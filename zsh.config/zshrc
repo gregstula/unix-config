@@ -38,4 +38,5 @@ if hash archey 2>/dev/null; then
     archey
 fi
 
-
+# shh-agent
+eval `keychain --eval --agents ssh id_rsa`
