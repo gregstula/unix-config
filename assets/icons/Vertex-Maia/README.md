@@ -1,2 +1,0 @@
-vertex-maia-icon-themes
-=======================

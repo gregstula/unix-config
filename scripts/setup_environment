@@ -54,12 +54,6 @@ puts success_message.rjust(success_message.length + spacing - 1)
 
 puts
 
-puts "Fetching and building dependencies..."
-
-system('./build-dependencies.zsh')
-
-puts
-
 puts "Would you like to install Microsoft Fonts now? (Y/n)"
 answer = STDIN.gets.chomp
 
@@ -70,3 +64,10 @@ elsif answer.downcase == 'n'
 else
     puts "Aborting ..."
 end
+
+puts
+
+puts "Fetching and building dependencies..."
+
+system('./build-dependencies.zsh')
+
