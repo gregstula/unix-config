@@ -25,11 +25,9 @@ fi
 
 # Install eclim if eclipse and java are already installed
 if hash java 2>/dev/null && hash curl 2>/dev/null && hash eclipse 2>/dev/null; then
-	cd ~
-	curl -O https://github.com/ervandew/eclim/releases/download/2.6.0/eclim_2.6.0.jar
+	cd ../../../../vendor
 	echo "Running eclim installer..."
-	java -jar eclim_2.6.0.jar
-	rm -rf eclim_2.6.0.jar
+	java -jar eclim.jar
 fi
 
 
