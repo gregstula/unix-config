@@ -61,11 +61,12 @@ elif [[ $KERNAL == "Linux" ]]; then
 		export CXX=clang++
 	fi
 
-	# Set archey to screenfetch in manjaro
+	# Manjaro options
 	if [[ `uname -a` =~ "(manjaro)" ]]; then
 		if ! hash archey 2>/dev/null; then
 			alias archey="screenfetch"
 		fi
+		alias pacaur="CC=gcc CXX=g++ pacaur"
 	fi
 fi
 
