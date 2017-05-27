@@ -52,21 +52,15 @@ elif [[ $KERNAL == "FreeBSD" ]]; then
     # UTF-8 all the things!
     export MM_CHARSET=UTF-8
     export LANG=en_US.UTF-8
+
 elif [[ $KERNAL == "Linux" ]]; then
 	export PATH=$PATH:$HOME/bin
 
-	# use clang if possible
-	if hash clang 2>/dev/null; then
-		export CC=clang
-		export CXX=clang++
-	fi
-
 	# Manjaro options
-	if [[ `uname -a` =~ "(manjaro)" ]]; then
-		if ! hash archey 2>/dev/null; then
-			alias archey="screenfetch"
+	if hash lsb_release 2>/dev/null; then
+		if [[ `lsb_release -si` == "ManjaroLinux" ]]; then
+			alias archey="screenfetch -c '6 7 7 7'"
 		fi
-		alias pacaur="CC=gcc CXX=g++ pacaur"
 	fi
 fi
 
@@ -78,9 +72,7 @@ if hash rbenv 2>/dev/null; then
 
     if [[ $KERNAL == "FreeBSD" ]]; then
   # temporary work around for https://github.com/rbenv/rbenv/issues/881
-        export RUBY_CONFIGURE_OPTS=--with-opt-dir=/usr/local
-        export CC=clang
-		export CXX=clang++
+        alias rbenv="RUBY_CONFIGURE_OPTS=--with-opt-dir=/usr/local CC=clang CXX=clang++ rbenv"
     fi
 fi
 

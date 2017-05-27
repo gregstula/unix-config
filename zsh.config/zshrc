@@ -34,9 +34,12 @@ unsetopt beep
 bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
 
-if hash archey 2>/dev/null; then
+# shh-agent
+if hash keychain 2>/dev/null; then
+	eval `keychain --eval --agents ssh id_rsa`
+fi
+
+if hash archey 2>/dev/null || type "archey" >/dev/null 2>&1; then
     archey
 fi
 
-# shh-agent
-eval `keychain --eval --agents ssh id_rsa`
