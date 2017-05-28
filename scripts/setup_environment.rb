@@ -9,12 +9,23 @@ exec ruby -x "$0" "$@"
 #  Created by Gregory D. Stula on 1/4/16.
 #
 
+def colorize(text, color_code)
+  "\e[#{color_code}m#{text}\e[0m"
+end
+
+def red(text); colorize(text, 31); end
+def green(text); colorize(text, 32); end
+
+# Actual example
+# puts 'Importing categories [ ' + green('DONE') + ' ]'
+# puts 'Importing tags       [' + red('FAILED') + ']'
+
 # ghetto option parsing
 backup_enabled = (ARGV[1] == "--back-up") || (ARGV[1] == "-b")
 
 topleveldir= `git rev-parse --show-toplevel`.chomp
 if topleveldir.empty?
-   $stderr.puts "# No .git/ found! #"
+   $stdout.puts red('No .git/ found!')
    exit(1)
 end
 
@@ -37,7 +48,7 @@ filenames.each do |file|
 
         `#{action}`
 
-        $stderr.puts "Previous #{file} was saved as #{backup}" if action == "mv"
+        $stdout.puts green("Previous #{file} was saved as #{backup}") if action == "mv"
     end
 
    `rm #{file}` if File.symlink?(file)
@@ -46,10 +57,10 @@ filenames.each do |file|
    file =~ /(vim|zsh|git)/i
    `ln -s #{topleveldir}/#{$1}.config/#{source} #{file}`
 
-    puts "#{file}|".rjust(spacing)
+    puts green("#{file}|").rjust(spacing)
 end
 
-success_message = "| were successfully symlinked."
+success_message = green("| were successfully symlinked.")
 puts success_message.rjust(success_message.length + spacing - 1)
 
 puts
@@ -68,6 +79,11 @@ end
 puts
 
 puts "Fetching and building dependencies..."
-
+sleep(1)
+`mkdir ~/bin`
 system('./build-dependencies.zsh')
 
+puts
+puts
+
+puts green("System ready for UNIX-ing!")
