@@ -23,12 +23,3 @@
  	stack build --allow-different-user && stack install --allow-different-user
  fi
 
- # Install eclim if eclipse and java are already installed
-if hash java 2>/dev/null && hash curl 2>/dev/null && hash eclipse 2>/dev/null; then
-	echo "Running eclim installer..."
-	JAR_PATH=`git rev-parse --show-toplevel`
-	JAR_PATH=$JAR_PATH/vendor/eclim.jar
-	java -jar $JAR_PATH
-fi
-
-
