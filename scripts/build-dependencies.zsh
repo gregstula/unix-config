@@ -7,7 +7,7 @@
 
  # Build YouCompleteMe
  if hash clang 2>/dev/null && hash rustc 2>/dev/null && hash go 2>/dev/null && hash mono 2>/dev/null && hash python 2>/dev/null && hash npm 2>/dev/null; then
- 	./install.py --all
+ CXX=clang++ CC=clang ./install.py --all
  elif hash clang 2>/dev/null; then
  	echo "Missing some dependencies for YouCompleteMe, installing with clang-completer only"
  	./install.py --clang-completer
