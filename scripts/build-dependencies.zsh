@@ -15,10 +15,3 @@
  	echo "Missing clang stack... YouCompleteMe must be built manually after installing atleast clang."
  	echo "Skipping..."
  fi
-
- # Build zsh-git-status if haskell-stack is installed, otherwise it's not really necessary to function. I.E. we can silently fail here.
- if hash stack 2>/dev/null; then
- 	cd ../../../../zsh.config/zsh/plugins/zsh-git-prompt
- 	stack setup --allow-different-user
- 	stack build --allow-different-user && stack install --allow-different-user
- fi
