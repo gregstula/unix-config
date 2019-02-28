@@ -109,15 +109,15 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
 " default gui settings
-if has("gui_running")
-    if has("gui_gtk2")
-       set guifont=Consolas\ 14
-    elseif has("gui_macvim")
-       set guifont=Consolas:h16
-    elseif has("gui_win32")
-        set guifont=Consolas:h16:cANSI
-    endif
-endif
+" if has("gui_running")
+"     if has("gui_gtk2")
+"        set guifont=Consolas\ 14
+"     elseif has("gui_macvim")
+"        set guifont=Consolas:h16
+"     elseif has("gui_win32")
+"         set guifont=Consolas:h16:cANSI
+"     endif
+" endif
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
