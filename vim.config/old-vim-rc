@@ -1,3 +1,4 @@
+execute pathogen#infect()
 filetype off
 syntax on
 filetype plugin indent on
@@ -10,6 +11,9 @@ filetype plugin indent on    " required
 
 syntax on
 set number
+
+color monokai
+color molokai
 
 " Auto indent
 set ai
@@ -130,10 +134,23 @@ set laststatus=2
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+" Toggle NERDTree with ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+" Close NERDTree if it's the only open tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Start NERDTree in current root dir
+let g:NERDTreeChDirMode=2
 
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tomasr/molokai'
-Plug 'PotatoesMaster/i3-vim-syntax'
-call plug#end()
 
-color molokai
+" Misc Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list=0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Airline
+let g:airline#extensions#syntastic#enabled = 1
+
