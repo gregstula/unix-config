@@ -62,28 +62,3 @@ end
 
 success_message = green("| were successfully symlinked.")
 puts success_message.rjust(success_message.length + spacing - 1)
-
-puts
-
-puts "Would you like to install Microsoft Fonts now? (Y/n)"
-answer = STDIN.gets.chomp
-
-if answer.downcase == 'y'
-	system('./MicrosoftFontInstaller')
-elsif answer.downcase == 'n'
-    puts "You can always install later by running MicrosoftFontInstaller in \$UNIX_CONFIG_DIR/unix-config/scripts"
-else
-    puts "Aborting ..."
-end
-
-puts
-
-puts "Fetching and building dependencies..."
-sleep(1)
-`mkdir ~/bin`
-system('./build-dependencies.zsh')
-
-puts
-puts
-
-puts green("System ready for UNIX-ing!")

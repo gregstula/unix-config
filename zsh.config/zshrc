@@ -1,4 +1,5 @@
 # Essential exports for config functionality
+source /etc/profile
 export ZSH=$HOME/.zsh
 export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 
@@ -6,24 +7,15 @@ export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 
-ZSH_THEME="greg"
+ZSH_THEME="anon"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
 HIST_STAMPS="mm.dd.yyyy"
 plugins=(themes zsh-syntax-highlighting)
 
-# Use haskell for git-prompt when available
-if [[ -f $ZSH/plugins/zsh-git-prompt/src/.bin/gitstatus ]]; then
-	GIT_PROMPT_EXECUTABLE="haskell"
-fi
-
 # OMZ
 source $ZSH/oh-my-zsh.sh
-# git prompt
-source $ZSH/plugins/zsh-git-prompt/zshrc.sh
-# Aliases
-source $ZSH/public_aliases.zsh
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -35,11 +27,36 @@ bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
 
 # shh-agent
-if hash keychain 2>/dev/null; then
+if hash keychain 2>/dev/null && [ $USER != "root" ]; then
 	eval `keychain --lockwait 0 --eval --agents ssh id_rsa`
 fi
 
-if hash archey 2>/dev/null || type "archey" >/dev/null 2>&1; then
-    archey
+if hash neofetch 2>/dev/null || type "neofetch" >/dev/null 2>&1; then
+    neofetch
+fi
+# set vim as editor for everything ever
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+export PATH=$PATH:$HOME/bin
+
+# Scripting Language Version Managers
+
+KERNAL=`uname`
+if [[ $KERNAL == "Darwin" ]]; then
+    # for homebrew and local executables
+    export PATH=/usr/local/bin:$PATH:~/bin
 fi
 
+# Ruby version manager
+export PATH=$HOME/.rbenv/bin:$PATH
+test -s "#HOME/.rbenv/bin/ rbenv" && eval "$(rbenv init -)"
+
+# Elixir version manager
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+# NodeJS version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
