@@ -50,7 +50,7 @@ fi
 
 # Ruby version manager
 export PATH=$HOME/.rbenv/bin:$PATH
-test -s "#HOME/.rbenv/bin/ rbenv" && eval "$(rbenv init -)"
+test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 
 # Elixir version manager
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
