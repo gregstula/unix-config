@@ -28,7 +28,6 @@ set showcmd
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
 
-
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
 " is unset, this does nothing.
@@ -37,6 +36,7 @@ set t_vb=
 " Visualize tabs
 "syntax match Tab /\t/
 hi Tab gui=underline guifg=blue ctermbg=blue
+
 
 " Use spaces instead of tabs
 set expandtab
@@ -122,18 +122,24 @@ let g:cpp_experimental_template_highlight = 1
 let mapleader = ",,"
 let g:mapleader = ",,"
 
-"" Let powerline appear in non-split buffers (hack)
-set laststatus=2
-
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-
 
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'davits/DyeVim'
 call plug#end()
+map <C-n> :NERDTreeToggle<CR>
 
+" the one and only colorscheme I ever use
 color molokai
+let g:airline_theme='base16_monokai'
+" Keep terminal background
+set matchpairs=
