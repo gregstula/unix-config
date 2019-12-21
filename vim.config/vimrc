@@ -134,9 +134,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'davits/DyeVim'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'jeaye/color_coded'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
+
+" disable ycm ask prompt -- insecure runs arbitrary code
+let g:ycm_confirm_extra_conf = 0
 
 " the one and only colorscheme I ever use
 color molokai
