@@ -42,7 +42,6 @@ hi Tab gui=underline guifg=blue ctermbg=blue
 set expandtab
 
 set ts=4
-set softtabstop=0 noexpandtab
 set sw=4
 
 " Be smart when using tabs ;)
@@ -136,6 +135,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'jeaye/color_coded'
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
@@ -147,3 +147,4 @@ color molokai
 let g:airline_theme='base16_monokai'
 " Keep terminal background
 set matchpairs=
+
