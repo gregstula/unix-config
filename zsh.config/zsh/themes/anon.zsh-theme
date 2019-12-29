@@ -1,1 +1,1 @@
-PROMPT='%m %2~ %B%% '
+PROMPT='%m::%2~ %B%% '
