@@ -68,6 +68,7 @@ set wildmenu
 " Zee greatest shell
 set shell=zsh
 
+
 " TODO: the remaining language specific stuff should all be in submodules of plugin forks
 autocmd FileType c setlocal tw=80 colorcolumn=80 cindent
 
@@ -100,7 +101,7 @@ endif
 autocmd FileType html setlocal tabstop=2 sw=2
 
 " C++
-autocmd FileType c++ setlocal cindent
+autocmd FileType c++ :CCToggle
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
@@ -124,6 +125,7 @@ let g:mapleader = ",,"
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+"Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -139,12 +141,19 @@ Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
+" Plugin Settings
 " disable ycm ask prompt -- insecure runs arbitrary code
 let g:ycm_confirm_extra_conf = 0
+"disable by default
+let g:color_coded_enabled = 0
+
+
 
 " the one and only colorscheme I ever use
 color molokai
 let g:airline_theme='base16_monokai'
-" Keep terminal background
+
+
+" temporaryly disabling parens mathcin, really hard to read at the moment and don't have time to fix
 set matchpairs=
 
