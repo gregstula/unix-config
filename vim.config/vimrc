@@ -38,8 +38,9 @@ set t_vb=
 hi Tab gui=underline guifg=blue ctermbg=blue
 
 
-" Use spaces instead of tabs
-set expandtab
+" globally use spaces instead of tabs
+" I prefer per file type now
+"set expandtab
 
 set ts=4
 set sw=4
@@ -70,22 +71,27 @@ set shell=zsh
 
 
 " TODO: the remaining language specific stuff should all be in submodules of plugin forks
-autocmd FileType c setlocal tw=80 colorcolumn=80 cindent
+autocmd FileType c setlocal tw=80 colorcolumn=80 expandtab
 
 " makefiles need tabs
 autocmd FileType make setlocal noexpandtab
 
 " Obj-C++
-autocmd BufRead,BufNewFile *.mm,*.mpp setlocal cindent filetype=objc++
+autocmd BufRead,BufNewFile *.mm,*.mpp setlocal cindent filetype=objc++ expandtab
 
 " Ruby
-autocmd FileType ruby setlocal  tabstop=2 sw=2
-autocmd FileType eruby setlocal tabstop=2 sw=2
+autocmd FileType ruby setlocal  tabstop=2 sw=2 expandtab
+autocmd FileType eruby setlocal tabstop=2 sw=2 expandtab
+
+autocmd FileType python setlocal tabstop=4 sw=4 expandtab
 
 " JS and JSON
-autocmd FileType javascript setlocal tabstop=2 sw=2
-autocmd FileType json setlocal tabstop=2 sw=2
+autocmd FileType javascript setlocal tabstop=4 sw=4 expandtab
+autocmd FileType json setlocal tabstop=4 sw=4 expandtab
 autocmd BufRead,BufNewFile .eslintrc,.babelrc setlocal filetype=json
+
+" shell
+autocmd BufRead,BufNewFile *.sh,*.zsh,*.bash setlocal expandtab ts=4 sw=4
 
 let g:jsx_ext_required = 0
 let g:js_context_colors_jsx=1
@@ -98,10 +104,10 @@ if executable('node_modules/.bin/eslint')
 endif
 
 "HTML
-autocmd FileType html setlocal tabstop=2 sw=2
+autocmd FileType html setlocal tabstop=4 sw=4 expandtab
 
 " C++
-autocmd FileType c++ :CCToggle
+autocmd FileType c++ :CCToggle setlocal ts=4 sw=5 expandtab
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
