@@ -39,8 +39,7 @@ hi Tab gui=underline guifg=blue ctermbg=blue
 
 
 " globally use spaces instead of tabs
-" I prefer per file type now
-"set expandtab
+set expandtab
 
 set ts=4
 set sw=4
@@ -142,8 +141,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'jeaye/color_coded'
+Plug 'jeaye/color_coded', {'for': 'c++,cpp'}
 Plug 'neovimhaskell/haskell-vim'
+Plug 'alvan/vim-closetag'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
@@ -151,15 +151,55 @@ map <C-n> :NERDTreeToggle<CR>
 " disable ycm ask prompt -- insecure runs arbitrary code
 let g:ycm_confirm_extra_conf = 0
 "disable by default
-let g:color_coded_enabled = 0
-
+let g:color_coded_enabled = 1
 
 
 " the one and only colorscheme I ever use
 color molokai
 let g:airline_theme='base16_monokai'
 
+" HTML AUTO CLOSE TAG SETTINGS
+" - - - - - - - - - - - - - -
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
 
-" temporaryly disabling parens mathcin, really hard to read at the moment and don't have time to fix
-set matchpairs=
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,javascript'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+highlight MatchParen ctermfg = 0xffffff
+
 
