@@ -106,21 +106,21 @@ endif
 autocmd FileType html setlocal tabstop=4 sw=4 expandtab
 
 " C++
-autocmd FileType c++ :CCToggle setlocal ts=4 sw=5 expandtab
+autocmd FileType c++ :CCToggle setlocal ts=4 sw=4 expandtab
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
-" default gui settings
-" if has("gui_running")
-"     if has("gui_gtk2")
-"        set guifont=Consolas\ 14
-"     elseif has("gui_macvim")
-"        set guifont=Consolas:h16
-"     elseif has("gui_win32")
-"         set guifont=Consolas:h16:cANSI
-"     endif
-" endif
+" gui settings
+ if has("gui_running")
+     if has("gui_gtk2")
+        set guifont=Consolas\ 14
+     elseif has("gui_macvim")
+        set guifont=Consolas:h16
+     elseif has("gui_win32")
+         set guifont=Consolas:h16:cANSI
+     endif
+ endif
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -133,7 +133,6 @@ map <leader>ss :setlocal spell!<cr>
 "Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
@@ -142,7 +141,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'jeaye/color_coded', {'for': 'c++,cpp'}
-Plug 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'alvan/vim-closetag'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
