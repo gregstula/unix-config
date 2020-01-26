@@ -107,9 +107,12 @@ autocmd FileType html setlocal tabstop=4 sw=4 expandtab
 
 " C++
 autocmd FileType c++ :CCToggle setlocal ts=4 sw=4 expandtab
+autocmd BufRead,BufNewFile *.hpp,*.hh set ft=cpp
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+
+autocmd BufRead,BufNewFile .clang-format set ft=yaml
 
 " gui settings
  if has("gui_running")
@@ -126,7 +129,6 @@ let g:cpp_experimental_template_highlight = 1
 " like <leader>w saves the current file
 let mapleader = ",,"
 let g:mapleader = ",,"
-
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
@@ -149,12 +151,17 @@ map <C-n> :NERDTreeToggle<CR>
 " Plugin Settings
 " disable ycm ask prompt -- insecure runs arbitrary code
 let g:ycm_confirm_extra_conf = 0
-"disable by default
+" auto kill obnoxious preview window
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" enable
 let g:color_coded_enabled = 1
 
 
 " the one and only colorscheme I ever use
 color molokai
+"parens matching is white to see easily
+highlight MatchParen ctermfg = 0xffffff
+
 let g:airline_theme='base16_monokai'
 
 " HTML AUTO CLOSE TAG SETTINGS
@@ -199,6 +206,5 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 "
 let g:closetag_close_shortcut = '<leader>>'
-highlight MatchParen ctermfg = 0xffffff
 
 
