@@ -142,7 +142,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'jeaye/color_coded', {'for': 'c++,cpp'}
+Plug 'jeaye/color_coded', {'for': 'cpp'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'alvan/vim-closetag'
 call plug#end()
@@ -209,4 +209,10 @@ let g:closetag_close_shortcut = '<leader>>'
 
 set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
-
+set encoding=utf-8
+highlight MatchParen guifg = white
+highlight MatchParen ctermfg = 0xffffff
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
