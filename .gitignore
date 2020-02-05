@@ -52,5 +52,5 @@ CMakeFiles
 
 eclim/
 pacman_packages/
-zsh/cache
+zsh.config/zsh/cache
 vim.config/vim/plugged

@@ -12,7 +12,7 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
 HIST_STAMPS="mm.dd.yyyy"
-plugins=(themes zsh-syntax-highlighting)
+plugins=(vi-mode themes zsh-syntax-highlighting)
 
 # OMZ
 source $ZSH/oh-my-zsh.sh
