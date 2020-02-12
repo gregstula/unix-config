@@ -145,6 +145,7 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'jeaye/color_coded', {'for': 'cpp'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'alvan/vim-closetag'
+Plug 'pboettch/vim-cmake-syntax'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
