@@ -142,7 +142,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'jeaye/color_coded', {'for': 'cpp'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'alvan/vim-closetag'
 Plug 'pboettch/vim-cmake-syntax'
@@ -155,8 +154,6 @@ let g:ycm_confirm_extra_conf = 0
 " auto kill obnoxious preview window
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " enable
-let g:color_coded_enabled = 1
-
 
 " the one and only colorscheme I ever use
 color molokai
