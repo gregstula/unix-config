@@ -143,8 +143,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'alvan/vim-closetag'
 Plug 'pboettch/vim-cmake-syntax'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
@@ -204,6 +207,15 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 "
 let g:closetag_close_shortcut = '<leader>>'
+
+" CPP enhanced highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+
 
 set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
