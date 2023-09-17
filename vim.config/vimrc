@@ -148,6 +148,8 @@ Plug 'alvan/vim-closetag'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'elixir-editors/vim-elixir'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
