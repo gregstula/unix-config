@@ -140,9 +140,6 @@ Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ycm-core/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'alvan/vim-closetag'
 Plug 'pboettch/vim-cmake-syntax'
