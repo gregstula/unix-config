@@ -37,8 +37,10 @@ filenames=('nvim')
 for file in $filenames; do
     rc=${HOME}/.config/${file}
     src=${topleveldir}/${file}.config/${file}
+
     rm -rf ${rc}
     msg+="%F{red}Removed ${rc}"
+
     ln -s ${src} ${rc}
     msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${rc}"
 done

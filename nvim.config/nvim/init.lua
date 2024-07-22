@@ -27,3 +27,6 @@ vim.opt.smartcase = true
 
 vim.cmd.colorscheme('vibes')
 
+vim.api.nvim_set_hl(0, 'Normal', { fg = "NONE", bg = "NONE" })
+vim.opt.termguicolors = false
+
