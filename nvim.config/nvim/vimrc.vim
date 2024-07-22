@@ -49,7 +49,6 @@ set smarttab
 
 " default character width 100
 set tw=120
-set colorcolumn=120
 set cursorline
 set ruler
 
