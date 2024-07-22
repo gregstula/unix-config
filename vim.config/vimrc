@@ -147,6 +147,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'elixir-editors/vim-elixir'
+Plug 'nokobear/vim-colorscheme-edit'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
 
@@ -216,7 +217,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 
-set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
 set encoding=utf-8
 highlight MatchParen guifg = white

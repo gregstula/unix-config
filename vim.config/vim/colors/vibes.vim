@@ -1,0 +1,86 @@
+" Header
+"  Please edit this text.
+
+let s:colors_name='vibes'
+set background=dark
+
+if !has('gui_running') && &t_Co<256
+  echomsg 'Error: colorscheme "'.s:colors_name.'" requires 256 colors.'
+  echomsg 'You may solve the problem with the following command.'
+  echomsg ':set t_Co=256 | colorscheme '.s:colors_name
+  finish
+endif
+highlight clear
+if exists('syntax_on')
+  syntax reset
+endif
+let g:colors_name=s:colors_name
+
+if &bg=='dark'
+  hi      Normal       guifg=NONE    guibg=#262626 ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+elseif &bg=='light'
+  hi      Normal       guifg=NONE    guibg=#d0d0d0 ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+endif
+hi      Comment      guifg=#808080 guibg=NONE    ctermfg=244  ctermbg=NONE gui=NONE cterm=NONE
+hi      Constant     guifg=#734e7a guibg=NONE    ctermfg=5    ctermbg=NONE gui=bold cterm=bold
+hi      String       guifg=#87ffaf guibg=NONE    ctermfg=121  ctermbg=NONE gui=NONE cterm=NONE
+hi link Character    String
+hi      Number       guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi      Boolean      guifg=#a97ba7 guibg=NONE    ctermfg=13   ctermbg=NONE gui=bold cterm=bold
+hi link Float        Number
+hi      Identifier   guifg=#7b9ccd guibg=NONE    ctermfg=12   ctermbg=NONE gui=italic cterm=italic
+hi      Function     guifg=#5de3e0 guibg=NONE    ctermfg=14   ctermbg=NONE gui=bold cterm=bold
+hi      Statement    guifg=#e41339 guibg=NONE    ctermfg=9    ctermbg=NONE gui=bold cterm=bold
+hi link Conditional  Statement
+hi link Operator     Function
+hi link Exception    Statement
+hi      PreProc      guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=NONE cterm=NONE
+hi      Type         guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=NONE cterm=NONE
+hi link StorageClass Identifier
+hi      Special      guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=NONE cterm=NONE
+hi      Underlined   guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=underline cterm=underline
+hi      Ignore       guifg=#808080 guibg=NONE    ctermfg=244  ctermbg=NONE gui=NONE cterm=NONE
+hi      Error        guifg=#edeeeb guibg=#e41339 ctermfg=15   ctermbg=9    gui=NONE cterm=NONE
+hi      Todo         guifg=#000000 guibg=#f6eb53 ctermfg=0    ctermbg=11   gui=NONE cterm=NONE
+hi      ColorColumn  guifg=NONE    guibg=#cc0000 ctermfg=NONE ctermbg=1    gui=NONE cterm=NONE
+hi      DiffAdd      guifg=NONE    guibg=#3f3876 ctermfg=NONE ctermbg=4    gui=NONE cterm=NONE
+hi      DiffChange   guifg=NONE    guibg=#734e7a ctermfg=NONE ctermbg=5    gui=NONE cterm=NONE
+hi      DiffDelete   guifg=#7b9ccd guibg=#379897 ctermfg=12   ctermbg=6    gui=bold cterm=bold
+hi      DiffText     guifg=NONE    guibg=#e41339 ctermfg=NONE ctermbg=9    gui=bold cterm=bold
+hi      ErrorMsg     guifg=#edeeeb guibg=#cc0000 ctermfg=15   ctermbg=1    gui=NONE cterm=NONE
+hi      Folded       guifg=#5de3e0 guibg=#6c6c6c ctermfg=14   ctermbg=242  gui=NONE cterm=NONE
+hi      FoldColumn   guifg=#5de3e0 guibg=#6c6c6c ctermfg=14   ctermbg=242  gui=NONE cterm=NONE
+hi      IncSearch    guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=reverse cterm=reverse
+hi      LineNr       guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi      ModeMsg      guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=bold cterm=bold
+hi      MoreMsg      guifg=#87ffaf guibg=NONE    ctermfg=121  ctermbg=NONE gui=bold cterm=bold
+hi      NonText      guifg=#7b9ccd guibg=NONE    ctermfg=12   ctermbg=NONE gui=bold cterm=bold
+hi      Pmenu        guifg=#000000 guibg=#a97ba7 ctermfg=0    ctermbg=13   gui=NONE cterm=NONE
+hi      PmenuSel     guifg=#6c6c6c guibg=#000000 ctermfg=242  ctermbg=0    gui=NONE cterm=NONE
+hi      PmenuSbar    guifg=NONE    guibg=#a8a8a8 ctermfg=NONE ctermbg=248  gui=NONE cterm=NONE
+hi      PmenuThumb   guifg=NONE    guibg=#edeeeb ctermfg=NONE ctermbg=15   gui=NONE cterm=NONE
+hi      Search       guifg=#000000 guibg=#f6eb53 ctermfg=0    ctermbg=11   gui=NONE cterm=NONE
+hi      SpellBad     guifg=NONE    guibg=#e41339 ctermfg=NONE ctermbg=9    gui=undercurl cterm=NONE
+hi      SpellCap     guifg=NONE    guibg=#7b9ccd ctermfg=NONE ctermbg=12   gui=undercurl cterm=NONE
+hi      SpellLocal   guifg=NONE    guibg=#5de3e0 ctermfg=NONE ctermbg=14   gui=undercurl cterm=NONE
+hi      SpellRare    guifg=NONE    guibg=#a97ba7 ctermfg=NONE ctermbg=13   gui=undercurl cterm=NONE
+hi      StatusLine   guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=bold,reverse cterm=bold,reverse
+hi      StatusLineNC guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=reverse cterm=reverse
+hi      TabLine      guifg=#edeeeb guibg=#6c6c6c ctermfg=15   ctermbg=242  gui=underline cterm=underline
+hi      TabLineFill  guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=reverse cterm=reverse
+hi      TabLineSel   guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=bold cterm=bold
+hi      Title        guifg=#ffd7ff guibg=NONE    ctermfg=225  ctermbg=NONE gui=bold cterm=bold
+hi      Visual       guifg=#000000 guibg=#a8a8a8 ctermfg=0    ctermbg=248  gui=NONE cterm=NONE
+hi      VisualNOS    guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi      WarningMsg   guifg=#ffd7d7 guibg=NONE    ctermfg=224  ctermbg=NONE gui=NONE cterm=NONE
+hi      WildMenu     guifg=#000000 guibg=#f6eb53 ctermfg=0    ctermbg=11   gui=NONE cterm=NONE
+hi      CursorColumn guifg=NONE    guibg=#6c6c6c ctermfg=NONE ctermbg=242  gui=NONE cterm=NONE
+hi      CursorLine   guifg=NONE    guibg=#585858 ctermfg=NONE ctermbg=240  gui=underline cterm=underline
+hi      CursorLineNr guifg=#f6eb53 guibg=NONE    ctermfg=11   ctermbg=NONE gui=underline cterm=underline
+hi      MatchParen   guifg=NONE    guibg=#379897 ctermfg=NONE ctermbg=6    gui=NONE cterm=NONE
+hi      SignColumn   guifg=#5de3e0 guibg=#6c6c6c ctermfg=14   ctermbg=242  gui=NONE cterm=NONE
+hi      SpecialKey   guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=NONE cterm=NONE
+hi      VertSplit    guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=reverse cterm=reverse
+
+" Created with vim-colorscheme-edit v1.0.0
+"   https://github.com/nokobear/vim-colorscheme-edit

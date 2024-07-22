@@ -64,7 +64,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 alias vi=vim
 
 if hash nvim 2>/dev/null || type "nvim" >/dev/null 2>&1; then
-    alias vim=nvim
+    alias vi=nvim
 fi
 
 PSSAVE=$PS1
