@@ -1,6 +1,3 @@
-local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
-vim.cmd.source(vimrc)
-
 -- Package manager
 require("config.lazy")
 
@@ -53,6 +50,9 @@ vim.opt.cursorline = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -60,9 +60,17 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
+
+--stylua customization
+
+require("conform").formatters.stylua = {
+    prepend_args = { "--indent-type", "spaces" },
+    -- The base args are { "-filename", "$FILENAME" } so the final args will be
+    -- { "-i", "2", "-filename", "$FILENAME" }
+}
