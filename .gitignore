@@ -54,3 +54,5 @@ eclim/
 pacman_packages/
 zsh.config/zsh/cache
 vim.config/vim/plugged
+lazy-lock.json
+
