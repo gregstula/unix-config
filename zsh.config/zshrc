@@ -55,14 +55,12 @@ test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 # Elixir version manager
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
-# Rust cargo
-test -s "$HOME/.cargo/bin" && source "$HOME/.cargo/bin"
-
 # NodeJS version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# Rust cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi=vim
 
