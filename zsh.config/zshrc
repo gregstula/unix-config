@@ -55,6 +55,9 @@ test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 # Elixir version manager
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
+# Rust cargo
+test -s "$HOME/.cargo/bin" && source "$HOME/.cargo/bin"
+
 # NodeJS version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
