@@ -190,7 +190,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " enable
 
 " the one and only colorscheme I ever use
-color vibes
+color molokai
 "parens matching is white to see easily
 highlight MatchParen ctermfg = 0xffffff
 
