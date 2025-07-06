@@ -96,17 +96,6 @@ autocmd FileType c++ :CCToggle setlocal ts=4 sw=4 expandtab
 autocmd BufRead,BufNewFile *.hpp,*.hh set ft=cpp
 autocmd BufRead,BufNewFile .clang-format set ft=yaml
 
-" gui settings
- if has("gui_running")
-     if has("gui_gtk2")
-        set guifont=Consolas\ 14
-     elseif has("gui_macvim")
-        set guifont=Consolas:h16
-     elseif has("gui_win32")
-         set guifont=Consolas:h16:cANSI
-     endif
- endif
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ",,"
@@ -134,14 +123,22 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " enable YCM LSPs
 let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'odin',
-  \     'cmdline': [ expand('~/bin/ols') ],
-  \     'filetypes': [ 'odin' ],
-  \     'project_root_files': [ 'ols.json' ]
-  \   }
-  \ ]
+    \ [
+    \   {
+    \     'name': 'odin',
+    \     'cmdline': [ expand('~/bin/ols') ],
+    \     'filetypes': [ 'odin' ],
+    \     'project_root_files': [ 'ols.json' ]
+    \   },
+    \   {
+    \       'name': 'vim',
+    \       'cmdline': [ 'vim-language-server', '--stdio' ],
+    \       'filetypes': [ 'vim' ]
+    \   }
+    \ ]
+
+" Yank to clipboard
+set clipboard=unnamedplus
 
 " the one and only colorscheme I ever use
 " color molokai
@@ -149,8 +146,24 @@ let g:ycm_language_server =
 color vibes
 let g:airline_theme='base16_monokai'
 
+" Transparent
 hi Normal guibg=NONE ctermbg=NONE
+
+" Unicode
 set encoding=utf-8
+
+" gui settings
+if has("gui_running")
+    if has("gui_gtk2")
+       set guifont=Consolas\ 14
+    elseif has("gui_macvim")
+       set guifont=Consolas:h16
+    elseif has("gui_win32")
+        set guifont=Consolas:h16:cANSI
+    endif
+    color molokai
+endif
+
 
 "parens matching is white to see easily
 highlight MatchParen ctermfg = 0xffffff
