@@ -1,12 +1,10 @@
-filetype off
-syntax on
-filetype plugin indent on
+"vimrc always overrides on session reload
 set sessionoptions-=options
 
 " vim not vi
 set nocompatible
 
-filetype plugin indent on    " required
+filetype plugin indent on
 
 syntax on
 set number
@@ -40,7 +38,6 @@ hi Tab gui=underline guifg=blue ctermbg=blue
 
 " globally use spaces instead of tabs
 set expandtab
-
 set ts=4
 set sw=4
 
@@ -69,7 +66,7 @@ set wildmenu
 set shell=zsh
 
 
-" TODO: the remaining language specific stuff should all be in submodules of plugin forks
+" TODO: the remaining language specific stuff should be more organized
 autocmd FileType c setlocal tw=80 colorcolumn=80 expandtab
 
 " makefiles need tabs
@@ -91,16 +88,6 @@ autocmd BufRead,BufNewFile .eslintrc,.babelrc setlocal filetype=json
 
 " shell
 autocmd BufRead,BufNewFile *.sh,*.zsh,*.bash setlocal expandtab ts=4 sw=4
-
-let g:jsx_ext_required = 0
-let g:js_context_colors_jsx=1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:synstastic_json_checkers = ['jsonlint']
-let g:vim_json_syntax_conceal = 0
-
-if executable('node_modules/.bin/eslint')
-  let b:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
-endif
 
 "HTML
 autocmd FileType html setlocal tabstop=4 sw=4 expandtab
@@ -135,123 +122,54 @@ map <leader>ss :setlocal spell!<cr>
 "Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'alvan/vim-closetag'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'pboettch/vim-cmake-syntax'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'vim-erlang/vim-erlang-runtime'
-Plug 'elixir-editors/vim-elixir'
 Plug 'nokobear/vim-colorscheme-edit'
-Plug 'yegappan/lsp'
 call plug#end()
-map <C-n> :NERDTreeToggle<CR>
-
-let lspOpts = #{autoHighlightDiags: v:true}
-autocmd User LspSetup call LspOptionsSet(lspOpts)
-let lspServers = [#{
-	\	  name: 'clang',
-	\	  filetype: ['c', 'cpp'],
-	\	  path: '/usr/bin/clangd',
-	\	  args: ['--background-index']
-	\ }, #{
-	\	  name: 'ols',
-	\	  filetype: ['odin'],
-	\	  path: expand('$HOME/bin/ols'),
-	\	  args: []
-	\ }, #{
-	\	  name: 'rust-analyzer',
-	\	  filetype: ['rust'],
-	\	  path: '/usr/bin/rust-analyzer',
-	\	  args: []
-	\ }, #{
-	\	  name: 'typescript-language-server',
-	\	  filetype: ['javascript', 'typescript'],
-	\	  path: '/usr/bin/typescript-language-server',
-	\	  args: ['--stdio']
-	\ }, #{
-	\	  name: 'gopls',
-	\	  filetype: ['go'],
-	\	  path: '/usr/bin/gopls',
-	\	  args: []
-	\ }]
-autocmd User LspSetup call LspAddServer(lspServers)
 
 " Plugin Settings
 " disable ycm ask prompt -- insecure runs arbitrary code
 let g:ycm_confirm_extra_conf = 0
+
 " auto kill obnoxious preview window
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
 " enable
+let g:ycm_language_server =
+  \ [
+  \   {
+  \     'name': 'godot',
+  \     'filetypes': [ 'gdscript' ],
+  \     'port': 6008,
+  \     'project_root_files': [ 'project.godot' ]
+  \   },
+  \   {
+  \     'name': 'odin',
+  \     'cmdline': [ expand('~/bin/ols') ],
+  \     'filetypes': [ 'odin' ],
+  \     'project_root_files': [ 'ols.json' ]
+  \   }
+  \ ]
 
 " the one and only colorscheme I ever use
-color molokai
-"parens matching is white to see easily
-highlight MatchParen ctermfg = 0xffffff
+" color molokai
+" Actually I use this one now (I made it myself)
+color vibes
 
 let g:airline_theme='base16_monokai'
 
-" HTML AUTO CLOSE TAG SETTINGS
-" - - - - - - - - - - - - - -
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
-
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,javascript'
-
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
-let g:closetag_emptyTags_caseSensitive = 1
-
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ }
-
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
-
-" CPP enhanced highlight
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_posix_standard = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_concepts_highlight = 1
-
-
 hi Normal guibg=NONE ctermbg=NONE
 set encoding=utf-8
+
+"parens matching is white to see easily
+highlight MatchParen ctermfg = 0xffffff
 highlight MatchParen guifg = white
 highlight MatchParen ctermfg = 0xffffff
+
+" For the meme
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
