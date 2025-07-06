@@ -65,7 +65,6 @@ set wildmenu
 " Zee greatest shell
 set shell=zsh
 
-
 " TODO: the remaining language specific stuff should be more organized
 autocmd FileType c setlocal tw=80 colorcolumn=80 expandtab
 
@@ -95,10 +94,6 @@ autocmd FileType html setlocal tabstop=4 sw=4 expandtab
 " C++
 autocmd FileType c++ :CCToggle setlocal ts=4 sw=4 expandtab
 autocmd BufRead,BufNewFile *.hpp,*.hh set ft=cpp
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-
 autocmd BufRead,BufNewFile .clang-format set ft=yaml
 
 " gui settings
@@ -130,22 +125,16 @@ Plug 'pboettch/vim-cmake-syntax'
 Plug 'nokobear/vim-colorscheme-edit'
 call plug#end()
 
-" Plugin Settings
+" YCM Settings
 " disable ycm ask prompt -- insecure runs arbitrary code
 let g:ycm_confirm_extra_conf = 0
 
 " auto kill obnoxious preview window
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" enable
+" enable YCM LSPs
 let g:ycm_language_server =
   \ [
-  \   {
-  \     'name': 'godot',
-  \     'filetypes': [ 'gdscript' ],
-  \     'port': 6008,
-  \     'project_root_files': [ 'project.godot' ]
-  \   },
   \   {
   \     'name': 'odin',
   \     'cmdline': [ expand('~/bin/ols') ],
@@ -158,7 +147,6 @@ let g:ycm_language_server =
 " color molokai
 " Actually I use this one now (I made it myself)
 color vibes
-
 let g:airline_theme='base16_monokai'
 
 hi Normal guibg=NONE ctermbg=NONE
