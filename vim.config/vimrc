@@ -148,8 +148,39 @@ Plug 'tpope/vim-rails'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'elixir-editors/vim-elixir'
 Plug 'nokobear/vim-colorscheme-edit'
+Plug 'yegappan/lsp'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
+
+let lspOpts = #{autoHighlightDiags: v:true}
+autocmd User LspSetup call LspOptionsSet(lspOpts)
+let lspServers = [#{
+	\	  name: 'clang',
+	\	  filetype: ['c', 'cpp'],
+	\	  path: '/usr/bin/clangd',
+	\	  args: ['--background-index']
+	\ }, #{
+	\	  name: 'ols',
+	\	  filetype: ['odin'],
+	\	  path: expand('$HOME/bin/ols'),
+	\	  args: []
+	\ }, #{
+	\	  name: 'rust-analyzer',
+	\	  filetype: ['rust'],
+	\	  path: '/usr/bin/rust-analyzer',
+	\	  args: []
+	\ }, #{
+	\	  name: 'typescript-language-server',
+	\	  filetype: ['javascript', 'typescript'],
+	\	  path: '/usr/bin/typescript-language-server',
+	\	  args: ['--stdio']
+	\ }, #{
+	\	  name: 'gopls',
+	\	  filetype: ['go'],
+	\	  path: '/usr/bin/gopls',
+	\	  args: []
+	\ }]
+autocmd User LspSetup call LspAddServer(lspServers)
 
 " Plugin Settings
 " disable ycm ask prompt -- insecure runs arbitrary code
@@ -159,7 +190,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " enable
 
 " the one and only colorscheme I ever use
-color molokai
+color vibes
 "parens matching is white to see easily
 highlight MatchParen ctermfg = 0xffffff
 
