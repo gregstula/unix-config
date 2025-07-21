@@ -31,9 +31,10 @@ if hash keychain 2>/dev/null && [ $USER != "root" ]; then
 	eval `keychain --lockwait 0 --eval --agents ssh id_rsa`
 fi
 
-if hash neofetch 2>/dev/null || type "neofetch" >/dev/null 2>&1; then
-    neofetch
+if hash fastfetch 2>/dev/null || type "fastfetch" >/dev/null 2>&1; then
+    fastfetch
 fi
+
 # set vim as editor for everything ever
 export VISUAL=vim
 export EDITOR="$VISUAL"
