@@ -7,7 +7,7 @@ export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 
-ZSH_THEME="anon"
+ZSH_THEME="stula"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
@@ -31,18 +31,20 @@ if hash keychain 2>/dev/null && [ $USER != "root" ]; then
 	eval `keychain --lockwait 0 --eval --agents ssh id_rsa`
 fi
 
-if hash fastfetch 2>/dev/null || type "fastfetch" >/dev/null 2>&1; then
-    fastfetch
+# Run fastfetch only once per session if available
+if [[ ! -f /tmp/fastfetch_run ]]; then
+    if hash fastfetch 2>/dev/null || type "fastfetch" >/dev/null 2>&1; then
+        fastfetch
+        touch /tmp/fastfetch_run
+    fi
 fi
 
 # set vim as editor for everything ever
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
 export PATH=$PATH:$HOME/bin
 
 # Scripting Language Version Managers
-
 KERNAL=`uname`
 if [[ $KERNAL == "Darwin" ]]; then
     # for homebrew and local executables

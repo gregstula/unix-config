@@ -7,7 +7,7 @@ set nocompatible
 filetype plugin indent on
 
 syntax on
-set number
+"set number
 
 " Auto indent
 set ai
@@ -125,12 +125,6 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_language_server =
     \ [
     \   {
-    \     'name': 'odin',
-    \     'cmdline': [ expand('~/bin/ols') ],
-    \     'filetypes': [ 'odin' ],
-    \     'project_root_files': [ 'ols.json' ]
-    \   },
-    \   {
     \       'name': 'vim',
     \       'cmdline': [ 'vim-language-server', '--stdio' ],
     \       'filetypes': [ 'vim' ]
@@ -163,12 +157,6 @@ if has("gui_running")
     endif
     color molokai
 endif
-
-
-"parens matching is white to see easily
-highlight MatchParen ctermfg = 0xffffff
-highlight MatchParen guifg = white
-highlight MatchParen ctermfg = 0xffffff
 
 " For the meme
 noremap <Up> <nop>
