@@ -1,7 +1,7 @@
 " Header
 "  Please edit this text.
 
-let s:colors_name='dump-vibes'
+let s:colors_name='stula'
 set background=dark
 
 if !has('gui_running') && &t_Co<256
@@ -10,20 +10,18 @@ if !has('gui_running') && &t_Co<256
   echomsg ':set t_Co=256 | colorscheme '.s:colors_name
   finish
 endif
+
 highlight clear
 if exists('syntax_on')
   syntax reset
 endif
+
 let g:colors_name=s:colors_name
 
-if &bg=='dark'
-  hi      Normal       guifg=NONE    guibg=#000000 ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
-elseif &bg=='light'
-  hi      Normal       guifg=NONE    guibg=#4e4e4e ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
-endif
+hi      Normal       guifg=#F8F8F2 guibg=#1B1D1E ctermfg=252  ctermbg=232 gui=NONE cterm=NONE
 hi      Comment      guifg=#808080 guibg=NONE    ctermfg=244  ctermbg=NONE gui=NONE cterm=NONE
-hi      Constant     guifg=#734e7a guibg=NONE    ctermfg=5    ctermbg=NONE gui=bold cterm=bold
-hi      String       guifg=#87ffaf guibg=NONE    ctermfg=121  ctermbg=NONE gui=NONE cterm=NONE
+hi      Constant     guifg=#a97ba7 guibg=NONE    ctermfg=13   ctermbg=NONE gui=bold cterm=bold
+hi      String       guifg=#5de3e0 guibg=NONE    ctermfg=14   ctermbg=NONE gui=NONE cterm=NONE
 hi link Character    String
 hi      Number       guifg=NONE    guibg=NONE    ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi      Boolean      guifg=#a97ba7 guibg=NONE    ctermfg=13   ctermbg=NONE gui=bold cterm=bold
@@ -84,3 +82,4 @@ hi      VertSplit    guifg=NONE    guibg=#080808 ctermfg=NONE ctermbg=232  gui=b
 
 " Created with vim-colorscheme-edit v1.0.0
 "   https://github.com/nokobear/vim-colorscheme-edit
+set background=dark
