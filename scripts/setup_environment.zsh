@@ -9,41 +9,55 @@
 # Enable pearl matching operator
 set -o rematchpcre
 
+# find out where repo is
 topleveldir=$(git rev-parse --show-toplevel 2>/dev/null)
 
+# This handles zsh and vim
+# Array of config files
 filenames=('zshrc' 'zsh' 'vimrc' 'vim')
 
 msg=()
 
 for file in $filenames; do
-    # to make zsh.config and vim.config, remove rc
+    # Get name of config dir
     [[ ${file} =~ '(zsh|vim)' ]]
-    config=${match[1]}.config
+    config=${match[1]}
 
-    rc=${HOME}/.${file}
+    # install target
+    target=${HOME}/.${file}
+    # source
     src=${topleveldir}/${config}/${file}
 
-    rm -rf ${rc}
-    msg+="%F{red}Removed ${rc}"
-    ln -s ${src} ${rc}
-    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${rc}"
+    # remove old zshrc and vimrc
+    rm -rf ${target}
+    msg+="%F{red}Removed ${target}"
+
+    # symlink from repo
+    ln -s ${src} ${target}
+    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
 done
 
 if [[ ! -d "${HOME}/.config" ]]; then
     mkdir -p "${HOME}/.config"
 fi
 
-filenames=('nvim')
-for file in $filenames; do
-    rc=${HOME}/.config/${file}
-    src=${topleveldir}/${file}.config/${file}
+# Neovim uses a base directory and xdg standard ~/.config
+# $XDG_CONFIG_HOME
+# https://specifications.freedesktop.org/basedir-spec/latest/#basics
+# Other xdg base directory configs could fit well here as well
+base_dirs=('nvim')
+for base_dir in $base_dirs; do
+    target=${XDG_CONFIG_HOME}/${base_dir}
+    src=${topleveldir}/${base_dir}
 
-    rm -rf ${rc}
-    msg+="%F{red}Removed ${rc}"
+    # Remove old if any
+    rm -rf ${target}
+    msg+="%F{red}Removed ${target}"
 
-    ln -s ${src} ${rc}
-    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${rc}"
+    ln -s ${src} ${target}
+    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
 done
 
+# Print message
 print -a -C 2 -P ${msg}
 
