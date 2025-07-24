@@ -1,27 +1,78 @@
 # Essential exports for config functionality
 source /etc/profile
 export ZSH=$HOME/.zsh
+
+# See: https://github.com/gregstula/unix-config
 export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 
-
+# Enable built-in zsh auto completion
 zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
+autoload -Uz compinit && compinit
 
-ZSH_THEME="stula"
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true" # Disables listing untracked files as dirty saving recources
-HIST_STAMPS="mm.dd.yyyy"
-plugins=(vi-mode themes zsh-syntax-highlighting)
+# Use cache for completion performance boost
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# OMZ
-source $ZSH/oh-my-zsh.sh
+# Case insensitive auto completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-HISTFILE=~/.histfile
+# Menu selection for completion
+zstyle ':completion:*' menu select
+
+# My minimalist prompt/theme
+# ~ ->
+PROMPT='%2~ -> '
+#                                  user@hostname
+RPROMPT='%F{8}%n@%m'
+
+# ZSH command history file
+# Up or down arrow to access previous commands
+HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt appendhistory autocd extendedglob nomatch notify
-unsetopt beep
+
+# Built-in options
+# Command History
+setopt append_history         # Every zsh open appends one command history
+setopt hist_expire_dups_first # When trimming go for duplicates first
+setopt hist_find_no_dups      # No duplicates when searching.
+setopt hist_ignore_dups       # Do not add repeated commands to history.
+setopt hist_ignore_space      # Do not save commands that start with a space to history.
+setopt hist_reduce_blanks     # Trim blanks from history
+setopt hist_verify            # sudo !! expands to run sudo on last command, verify befor exec
+setopt inc_append_history     # Update the histfile immedietly instead of shell exit
+setopt share_history          # Share history with all sessions
+
+# cd tweaks
+setopt auto_cd              # Typing a directory name invokes cd on it
+setopt auto_pushd           # Everytime you cd it's now in a stack history used like (cd -2)
+setopt pushd_ignore_dups    # Don't push multiple copies directory onto the directory stack.
+setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposite
+
+# GLOBS
+#     * - Matches any string.
+#     ? - Matches any character.
+#     ls ./**/*file* recursive globbing
+#     ls (fi|an)* match any filename begginng with fi or an
+#     sudo !! command history globbing put sudo before last command
+#     ! - The history character.
+#     # - The command character.
+setopt extended_glob              #  #, ~, and ^
+setopt glob_dots                  # glob on dotfiles
+setopt glob_complete              # glob matches as completions
+
+# Completion Behavior
+setopt always_to_end              # Move cursor to end of word on completion
+setopt auto_list                  # List choices on ambiguous completion
+setopt auto_menu                  # Use menu completion after second tab
+setopt auto_param_slash           # Add trailing slash for directory completions
+setopt complete_in_word           # Complete from both ends of word
+setopt list_packed                # Make completion list smaller
+setopt menu_complete              # Cycle through completions with repeated tabs
+
+# Random
+setopt interactive_comments # Allows comments in the command line
+unsetopt beep # Shhhh
 
 bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
@@ -74,3 +125,5 @@ alias vi=vim
 
 PSSAVE=$PS1
 
+# Syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
