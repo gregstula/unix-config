@@ -5,6 +5,17 @@ export ZSH=$HOME/.zsh
 # See: https://github.com/gregstula/unix-config
 export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
 
+# Load zsh completions from local if missing
+if [[ ! -d "/usr/share/zsh/site-functions" ]]; then
+    fpath=($ZSH/completions/src $fpath)
+fi
+
+# Get system syntax highlighting or fallback to local
+syntax_highlighting="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ ! -f "${syntax}" ]]; then
+    syntax_highlighting="${ZSH}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
 # Enable built-in zsh auto completion
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit && compinit
@@ -126,4 +137,4 @@ alias vi=vim
 PSSAVE=$PS1
 
 # Syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source $syntax_highlighting
