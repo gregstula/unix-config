@@ -34,7 +34,7 @@ zstyle ':completion:*' menu select
 # ~ ->
 PROMPT='%2~ -> '
 #                                  user@hostname
-RPROMPT='%F{8}%n@%m'
+RPROMPT='%F{8}%n@%m%'
 
 # ZSH command history file
 # Up or down arrow to access previous commands
@@ -85,7 +85,6 @@ setopt menu_complete              # Cycle through completions with repeated tabs
 setopt interactive_comments # Allows comments in the command line
 unsetopt beep # Shhhh
 
-bindkey -v # vi-style input
 export KEYTIMEOUT=1 # kills vi mode lag
 
 # shh-agent

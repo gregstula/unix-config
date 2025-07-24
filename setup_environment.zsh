@@ -58,6 +58,16 @@ for base_dir in $base_dirs; do
     msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
 done
 
+# Konsone themes
+target="${HOME}/.local/share/konsole"
+src=${topleveldir}/konsole
+
+rm -rf ${target}
+msg+="%F{red}Removed ${target}"
+
+ln -s  ${src} ${target}
+msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
+
 # Print message
 print -a -C 2 -P ${msg}
 
