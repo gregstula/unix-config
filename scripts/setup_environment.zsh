@@ -42,7 +42,7 @@ if [[ ! -d "${HOME}/.config" ]]; then
 fi
 
 # Neovim uses a base directory and xdg standard ~/.config
-# $XDG_CONFIG_HOME
+XDG_CONFIG_HOME="${HOME}/.config"
 # https://specifications.freedesktop.org/basedir-spec/latest/#basics
 # Other xdg base directory configs could fit well here as well
 base_dirs=('nvim')
