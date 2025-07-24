@@ -137,11 +137,11 @@ set clipboard=unnamedplus
 " the one and only colorscheme I ever use
 " color molokai
 " Actually I use this one now (I made it myself)
-color vibes
+color stula
 let g:airline_theme='base16_monokai'
 
 " Transparent
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 
 " Unicode
 set encoding=utf-8
