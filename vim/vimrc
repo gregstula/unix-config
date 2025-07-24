@@ -137,7 +137,7 @@ set clipboard=unnamedplus
 " the one and only colorscheme I ever use
 " color molokai
 " Actually I use this one now (I made it myself)
-color stula
+color minty
 let g:airline_theme='base16_monokai'
 
 " Transparent

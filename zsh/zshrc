@@ -121,7 +121,7 @@ test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # NodeJS version manager
-source /usr/share/nvm/init-nvm.sh
+test -s /usr/share/nvm/init-nvm.sh && source /usr/share/nvm/init-nvm.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
