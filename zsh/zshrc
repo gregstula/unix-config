@@ -129,9 +129,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vi=vim
 
-#if hash nvim 2>/dev/null || type "nvim" >/dev/null 2>&1; then
-#    alias vim=nvim
-#fi
+if hash nvim 2>/dev/null || type "nvim" >/dev/null 2>&1; then
+    alias vim=nvim
+fi
 
 PSSAVE=$PS1
 

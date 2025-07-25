@@ -11,13 +11,23 @@ set -o rematchpcre
 
 # find out where repo is
 topleveldir=$(git rev-parse --show-toplevel 2>/dev/null)
+msg=()
+src=""
+target=""
+
+function remove_old {
+    rm -rf ${target}
+    msg+="%F{red}Removed ${target}"
+}
+
+function link_new {
+    ln -s ${src} ${target}
+    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
+}
 
 # This handles zsh and vim
 # Array of config files
 filenames=('zshrc' 'zsh' 'vimrc' 'vim')
-
-msg=()
-
 for file in $filenames; do
     # Get name of config dir
     [[ ${file} =~ '(zsh|vim)' ]]
@@ -28,45 +38,27 @@ for file in $filenames; do
     # source
     src=${topleveldir}/${config}/${file}
 
-    # remove old zshrc and vimrc
-    rm -rf ${target}
-    msg+="%F{red}Removed ${target}"
-
-    # symlink from repo
-    ln -s ${src} ${target}
-    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
+    remove_old
+    link_new
 done
-
-if [[ ! -d "${HOME}/.config" ]]; then
-    mkdir -p "${HOME}/.config"
-fi
 
 # Neovim uses a base directory and xdg standard ~/.config
-XDG_CONFIG_HOME="${HOME}/.config"
 # https://specifications.freedesktop.org/basedir-spec/latest/#basics
-# Other xdg base directory configs could fit well here as well
-base_dirs=('nvim')
-for base_dir in $base_dirs; do
-    target=${XDG_CONFIG_HOME}/${base_dir}
-    src=${topleveldir}/${base_dir}
+XDG_CONFIG_HOME="${HOME}/.config"
+mkdir -p ${XDG_CONFIG_HOME}
 
-    # Remove old if any
-    rm -rf ${target}
-    msg+="%F{red}Removed ${target}"
+target=${XDG_CONFIG_HOME}/nvim
+src=${topleveldir}/nvim
 
-    ln -s ${src} ${target}
-    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
-done
+remove_old
+link_new
 
-# Konsone themes
+# Konsole themes
 target="${HOME}/.local/share/konsole"
 src=${topleveldir}/konsole
 
-rm -rf ${target}
-msg+="%F{red}Removed ${target}"
-
-ln -s  ${src} ${target}
-msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
+remove_old
+link_new
 
 # Print message
 print -a -C 2 -P ${msg}

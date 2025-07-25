@@ -1,7 +1,7 @@
-" Header
-"  Please edit this text.
+" Minty
+" Minty Colorscheme
 
-let s:colors_name='dump-minty'
+let s:colors_name='minty'
 set background=dark
 
 if !has('gui_running') && &t_Co<256
@@ -16,11 +16,7 @@ if exists('syntax_on')
 endif
 let g:colors_name=s:colors_name
 
-if &bg=='dark'
-  hi      Normal       guifg=#d0d0d0 guibg=#262626 ctermfg=252  ctermbg=NONE gui=NONE cterm=NONE
-elseif &bg=='light'
-  hi      Normal       guifg=#d0d0d0 guibg=#d0d0d0 ctermfg=252  ctermbg=NONE gui=NONE cterm=NONE
-endif
+hi      Normal       guifg=#d0d0d0 guibg=#262626 ctermfg=252  ctermbg=232 gui=NONE cterm=NONE
 hi      Comment      guifg=#808080 guibg=NONE    ctermfg=244  ctermbg=NONE gui=NONE cterm=NONE
 hi      Constant     guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=bold cterm=bold
 hi      String       guifg=#87ffaf guibg=NONE    ctermfg=121  ctermbg=NONE gui=NONE cterm=NONE
@@ -30,7 +26,7 @@ hi      Boolean      guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=b
 hi      Float        guifg=#5fd7ff guibg=NONE    ctermfg=81   ctermbg=NONE gui=NONE cterm=NONE
 hi      Identifier   guifg=#ff8700 guibg=NONE    ctermfg=208  ctermbg=NONE gui=italic cterm=italic
 hi      Function     guifg=#ff8700 guibg=NONE    ctermfg=208  ctermbg=NONE gui=bold cterm=bold
-hi      Statement    guifg=#d70087 guibg=NONE    ctermfg=162  ctermbg=NONE gui=bold cterm=bold
+hi      Statement    guifg=#e41339 guibg=NONE    ctermfg=9    ctermbg=NONE gui=bold cterm=bold
 hi link Conditional  Statement
 hi link Operator     Function
 hi link Exception    Statement

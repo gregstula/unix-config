@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Minty
-Font=Hack Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Font=Consolas Nerd Font Mono,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=1
 UseFontBrailleChararacters=false
 UseFontLineChararacters=true
