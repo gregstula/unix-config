@@ -121,7 +121,7 @@ require("lazy").setup({
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = "default" },
+			keymap = { preset = "super-tab" },
 
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -177,6 +177,7 @@ for _, ft in ipairs(filetypes) do
 	})
 end
 
+-- Enable colorscheme with transparency
 -- Minty is my own personal colorscheme that has been wrangled together over the years since 2020
 -- Minty is pitch black so transparency meshes with 10% terminal transparency in Konsole settings
 -- when Konsole also set to the Minty profile and colorscheme
