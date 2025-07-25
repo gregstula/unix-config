@@ -55,4 +55,4 @@ pacman_packages/
 cache/
 plugged/
 lazy-lock.json
-
+spell/
