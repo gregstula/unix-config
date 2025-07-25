@@ -14,7 +14,7 @@ CursorShape=0
 [General]
 Name=Minty
 Parent=FALLBACK/
-TerminalCenter=true
+TerminalCenter=false
 TerminalMargin=1
 
 [Interaction Options]
