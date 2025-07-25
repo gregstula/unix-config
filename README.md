@@ -2,9 +2,11 @@
 
 A collection of dotfiles and scripts to bootstrap my zsh and vim environments
 
-Requires: `pacman -S zsh git vim`
+#### Minimun Requirements:
+`pacman -S zsh git vim`
 
-Install `./setup_environment.zsh`
+#### Basic Install 
+`./setup_environment.zsh`
 
 ## VIM
 `:PlugInstall`
