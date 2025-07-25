@@ -2,14 +2,16 @@
 ColorScheme=Minty
 Font=Hack Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=1
+UseFontBrailleChararacters=false
 UseFontLineChararacters=true
-WordMode=false
+WordMode=true
 WordModeAscii=false
 WordModeAttr=false
 WordModeBrahmic=false
 
 [Cursor Options]
 CursorShape=0
+UseCustomCursorColor=false
 
 [General]
 Name=Minty
