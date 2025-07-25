@@ -1,7 +1,8 @@
 -- vimrc always overrides on session reload
 vim.opt.sessionoptions:remove("options")
 
--- vim.opt.number = true
+-- in regular vim this messes with mouse copying but not in nvim :)
+vim.opt.number = true
 
 -- Treats tabs like buffers ... questionable
 vim.cmd("tab sball")
@@ -17,7 +18,7 @@ vim.opt.sw = 4
 
 -- default character width 100
 vim.opt.tw = 120
-vim.opt.colorcolumn = "120"
+--vim.opt.colorcolumn = "120"
 vim.opt.cursorline = true
 
 -- Autotrim trailing whitespace on exit
@@ -99,7 +100,8 @@ require("lazy").setup({
 
 		-- use a release tag to download pre-built binaries
 		version = "1.*",
-		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- AND/OR build from source, requires nightly:
+        -- https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- If you use nix, you can build from source using latest nightly rust with:
 		-- build = 'nix run .#build-plugin',
@@ -137,7 +139,8 @@ require("lazy").setup({
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- You may use a lua implementation instead by using `implementation = "lua"`
+            -- or fallback to the lua implementation,
 			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
@@ -174,5 +177,13 @@ for _, ft in ipairs(filetypes) do
 	})
 end
 
+-- Minty is my own personal colorscheme that has been wrangled together over the years since 2020
+-- Minty is pitch black so transparency meshes with 10% terminal transparency in Konsole settings
+-- when Konsole also set to the Minty profile and colorscheme
 vim.cmd("colorscheme minty")
---vim.cmd('hi Normal guibg=NONE ctermbg=NONE:')
+vim.cmd [[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
