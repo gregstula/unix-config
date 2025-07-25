@@ -3,9 +3,9 @@ ColorScheme=Minty
 Font=Hack Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=1
 UseFontLineChararacters=true
-WordMode=true
+WordMode=false
 WordModeAscii=false
-WordModeAttr=true
+WordModeAttr=false
 WordModeBrahmic=false
 
 [Cursor Options]
@@ -17,11 +17,17 @@ Parent=FALLBACK/
 TerminalCenter=true
 TerminalMargin=1
 
+[Interaction Options]
+OpenLinksByDirectClickEnabled=true
+UnderlineFilesEnabled=true
+
 [Scrolling]
 HighlightScrolledLines=false
 HistoryMode=2
+ReflowLines=false
+ScrollBarPosition=2
 SearchLineOpacity=90
 
 [Terminal Features]
-BidiRenderingEnabled=true
+BidiRenderingEnabled=false
 BlinkingCursorEnabled=true
