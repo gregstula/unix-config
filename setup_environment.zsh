@@ -63,3 +63,4 @@ link_new
 # Print message
 print -a -C 2 -P ${msg}
 
+./lib/nerd_fonts.zsh &
