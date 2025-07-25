@@ -1,15 +1,20 @@
 [Appearance]
-ColorScheme=minty
-Font=Consolas,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+ColorScheme=Minty
+Font=Hack Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=1
-WordMode=false
+UseFontLineChararacters=true
+WordMode=true
+WordModeAscii=false
+WordModeAttr=true
+WordModeBrahmic=false
 
 [Cursor Options]
-CursorShape=1
+CursorShape=0
 
 [General]
 Name=Minty
 Parent=FALLBACK/
+TerminalCenter=true
 TerminalMargin=1
 
 [Scrolling]
