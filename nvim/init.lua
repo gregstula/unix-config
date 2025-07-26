@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
 })
+
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.showbreak = "> \\ \\ "
@@ -70,6 +71,11 @@ vim.keymap.set("n", "<Leader>P", "mz:put!<CR>`z")
 vim.keymap.set("n", "<Leader>o", "mz:put _<CR>`z")
 vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
 
+-- \d Jump to the next diagnostic and show floating window
+vim.keymap.set("n", "<Leader>d", "]d <C-W>d", {remap = true})
+-- \e Show diagnostic floating window under the cursor
+vim.keymap.set("n", "<Leader>e","<C-W>d", {remap = true})
+
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
 vim.keymap.set("n", "J", "mzJ`z")
@@ -83,9 +89,7 @@ vim.opt.clipboard = "unnamedplus"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system(
-        { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
-    })
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -111,6 +115,11 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = { "rafamadriz/friendly-snippets" },
@@ -118,13 +127,11 @@ require("lazy").setup({
 		-- use a release tag to download pre-built binaries
 		version = "1.*",
 		-- AND/OR build from source, requires nightly:
-        -- https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- If you use nix, you can build from source using latest nightly rust with:
 		-- build = 'nix run .#build-plugin',
 
-		---@module 'blink.cmp'
-		---@type blink.cmp.Config
 		opts = {
 			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 			-- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -157,19 +164,75 @@ require("lazy").setup({
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
 			-- You may use a lua implementation instead by using `implementation = "lua"`
-            -- or fallback to the lua implementation,
-			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			-- or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available,
+			-- by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
 	},
-    {
-    "mason-org/mason.nvim",
-    opts = {}
-}
+	{
+		-- Automatically enables the appropriate config file from the repo
+		-- When an LSP is installed with mason
+		-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
 })
+
+-- LSP
+-- NOTE: Extra settings can be specified for each LSP server.
+-- With Nvim 0.11+ you can extend a config by calling
+--              vim.lsp.config('…', {…}).
+--- If you primarily use `lua-language-server` for Neovim, and want to provide completions,
+--- analysis, and location handling for plugins on runtime path, you can use the following
+--- settings.
+-- (You can also copy any config directly from lsp/
+--  and put it in a local lsp/ directory in your 'runtimepath').
+-- NOTE: Lua LSP settings needed for init.lua and neovim plugin development
+vim.lsp.config("lua_ls", {
+	on_init = function(client)
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				version = "LuaJIT",
+				path = {
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
+			},
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+				},
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
+	},
+})
+
+-- Diagnostic Config
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config({
+	severity_sort = true,
+	underline = true,
+	update_in_insert = false,
+	signs = { severity = { vim.diagnostic.severity.ERROR } },
+})
+
+-- Run command on current save and output to current buffer
+vim.api.nvim_create_user_command("FormatWith", function(opts)
+	local cmd = { ":w<CR>!", opts.fargs[1], " %" }
+	vim.cmd(table.concat(cmd))
+end, { nargs = 1 })
 
 -- TREE SITTER
 -- NOTE: Using native implementation as much as possible and
@@ -192,8 +255,11 @@ local filetypes = vim.fn.getcompletion("", "filetype")
 for _, ft in ipairs(filetypes) do
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = ft,
-		callback = function()
-			vim.treesitter.start()
+		callback = function(args)
+			local success, _ = pcall(vim.treesitter.start, args.buf, ft)
+			if not success then
+				vim.bo[args.buf].syntax = "ON"
+			end
 		end,
 	})
 end
@@ -203,9 +269,9 @@ end
 -- Minty is pitch black so transparency meshes with 10% terminal transparency in Konsole settings
 -- when Konsole also set to the Minty profile and colorscheme
 vim.cmd("colorscheme minty")
-vim.cmd [[
+vim.cmd([[
   highlight Normal guibg=none
   highlight NonText guibg=none
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
-]]
+]])

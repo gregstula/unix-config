@@ -120,8 +120,13 @@ let g:ycm_language_server =
     \       'name': 'vim',
     \       'cmdline': [ 'vim-language-server', '--stdio' ],
     \       'filetypes': [ 'vim' ]
-    \   }
-    \ ]
+    \   },
+    \   {
+    \       'name': 'lua',
+    \       'cmdline': ['lua-language-server'],
+    \       'filetypes': ['lua']
+    \   },
+    \]
 
 " Yank to clipboard
 set clipboard=unnamedplus
