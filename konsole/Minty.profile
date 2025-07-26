@@ -8,7 +8,7 @@ UseFontLineChararacters=true
 WordMode=true
 WordModeAscii=true
 WordModeAttr=true
-WordModeBrahmic=false
+WordModeBrahmic=true
 
 [Cursor Options]
 CursorShape=0
