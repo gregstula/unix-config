@@ -35,7 +35,6 @@ set t_vb=
 "syntax match Tab /\t/
 hi Tab gui=underline guifg=blue ctermbg=blue
 
-
 " globally use spaces instead of tabs
 set expandtab
 set ts=4
@@ -96,13 +95,6 @@ autocmd FileType c++ :CCToggle setlocal ts=4 sw=4 expandtab
 autocmd BufRead,BufNewFile *.hpp,*.hh set ft=cpp
 autocmd BufRead,BufNewFile .clang-format set ft=yaml
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ",,"
-let g:mapleader = ",,"
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
 "Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
@@ -158,8 +150,31 @@ if has("gui_running")
     color molokai
 endif
 
-" For the meme
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+" -- KEYMAPS --
+" -- NOTE: a map leader makes it possible to do extra key combinations
+" -- Default leader is \ which is what I use
+" -- A lot of neovim users use space or comma as the leader
+" -- vim.g.mapleader = ","
+" -- vim.g.maplocalleader = " "
+" -- Pressing \ss will toggle and untoggle spell checking
+nnoremap <leader>ss :setlocal spell!<CR>
+" -- \/ resets search highlighting
+nnoremap <Leader>/ :noh<CR>
+
+" -- NOTE: This remap allows you to move highlighted text from visual with up(k) and down(j)
+" -- https://youtu.be/w7i4amO_zaE?si=UiyaDMFy7e5VJnoP&t=1534
+" -- v = visual, J = Shift J
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" -- Create a new line before put with Shift-\P or after with \p keep cursor position
+nnoremap <Leader>p mz:put<CR>`z
+nnoremap <Leader>P mz:put!<CR>`z
+
+" -- Inset a new line below with \o or new line above with \O while staying in normal mode
+" -- without switching cursor positions
+nnoremap <Leader>o mz:put _<CR>`z
+nnoremap <Leader>O mz:put! _<CR>`z
+" -- Shift J appends the line under the cursor to the line where the cursor is
+" -- This keymap makes the cursor stay in place so you can chain it
+nnoremap J mzJ`z

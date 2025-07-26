@@ -1,11 +1,14 @@
 -- vimrc always overrides on session reload
-vim.opt.sessionoptions:remove("options")
+-- NOTE: Document why you ever enabled this before enabling again
+-- vim.opt.sessionoptions:remove("options")
+-----------
 
--- in regular vim this messes with mouse copying but not in nvim :)
+-- in regular vim line numbers messes with mouse copying but not in nvim :)
 vim.opt.number = true
 
 -- Treats tabs like buffers ... questionable
-vim.cmd("tab sball")
+-- NOTE: Document why this was here before enabling it again
+--vim.cmd("tab sball")
 
 -- Visualize tabs
 -- vim.cmd('syntax match Tab /\\t/')
@@ -36,40 +39,53 @@ vim.opt.mousehide = true
 -- Zee greatest shell
 vim.opt.shell = "zsh"
 
+--  If you search for something containing uppercase characters, it will do a case sensitive search;
+--  if you search for something purely lowercase, it will do a case insensitive search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- KEYMAPS --
--- For the meme
-vim.keymap.set("n", "<Up>", "<nop>")
-vim.keymap.set("n", "<Down>", "<nop>")
-vim.keymap.set("n", "<Left>", "<nop>")
-vim.keymap.set("n", "<Right>", "<nop>")
-
--- With a map leader it's possible to do extra key combinations
--- like <leader>w saves the current file
+-- NOTE: a map leader makes it possible to do extra key combinations
 -- Default leader is \ which is what I use
-
 -- A lot of neovim users use space or comma as the leader
 -- vim.g.mapleader = ","
 -- vim.g.maplocalleader = " "
-
 -- Pressing \ss will toggle and untoggle spell checking
-vim.keymap.set("n", "<leader>ss", ":setlocal spell!<cr>")
+vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>")
 
--- Yank to clipboard
+-- \/ resets search highlighting
+vim.keymap.set("n", "<Leader>/", ":noh<CR>")
+
+-- NOTE: This remap allows you to move highlighted text from visual with up(k) and down(j)
+-- https://youtu.be/w7i4amO_zaE?si=UiyaDMFy7e5VJnoP&t=1534
+-- v = visual, J = Shift J
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- Create a new line before put with Shift-\P or after with \p keep cursor position
+vim.keymap.set("n", "<Leader>p", "mz:put<CR>`z")
+vim.keymap.set("n", "<Leader>P", "mz:put!<CR>`z")
+
+-- Inset a new line below with \o or new line above with \O while staying in normal mode
+-- without switching cursor positions
+vim.keymap.set("n", "<Leader>o", "mz:put _<CR>`z")
+vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
+
+-- Shift J appends the line under the cursor to the line where the cursor is
+-- This keymap makes the cursor stay in place so you can chain it
+vim.keymap.set("n", "J", "mzJ`z")
+-- Yank to wayland keyboard
 vim.opt.clipboard = "unnamedplus"
 
--- the one and only colorscheme I ever use
--- vim.cmd('color molokai')
--- Actually I use this one now (I made it myself)
--- vim.cmd('color minty')
-
--- Plugins
+-- Plugin Manager
 -- TODO: Replace this with the native built-in neovim package manager that was released July 2025
 -- Eventually we want a guanteed to be here and working plugin config
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	local out = vim.fn.system(
+        { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
+    })
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -82,7 +98,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
+--- ENABLED PLUGINS AND CONFIG SETTINGS
+-- NOTE: Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 -- Setup lazy.nvim
@@ -148,10 +165,14 @@ require("lazy").setup({
 		},
 		opts_extend = { "sources.default" },
 	},
+    {
+    "mason-org/mason.nvim",
+    opts = {}
+}
 })
 
 -- TREE SITTER
--- Using native implementation as much as possible and
+-- NOTE: Using native implementation as much as possible and
 -- only using main of nvim-treesitter as parser manager
 -- This is the direction devs are going anyways
 -- with nvim-treesitter being a testbad for upstream native support
@@ -178,7 +199,7 @@ for _, ft in ipairs(filetypes) do
 end
 
 -- Enable colorscheme with transparency
--- Minty is my own personal colorscheme that has been wrangled together over the years since 2020
+-- NOTE: Minty is my own personal colorscheme that I've wrangled together over the years since 2020
 -- Minty is pitch black so transparency meshes with 10% terminal transparency in Konsole settings
 -- when Konsole also set to the Minty profile and colorscheme
 vim.cmd("colorscheme minty")
