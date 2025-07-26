@@ -72,9 +72,9 @@ vim.keymap.set("n", "<Leader>o", "mz:put _<CR>`z")
 vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
 
 -- \d Jump to the next diagnostic and show floating window
-vim.keymap.set("n", "<Leader>d", "]d <C-W>d", {remap = true})
+vim.keymap.set("n", "<Leader>d", "]d <C-W>d", { remap = true })
 -- \e Show diagnostic floating window under the cursor
-vim.keymap.set("n", "<Leader>e","<C-W>d", {remap = true})
+vim.keymap.set("n", "<Leader>e", "<C-W>d", { remap = true })
 
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
@@ -118,6 +118,18 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+			},
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "fallback",
+			},
+		},
 	},
 	{
 		"saghen/blink.cmp",
