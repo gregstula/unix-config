@@ -1,19 +1,32 @@
+zmodload zsh/zprof
+
+# Auto compile if script changed or first source
+function autozcompile() {
+    local zsh_file="$1"
+    if [[ ! -f "${zsh_file}.zwc" || "$zsh_file -nt "${zsh_file}.zwc ]]; then
+        zcompile "$zsh_file"
+    fi
+}
+
+# Auto-compile if source is newer
+autozcompile "${HOME}/.zshrc"
+
 # Essential exports for config functionality
 source /etc/profile
-export ZSH=$HOME/.zsh
+export zsh_folder="$HOME/.zsh"
 
 # See: https://github.com/gregstula/unix-config
-export UNIX_CONFIG_DIR=$HOME/.unix_config_dir
+export UNIX_CONFIG_DIR="$HOME/.unix_config_dir"
 
 # Load zsh completions from local if missing
 if [[ ! -d "/usr/share/zsh/site-functions" ]]; then
-    fpath=($ZSH/completions/src $fpath)
+    fpath=($zsh_folder/completions/src $fpath)
 fi
 
 # Get system syntax highlighting or fallback to local
 syntax_highlighting="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [[ ! -f "${syntax}" ]]; then
-    syntax_highlighting="${ZSH}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    syntax_highlighting="${zsh_folder}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 # Enable built-in zsh auto completion
@@ -36,7 +49,7 @@ PROMPT='%2~ -> '
 #                                  user@hostname
 RPROMPT='%F{8}%n@%m'
 
-# ZSH command history file
+# zsh command history file
 # Up or down arrow to access previous commands
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -55,10 +68,10 @@ setopt inc_append_history     # Update the histfile immedietly instead of shell 
 setopt share_history          # Share history with all sessions
 
 # cd tweaks
-setopt auto_cd              # Typing a directory name invokes cd on it
-setopt auto_pushd           # Everytime you cd it's now in a stack history used like (cd -2)
-setopt pushd_ignore_dups    # Don't push multiple copies directory onto the directory stack.
-setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposite
+setopt auto_cd           # Typing a directory name invokes cd on it
+setopt auto_pushd        # Everytime you cd it's now in a stack history used like (cd -2)
+setopt pushd_ignore_dups # Don't push multiple copies directory onto the directory stack.
+setopt pushd_minus       # Swap the meaning of cd +1 and cd -1 to the opposite
 
 # GLOBS
 #     * - Matches any string.
@@ -68,28 +81,28 @@ setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposit
 #     sudo !! command history globbing put sudo before last command
 #     ! - The history character.
 #     # - The command character.
-setopt extended_glob              #  #, ~, and ^
-setopt glob_dots                  # glob on dotfiles
-setopt glob_complete              # glob matches as completions
+setopt extended_glob #  #, ~, and ^
+setopt glob_dots     # glob on dotfiles
+setopt glob_complete # glob matches as completions
 
 # Completion Behavior
-setopt always_to_end              # Move cursor to end of word on completion
-setopt auto_list                  # List choices on ambiguous completion
-setopt auto_menu                  # Use menu completion after second tab
-setopt auto_param_slash           # Add trailing slash for directory completions
-setopt complete_in_word           # Complete from both ends of word
-setopt list_packed                # Make completion list smaller
-setopt menu_complete              # Cycle through completions with repeated tabs
+setopt always_to_end    # Move cursor to end of word on completion
+setopt auto_list        # List choices on ambiguous completion
+setopt auto_menu        # Use menu completion after second tab
+setopt auto_param_slash # Add trailing slash for directory completions
+setopt complete_in_word # Complete from both ends of word
+setopt list_packed      # Make completion list smaller
+setopt menu_complete    # Cycle through completions with repeated tabs
 
 # Random
 setopt interactive_comments # Allows comments in the command line
-unsetopt beep # Shhhh
+unsetopt beep               # Shhhh
 
 export KEYTIMEOUT=1 # kills vi mode lag
 
 # shh-agent
 if hash keychain 2>/dev/null && [ $USER != "root" ]; then
-	eval `keychain --lockwait 0 --eval --agents ssh id_rsa`
+    eval $(keychain --lockwait 0 --eval --agents ssh id_rsa)
 fi
 
 # Run fastfetch only once per session if available
@@ -106,7 +119,7 @@ export EDITOR="$VISUAL"
 export PATH=$PATH:$HOME/bin
 
 # Scripting Language Version Managers
-KERNAL=`uname`
+KERNAL=$(uname)
 if [[ $KERNAL == "Darwin" ]]; then
     # for homebrew and local executables
     export PATH=/usr/local/bin:$PATH:~/bin
@@ -120,9 +133,12 @@ test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # NodeJS version manager
-test -s /usr/share/nvm/init-nvm.sh && source /usr/share/nvm/init-nvm.sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# zsh speed up https://varun.ch/posts/slow-nvm/
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+nvm_plugin="${zsh_folder}/zsh-nvm/zsh-nvm.plugin.zsh"
+autozcompile "${nvm_plugin}"
+source "${nvm_plugin}"
 
 # Rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -134,6 +150,7 @@ if hash nvim 2>/dev/null || type "nvim" >/dev/null 2>&1; then
 fi
 
 PSSAVE=$PS1
-
 # Syntax highlighting
-source $syntax_highlighting
+# Compile if source is newer
+autozcompile "${syntax_highlighting}"
+source "${syntax_highlighting}"

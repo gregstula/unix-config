@@ -56,3 +56,4 @@ cache/
 plugged/
 lazy-lock.json
 spell/
+*.zwc

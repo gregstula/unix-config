@@ -63,4 +63,5 @@ link_new
 # Print message
 print -a -C 2 -P ${msg}
 
+echo "Grabbing basic nerd font"
 ./lib/nerd_fonts.zsh &
