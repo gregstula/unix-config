@@ -63,5 +63,9 @@ link_new
 # Print message
 print -a -C 2 -P ${msg}
 
-echo "Grabbing basic nerd font"
-./lib/nerd_fonts.zsh &
+# Get nerdfonts if missing
+files=(${HOME}/.local/share/fonts/*NerdFont*.ttf)
+if [[ ! -e ${files[1]} ]]; then
+    echo "Grabbing basic nerd font"
+    ./lib/nerd_fonts.zsh &
+fi
