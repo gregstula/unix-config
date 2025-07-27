@@ -1,12 +1,13 @@
 [Appearance]
 ColorScheme=Minty
 Font=Consolas Nerd Font Mono,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+IgnoreWcWidth=true
 LineSpacing=1
 UseFontBrailleChararacters=false
 UseFontLineChararacters=true
 WordMode=true
 WordModeAscii=false
-WordModeAttr=false
+WordModeAttr=true
 WordModeBrahmic=false
 
 [Cursor Options]

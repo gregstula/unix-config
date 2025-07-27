@@ -6,9 +6,9 @@ LineSpacing=1
 UseFontBrailleChararacters=false
 UseFontLineChararacters=true
 WordMode=true
-WordModeAscii=true
+WordModeAscii=false
 WordModeAttr=true
-WordModeBrahmic=true
+WordModeBrahmic=false
 
 [Cursor Options]
 CursorShape=0
@@ -32,5 +32,7 @@ ScrollBarPosition=2
 SearchLineOpacity=90
 
 [Terminal Features]
-BidiRenderingEnabled=true
+BidiLineLTR=false
+BidiRenderingEnabled=false
+BidiTableDirOverride=false
 BlinkingCursorEnabled=true

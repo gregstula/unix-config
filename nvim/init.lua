@@ -117,13 +117,20 @@ require("lazy").setup({
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "echasnovski/mini.icons" },
-		opts = {},
+		config = function()
+			require("lualine").setup()
+			require("mini.icons").setup()
+			MiniIcons.mock_nvim_web_devicons()
+		end,
 	},
 	{
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
+				zsh = { "shfmt" },
+				bash = { "shfmt" },
+				sh = { "shfmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
