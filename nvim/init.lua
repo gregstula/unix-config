@@ -78,7 +78,8 @@ vim.keymap.set("n", "<Leader>e", "<C-W>d", { remap = true })
 
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
-vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "J", "mzJ`z")
+
 -- Yank to wayland keyboard
 vim.opt.clipboard = "unnamedplus"
 
@@ -118,7 +119,7 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
-			require("lualine").setup()
+			require("lualine").setup({})
 			require("mini.icons").setup()
 			MiniIcons.mock_nvim_web_devicons()
 		end,
@@ -164,7 +165,7 @@ require("lazy").setup({
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = "super-tab" },
+			keymap = { preset = "default" },
 
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -178,7 +179,16 @@ require("lazy").setup({
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				-- add lazydev to your completion providers
+				default = { "lazydev", "lsp", "path", "buffer" },
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
+					},
+				},
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -204,55 +214,9 @@ require("lazy").setup({
 		},
 	},
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-})
-
--- LSP
--- NOTE: Extra settings can be specified for each LSP server.
--- With Nvim 0.11+ you can extend a config by calling
---              vim.lsp.config('…', {…}).
---- If you primarily use `lua-language-server` for Neovim, and want to provide completions,
---- analysis, and location handling for plugins on runtime path, you can use the following
---- settings.
--- (You can also copy any config directly from lsp/
---  and put it in a local lsp/ directory in your 'runtimepath').
--- NOTE: Lua LSP settings needed for init.lua and neovim plugin development
-vim.lsp.config("lua_ls", {
-	on_init = function(client)
-		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-			runtime = {
-				version = "LuaJIT",
-				path = {
-					"lua/?.lua",
-					"lua/?/init.lua",
-				},
-			},
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-				},
-			},
-		})
-	end,
-	settings = {
-		Lua = {},
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {},
 	},
 })
 
@@ -264,12 +228,6 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	signs = { severity = { vim.diagnostic.severity.ERROR } },
 })
-
--- Run command on current save and output to current buffer
-vim.api.nvim_create_user_command("FormatWith", function(opts)
-	local cmd = { ":w<CR>!", opts.fargs[1], " %" }
-	vim.cmd(table.concat(cmd))
-end, { nargs = 1 })
 
 -- TREE SITTER
 -- NOTE: Using native implementation as much as possible and
