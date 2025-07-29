@@ -21,7 +21,11 @@ TerminalCenter=false
 TerminalMargin=1
 
 [Interaction Options]
-OpenLinksByDirectClickEnabled=true
+AutoCopySelectedText=true
+CopyTextAsHTML=false
+OpenLinksByDirectClickEnabled=false
+TrimLeadingSpacesInSelectedText=true
+TrimTrailingSpacesInSelectedText=true
 UnderlineFilesEnabled=true
 
 [Scrolling]

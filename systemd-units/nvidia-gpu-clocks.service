@@ -1,0 +1,11 @@
+[Unit]
+# https://www.reddit.com/r/linux_gaming/comments/1lug3tv/i_found_why_kde_dont_feel_smooth_on_newer_nvidia/
+Description = "Lock GPU clock minimum to 800"
+
+[Service]
+Type=oneshot
+ExecStart=nvidia-smi -pm 1
+ExecStart=nvidia-smi --lock-gpu-clocks=800,3150
+
+[Install]
+WantedBy=multi-user.target

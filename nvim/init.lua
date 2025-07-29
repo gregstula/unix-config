@@ -218,6 +218,15 @@ require("lazy").setup({
 		ft = "lua", -- only load on lua files
 		opts = {},
 	},
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				systemd = { "systemdlint" },
+				vim.cmd("autocmd BufRead,BufNewFile *.service set filetype=systemd"),
+			}
+		end,
+	},
 })
 
 -- Diagnostic Config
