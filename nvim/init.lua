@@ -222,8 +222,8 @@ require("lazy").setup({
 		"mfussenegger/nvim-lint",
 		config = function()
 			require("lint").linters_by_ft = {
-				systemd = { "systemdlint" },
-				vim.cmd("autocmd BufRead,BufNewFile *.service set filetype=systemd"),
+				systemd = { "systemd-analyze" },
+				vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
 			}
 		end,
 	},
