@@ -17,12 +17,12 @@ target=""
 
 function remove_old {
     rm -rf ${target}
-    msg+="%F{red}Removed ${target}"
+    msg+="%F{red}Removed ${target}%f"
 }
 
 function link_new {
     ln -s ${src} ${target}
-    msg+="%F{white}|  %F{green}Created new symlink from ${src} to ${target}"
+    msg+="%F{white}|%f  %F{green}Created new symlink from ${src} to ${target}%f"
 }
 
 # This handles zsh and vim
@@ -64,8 +64,12 @@ link_new
 print -a -C 2 -P ${msg}
 
 # Get nerdfonts if missing
+mkdir -p  "${HOME}/.local/share/fonts"
 files=(${HOME}/.local/share/fonts/*NerdFont*.ttf)
 if [[ ! -e ${files[1]} ]]; then
     echo "Grabbing basic nerd font"
-    ./lib/nerd_fonts.zsh &
+    #./lib/nerd_fonts.zsh
+else
+    echo "All good!"
 fi
+
