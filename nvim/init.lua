@@ -223,6 +223,8 @@ require("lazy").setup({
 		config = function()
 			require("lint").linters_by_ft = {
 				systemd = { "systemd-analyze" },
+				zsh = { "zsh" },
+				bash = { "bash" },
 				vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
 			}
 		end,
