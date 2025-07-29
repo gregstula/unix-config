@@ -1,5 +1,11 @@
 #!/bin/env zsh
+# Require FontForge
 
+if (($+commands[pacman])); then
+    sudo pacman -S fontforge --noconfirm
+fi
+
+# Patches the fonts using the files on windows
 tmp=$(mktemp -d)
 cp /mnt/C/Windows/Fonts/consola*.ttf $tmp
 for file in $tmp/*.ttf; do
@@ -7,7 +13,7 @@ for file in $tmp/*.ttf; do
     # Complete patch Regular
     ./FontPatcher/font-patcher -c --outputdir . $file
     #Complete patch mono
-    ./FontPatcher/font-patcher -c --outputdir . $file
+    ./FontPatcher/font-patcher -cs --outputdir . $file
 done
 
 echo "Fonts patched."

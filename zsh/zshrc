@@ -47,7 +47,7 @@ zstyle ':completion:*' menu select
 # ~ ->
 PROMPT='%2~ -> '
 #                                  user@hostname
-RPROMPT='%F{8}%n@%m'
+RPROMPT='%F{8}%n@%m%f'
 
 # zsh command history file
 # Up or down arrow to access previous commands

@@ -1,5 +1,5 @@
 #!/bin/env zsh
-
+# Grabs patched nerdfonts but only has mono
 tmp_clone="/tmp/consolas-nf"
 fonts_dir="${HOME}/.local/share/fonts"
 
@@ -10,4 +10,5 @@ fi
 cd $tmp_clone
 mkdir -p $fonts_dir
 cp *.ttf  $fonts_dir
+echo "Fonts installed!"
 fc-cache
