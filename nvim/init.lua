@@ -52,7 +52,7 @@ vim.opt.smartcase = true
 -- vim.g.mapleader = ","
 -- vim.g.maplocalleader = " "
 -- Pressing \ss will toggle and untoggle spell checking
-vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>")
+vim.keymap.set("n", "<Leader>ss", ":setlocal spell!<CR>")
 
 -- \/ resets search highlighting
 vim.keymap.set("n", "<Leader>/", ":noh<CR>")
@@ -74,7 +74,7 @@ vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
 -- \d Jump to the next diagnostic and show floating window
 vim.keymap.set("n", "<Leader>d", "]d <C-W>d", { remap = true })
 -- \e Show diagnostic floating window under the cursor
-vim.keymap.set("n", "<Leader>e", "<C-W>d", { remap = true })
+vim.keymap.set("n", "<Leader>w", "<C-W>d", { remap = true })
 
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
@@ -110,19 +110,31 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
 	{
+		-- Parser packagemanager for treesitter
 		"nvim-treesitter/nvim-treesitter", -- TS parser package manager
 		lazy = false,
 		branch = "main", -- active development branch
 		build = ":TSUpdate",
 	},
 	{
+		-- Lualine, a status line like airline but for neovim
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "echasnovski/mini.icons" },
-		config = function()
-			require("lualine").setup({})
+		dependencies = {
+			-- Nerdfont icons
+			"echasnovski/mini.icons",
+		},
+		config = function(_, opts)
+			require("lualine").setup({ opts })
+			-- Setup mini icons with web_devicons api
 			require("mini.icons").setup()
 			MiniIcons.mock_nvim_web_devicons()
 		end,
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
 	},
 	{
 		"stevearc/conform.nvim",
@@ -132,6 +144,7 @@ require("lazy").setup({
 				zsh = { "shfmt" },
 				bash = { "shfmt" },
 				sh = { "shfmt" },
+				go = { "gofmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -146,14 +159,10 @@ require("lazy").setup({
 
 		-- use a release tag to download pre-built binaries
 		version = "1.*",
-		-- AND/OR build from source, requires nightly:
-		-- https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-		-- build = 'cargo build --release',
-		-- If you use nix, you can build from source using latest nightly rust with:
-		-- build = 'nix run .#build-plugin',
 
 		opts = {
-			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+			-- 'default' (recommended)
+			-- for mappings similar to built-in completions (C-y to accept)
 			-- 'super-tab' for mappings similar to vscode (tab to accept)
 			-- 'enter' for enter to accept
 			-- 'none' for no mappings
@@ -191,7 +200,8 @@ require("lazy").setup({
 				},
 			},
 
-			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- (Default) Rust fuzzy matcher for typo resistance
+			-- and significantly better performance
 			-- You may use a lua implementation instead by using `implementation = "lua"`
 			-- or fallback to the lua implementation,
 			-- when the Rust fuzzy matcher is not available,
@@ -223,8 +233,6 @@ require("lazy").setup({
 		config = function()
 			require("lint").linters_by_ft = {
 				systemd = { "systemd-analyze" },
-				zsh = { "zsh" },
-				bash = { "bash" },
 				vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
 			}
 		end,
@@ -248,9 +256,7 @@ vim.diagnostic.config({
 -- install needed to config
 -- Nvim includes these parsers:
 -- https://neovim.io/doc/user/treesitter.html#treesitter-parsers
--- C Lua Markdown Vimscript Vimdoc
--- Use T:SInstall all for the rest
-require("nvim-treesitter").install({ "bash" })
+require("nvim-treesitter").install({ "all" })
 -- Built in tree-sitter settings
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- zsh doesn't have it's own parser yet

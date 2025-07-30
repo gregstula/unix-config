@@ -138,22 +138,10 @@ color minty
 let g:airline_theme='base16_monokai'
 
 " Transparent
-" hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 
 " Unicode
 set encoding=utf-8
-
-" gui settings
-if has("gui_running")
-    if has("gui_gtk2")
-       set guifont=Consolas\ 14
-    elseif has("gui_macvim")
-       set guifont=Consolas:h16
-    elseif has("gui_win32")
-        set guifont=Consolas:h16:cANSI
-    endif
-    color molokai
-endif
 
 " -- KEYMAPS --
 " -- NOTE: a map leader makes it possible to do extra key combinations

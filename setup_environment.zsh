@@ -63,8 +63,12 @@ link_new
 # Print message
 print -a -C 2 -P ${msg}
 
+if [[ $whoami == root ]]; then
+    exit 0
+fi
+
 # Get nerdfonts if missing
-mkdir -p  "${HOME}/.local/share/fonts"
+mkdir -p "${HOME}/.local/share/fonts"
 files=(${HOME}/.local/share/fonts/*NerdFont*.ttf)
 if [[ ! -e ${files[1]} ]]; then
     echo "Grabbing basic nerd font"
@@ -72,4 +76,3 @@ if [[ ! -e ${files[1]} ]]; then
 else
     echo "All good!"
 fi
-
