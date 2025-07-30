@@ -1,6 +1,5 @@
 #!/bin/env zsh
 # Require FontForge
-
 if (($+commands[pacman])); then
     sudo pacman -S fontforge --noconfirm
 fi

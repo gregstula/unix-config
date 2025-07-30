@@ -1,3 +1,4 @@
+#Profiler for performance issues
 zmodload zsh/zprof
 
 # Auto compile if script changed or first source
@@ -27,6 +28,8 @@ fi
 syntax_highlighting="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [[ ! -f "${syntax_highlighting}" ]]; then
     syntax_highlighting="${zsh_folder}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    # Compile if source is newer
+    autozcompile "${syntax_highlighting}"
 fi
 
 # Enable built-in zsh auto completion
@@ -45,17 +48,14 @@ zstyle ':completion:*' menu select
 
 # My minimalist prompt/theme
 # ~ ->
-# shellcheck disable=SC2034
 PROMPT='%2~ -> '
 #                                  user@hostname
-# shellcheck disable=SC2034
 RPROMPT='%F{8}%n@%m%f'
 
 # zsh command history file
 # Up or down arrow to access previous commands
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
-# shellcheck disable=SC2034
 SAVEHIST=1000000
 
 # Built-in options
@@ -100,8 +100,6 @@ setopt menu_complete    # Cycle through completions with repeated tabs
 # Random
 setopt interactive_comments # Allows comments in the command line
 unsetopt beep               # Shhhh
-
-export KEYTIMEOUT=1 # kills vi mode lag
 
 # shh-agent
 if hash keychain 2>/dev/null && [ "$USER" != "root" ]; then
@@ -148,19 +146,27 @@ if [[ $UID -ne 0 ]]; then
 
     # Rust cargo
     export PATH="$HOME/.cargo/bin:$PATH"
-
-    alias vi=/usr/bin/vim
-    if hash nvim 2>/dev/null || type "nvim" >/dev/null 2>&1; then
-        alias vim=nvim
-        export nvimrc=${HOME}/.config/nvim/init.lua
-    fi
 fi
 
-#shellcheck disable=SC2034
+alias vi=/usr/bin/vim
+if (($+commands[nvim])); then
+    alias vim=nvim
+    export nvimrc=${HOME}/.config/nvim/init.lua
+fi
+
 PSSAVE=$PS1
 
+# fzf integration
+# made with fzf --zsh > fzf.zsh
+# https://thevaluable.dev/fzf-shell-integration/
+# <Ctrl-t> Fuzzy find all files and directories at .
+# <Alt-c> Fuzzy find all directories at . and cd into the one you pick
+# <Ctrl-r> Fuzzy fid through zsh history and output the selection
+if (($+commands[fzf])); then
+    local fzf_zsh=$zsh_folder/fzf.zsh
+    autozcompile $zsh_folder/fzf.zsh
+    source  $zsh_folder/fzf.zsh
+fi
+
 # Syntax highlighting
-# Compile if source is newer
-autozcompile "${syntax_highlighting}"
-#shellcheck disable=SC1090
 source "${syntax_highlighting}"
