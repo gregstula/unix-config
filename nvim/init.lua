@@ -228,15 +228,15 @@ require("lazy").setup({
 		ft = "lua", -- only load on lua files
 		opts = {},
 	},
-	{
-		"mfussenegger/nvim-lint",
-		config = function()
-			require("lint").linters_by_ft = {
-				systemd = { "systemd-analyze" },
-				vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
-			}
-		end,
-	},
+})
+
+-- lSP config
+-- Extra settings can be specified for each LSP server.
+-- With Nvim 0.11+ you can extend a config by calling vim.lsp.config('…', {…}).
+-- (You can also copy any config directly from lsp/
+-- and put it in a local lsp/ directory in your 'runtimepath').
+vim.lsp.config("bashls", {
+	filetypes = { "bash", "sh", "zsh" },
 })
 
 -- Diagnostic Config

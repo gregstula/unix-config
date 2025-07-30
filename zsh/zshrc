@@ -3,7 +3,7 @@ zmodload zsh/zprof
 # Auto compile if script changed or first source
 function autozcompile() {
     local zsh_file="$1"
-    if [[ ! -f "${zsh_file}.zwc" || "$zsh_file -nt "${zsh_file}.zwc ]]; then
+    if [[ ! -f "${zsh_file}.zwc" || "$zsh_file" -nt "${zsh_file}.zwc" ]]; then
         zcompile "$zsh_file"
     fi
 }
@@ -19,13 +19,13 @@ export zsh_folder="$HOME/.zsh"
 export UNIX_CONFIG_DIR="$HOME/.unix_config_dir"
 
 # Load zsh completions from local if missing
-if [[ ! -d "/usr/share/zsh/site-functions/_golang" ]]; then
-    fpath=($zsh_folder/completions/src $fpath)
+if [[ ! -f "/usr/share/zsh/site-functions/_golang" ]]; then
+    fpath=("$zsh_folder/completions/src" "$fpath")
 fi
 
 # Get system syntax highlighting or fallback to local
 syntax_highlighting="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [[ ! -f "${syntax}" ]]; then
+if [[ ! -f "${syntax_highlighting}" ]]; then
     syntax_highlighting="${zsh_folder}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
@@ -45,14 +45,17 @@ zstyle ':completion:*' menu select
 
 # My minimalist prompt/theme
 # ~ ->
+# shellcheck disable=SC2034
 PROMPT='%2~ -> '
 #                                  user@hostname
+# shellcheck disable=SC2034
 RPROMPT='%F{8}%n@%m%f'
 
 # zsh command history file
 # Up or down arrow to access previous commands
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
+# shellcheck disable=SC2034
 SAVEHIST=1000000
 
 # Built-in options
@@ -101,8 +104,8 @@ unsetopt beep               # Shhhh
 export KEYTIMEOUT=1 # kills vi mode lag
 
 # shh-agent
-if hash keychain 2>/dev/null && [ $USER != "root" ]; then
-    eval $(keychain --lockwait 0 --eval --agents ssh id_rsa)
+if hash keychain 2>/dev/null && [ "$USER" != "root" ]; then
+    eval "$(keychain --lockwait 0 --eval --agents ssh id_rsa)"
 fi
 
 # Run fastfetch only once per session if available
@@ -131,6 +134,7 @@ if [[ $UID -ne 0 ]]; then
     test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
 
     # Elixir version manager
+    # shellcheck source=/dev/null
     test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
     # NodeJS version manager
@@ -139,6 +143,7 @@ if [[ $UID -ne 0 ]]; then
     export NVM_COMPLETION=true
     nvm_plugin="${zsh_folder}/zsh-nvm/zsh-nvm.plugin.zsh"
     autozcompile "${nvm_plugin}"
+    # shellcheck source=/dev/null
     source "${nvm_plugin}"
 
     # Rust cargo
@@ -151,8 +156,11 @@ if [[ $UID -ne 0 ]]; then
     fi
 fi
 
+#shellcheck disable=SC2034
 PSSAVE=$PS1
+
 # Syntax highlighting
 # Compile if source is newer
 autozcompile "${syntax_highlighting}"
+#shellcheck disable=SC1090
 source "${syntax_highlighting}"
