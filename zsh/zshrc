@@ -21,7 +21,7 @@ export unixconfig ="$HOME/unix-config/"
 
 # Load zsh completions from local if missing
 if [[ ! -f "/usr/share/zsh/site-functions/_golang" ]]; then
-    fpath=("$zsh_folder/completions/src" "$fpath")
+    fpath=($fpath "$zsh_folder/completions/src")
 fi
 
 # Get system syntax highlighting or fallback to local
