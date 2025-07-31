@@ -17,7 +17,7 @@ source /etc/profile
 export zsh_folder="$HOME/.zsh"
 
 # See: https://github.com/gregstula/unix-config
-export unixconfig ="$HOME/unix-config/"
+export unixconfig="$HOME/unix-config/"
 
 # Load zsh completions from local if missing
 if [[ ! -f "/usr/share/zsh/site-functions/_golang" ]]; then
@@ -87,6 +87,10 @@ setopt pushd_minus       # Swap the meaning of cd +1 and cd -1 to the opposite
 setopt extended_glob #  #, ~, and ^
 setopt glob_dots     # glob on dotfiles
 setopt glob_complete # glob matches as completions
+
+# Pearl matching operator
+# matching with the =~ operator will use Perl-Compatible Regular Expressions from the PCRE library
+setopt rematchpcre
 
 # Completion Behavior
 setopt always_to_end    # Move cursor to end of word on completion

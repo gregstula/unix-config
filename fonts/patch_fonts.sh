@@ -1,7 +1,13 @@
-#!/bin/env zsh
+#!/bin/sh
 # Require FontForge
-if (($+commands[pacman])); then
-    sudo pacman -S fontforge --noconfirm
+if ! command -v fontforge >/dev/null 2>&1; then
+    if command -v pacman >/dev/null 2>&1; then
+        echo "FontForge is not installed. Installing..."
+        sudo pacman -S fontforge --noconfirm
+    else
+        echo "FontForge is not installed. Please install it manually."
+        exit 1
+    fi
 fi
 
 # Patches the fonts using the files on windows
