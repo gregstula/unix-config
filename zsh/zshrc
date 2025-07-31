@@ -17,7 +17,7 @@ source /etc/profile
 export zsh_folder="$HOME/.zsh"
 
 # See: https://github.com/gregstula/unix-config
-export UNIX_CONFIG_DIR="$HOME/.unix_config_dir"
+export unixconfig ="$HOME/unix-config/"
 
 # Load zsh completions from local if missing
 if [[ ! -f "/usr/share/zsh/site-functions/_golang" ]]; then
