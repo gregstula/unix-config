@@ -17,8 +17,8 @@ UseCustomCursorColor=false
 [General]
 Name=Minty
 Parent=FALLBACK/
-TerminalCenter=false
-TerminalMargin=1
+TerminalCenter=true
+TerminalMargin=10
 
 [Interaction Options]
 AutoCopySelectedText=true

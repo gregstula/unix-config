@@ -122,11 +122,11 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH=$PATH:$HOME/bin
+KERNEL=$(uname)
 
 # Scripting Language Version Managers
 if [[ $UID -ne 0 ]]; then
-    KERNAL=$(uname)
-    if [[ $KERNAL == "Darwin" ]]; then
+    if [[ $KERNEL == "Darwin" ]]; then
         # for homebrew and local executables
         export PATH=/usr/local/bin:$PATH:~/bin
     fi
@@ -152,8 +152,13 @@ if [[ $UID -ne 0 ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-alias vi=/usr/bin/vim
+# Aliases
+if [[ $KERNEL == "Linux" ]]; then
+    alias ls="ls --color=auto"
+fi
+
 if (($+commands[nvim])); then
+    alias vi=/usr/bin/vim
     alias vim=nvim
     export nvimrc=${HOME}/.config/nvim/init.lua
 fi

@@ -131,12 +131,13 @@ require("lazy").setup({
 		end,
 	},
 	{
+		-- Adds a very cool pop up window with LSP start up information
+		-- Gives immediete feedback on file open that LSP is enabled and running on the file
 		"j-hui/fidget.nvim",
-		opts = {
-			-- options
-		},
+		opts = {},
 	},
 	{
+		-- Auto format on save
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
@@ -152,68 +153,8 @@ require("lazy").setup({
 		},
 	},
 	{
-		"saghen/blink.cmp",
-		-- optional: provides snippets for the snippet source
-		dependencies = { "rafamadriz/friendly-snippets" },
-
-		-- use a release tag to download pre-built binaries
-		version = "1.*",
-
-		opts = {
-			-- 'default' (recommended)
-			-- for mappings similar to built-in completions (C-y to accept)
-			-- 'super-tab' for mappings similar to vscode (tab to accept)
-			-- 'enter' for enter to accept
-			-- 'none' for no mappings
-			--
-			-- All presets have the following mappings:
-			-- C-space: Open menu or open docs if already open
-			-- C-n/C-p or Up/Down: Select next/previous item
-			-- C-e: Hide menu
-			-- C-k: Toggle signature help (if signature.enabled = true)
-			--
-			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = "default" },
-
-			appearance = {
-				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "mono",
-			},
-
-			-- (Default) Only show the documentation popup when manually triggered
-			completion = { documentation = { auto_show = false } },
-
-			-- Default list of enabled providers defined so that you can extend it
-			-- elsewhere in your config, without redefining it, due to `opts_extend`
-			sources = {
-				-- add lazydev to your completion providers
-				default = { "lazydev", "lsp", "path", "buffer" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 100,
-					},
-				},
-			},
-
-			-- (Default) Rust fuzzy matcher for typo resistance
-			-- and significantly better performance
-			-- You may use a lua implementation instead by using `implementation = "lua"`
-			-- or fallback to the lua implementation,
-			-- when the Rust fuzzy matcher is not available,
-			-- by using `implementation = "prefer_rust"`
-			--
-			-- See the fuzzy documentation for more information
-			fuzzy = { implementation = "prefer_rust_with_warning" },
-		},
-		opts_extend = { "sources.default" },
-	},
-	{
-		-- Automatically enables the appropriate config file from the repo
-		-- When an LSP is installed with mason
+		-- Automatically vim.lsp.enable() on the appropriate config file from neovim-lsp on lsps installed with Mason
+		-- Install lsp with Mason -> automatically enables -> config can still be extended here
 		-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 		"mason-org/mason-lspconfig.nvim",
 		opts = {},
@@ -222,10 +163,75 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 		},
 	},
-	{
-		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
-		opts = {},
+})
+
+-- LSP Configureation + Native completion
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client and client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		end
+	end,
+})
+
+-- Extra settings can be specified for each LSP server.
+-- With Nvim 0.11+ you can extend a config by calling vim.lsp.config('…', {…}).
+-- (You can also copy any config directly from lsp/ and put it in a local lsp/ directory in your 'runtimepath').
+
+-- Lua Language Server Neovim Configuration
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
+-- If you primarily use `lua-language-server` for Neovim, and want to provide completions,
+-- analysis, and location handling for plugins on runtime path, you can use the following
+-- settings.
+vim.lsp.config("lua_ls", {
+	on_init = function(client)
+		if client.workspace_folders then
+			local path = client.workspace_folders[1].name
+			if
+				path ~= vim.fn.stdpath("config")
+				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+			then
+				return
+			end
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most
+				-- likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Tell the language server how to find Lua modules same way as Neovim
+				-- (see `:h lua-module-load`)
+				path = {
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+					-- Depending on the usage, you might want to add additional paths
+					-- here.
+					vim.fn.stdpath("data") .. "/lazy",
+					"${3rd}/luv/library",
+					"${3rd}/busted/library",
+				},
+				-- Or pull in all of 'runtimepath'.
+				-- NOTE: this is a lot slower and will cause issues when working on
+				-- your own configuration.
+				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+				-- library = {
+				--   vim.api.nvim_get_runtime_file('', true),
+				-- }
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
 	},
 })
 
@@ -234,6 +240,7 @@ require("lazy").setup({
 vim.diagnostic.config({
 	severity_sort = true,
 	underline = true,
+	virtual_text = { current_line = true },
 	update_in_insert = false,
 	signs = { severity = { vim.diagnostic.severity.ERROR } },
 })
