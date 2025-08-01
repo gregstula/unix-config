@@ -2,23 +2,18 @@
 -- NOTE: Document why you ever enabled this before enabling again
 -- vim.opt.sessionoptions:remove("options")
 -----------
-
 -- in regular vim line numbers messes with mouse copying but not in nvim :)
 vim.opt.number = true
-
 -- Treats tabs like buffers ... questionable
 -- NOTE: Document why this was here before enabling it again
 --vim.cmd("tab sball")
-
 -- Visualize tabs
 -- vim.cmd('syntax match Tab /\\t/')
 vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
-
 -- globally use spaces instead of tabs
 vim.opt.expandtab = true
 vim.opt.ts = 4
 vim.opt.sw = 4
-
 -- default character width 100
 vim.opt.tw = 120
 --vim.opt.colorcolumn = "120"
@@ -29,7 +24,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
 })
-
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.showbreak = "> \\ \\ "
@@ -54,14 +48,15 @@ vim.opt.smartcase = true
 -- Pressing \ss will toggle and untoggle spell checking
 vim.keymap.set("n", "<Leader>ss", ":setlocal spell!<CR>")
 
--- \/ resets search highlighting
-vim.keymap.set("n", "<Leader>/", ":noh<CR>")
+-- \escape resets search highlighting
+vim.keymap.set("n", "<Leader><esc>", ":noh<CR>")
 
 -- NOTE: This remap allows you to move highlighted text from visual with up(k) and down(j)
 -- https://youtu.be/w7i4amO_zaE?si=UiyaDMFy7e5VJnoP&t=1534
 -- v = visual, J = Shift J
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Create a new line before put with Shift-\P or after with \p keep cursor position
 vim.keymap.set("n", "<Leader>p", "mz:put<CR>`z")
 vim.keymap.set("n", "<Leader>P", "mz:put!<CR>`z")
@@ -73,8 +68,6 @@ vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
 
 -- \d Jump to the next diagnostic and show floating window
 vim.keymap.set("n", "<Leader>d", "]d <C-W>d", { remap = true })
--- \e Show diagnostic floating window under the cursor
-vim.keymap.set("n", "<Leader>w", "<C-W>d", { remap = true })
 
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
@@ -109,6 +102,19 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 -- Setup lazy.nvim
 require("lazy").setup({
+	-- Let's lua LSP understand neovim config files and plugins in a fast and performant way
+	-- NOTE: Do not try to solve this yourself just use the plugin... so much pain
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{ "rafamadriz/friendly-snippets" },
 	{
 		-- Parser packagemanager for treesitter
 		"nvim-treesitter/nvim-treesitter", -- TS parser package manager
@@ -119,13 +125,11 @@ require("lazy").setup({
 	{
 		-- Lualine, a status line like airline but for neovim
 		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			-- Nerdfont icons
-			"echasnovski/mini.icons",
-		},
+		dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
+		opts = {},
 		config = function(_, opts)
-			require("lualine").setup({ opts })
-			-- Setup mini icons with web_devicons api
+			require("lualine").setup(opts)
+			require("nvim-web-devicons").setup()
 			require("mini.icons").setup()
 			MiniIcons.mock_nvim_web_devicons()
 		end,
@@ -163,75 +167,58 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 		},
 	},
-})
+	{
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		dependencies = { "rafamadriz/friendly-snippets" },
 
--- LSP Configureation + Native completion
-vim.opt.completeopt = { "menuone", "noselect", "popup" }
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client and client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-		end
-	end,
-})
+		-- use a release tag to download pre-built binaries
+		version = "1.*",
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
 
--- Extra settings can be specified for each LSP server.
--- With Nvim 0.11+ you can extend a config by calling vim.lsp.config('…', {…}).
--- (You can also copy any config directly from lsp/ and put it in a local lsp/ directory in your 'runtimepath').
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+			-- 'super-tab' for mappings similar to vscode (tab to accept)
+			-- 'enter' for enter to accept
+			-- 'none' for no mappings
+			--
+			-- All presets have the following mappings:
+			-- C-space: Open menu or open docs if already open
+			-- C-n/C-p or Up/Down: Select next/previous item
+			-- C-e: Hide menu
+			-- C-k: Toggle signature help (if signature.enabled = true)
+			--
+			-- See :h blink-cmp-config-keymap for defining your own keymap
+			keymap = { preset = "default" },
 
--- Lua Language Server Neovim Configuration
--- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
--- If you primarily use `lua-language-server` for Neovim, and want to provide completions,
--- analysis, and location handling for plugins on runtime path, you can use the following
--- settings.
-vim.lsp.config("lua_ls", {
-	on_init = function(client)
-		if client.workspace_folders then
-			local path = client.workspace_folders[1].name
-			if
-				path ~= vim.fn.stdpath("config")
-				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-			then
-				return
-			end
-		end
-
-		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most
-				-- likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-				-- Tell the language server how to find Lua modules same way as Neovim
-				-- (see `:h lua-module-load`)
-				path = {
-					"lua/?.lua",
-					"lua/?/init.lua",
-				},
+			appearance = {
+				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "normal",
 			},
-			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-					-- Depending on the usage, you might want to add additional paths
-					-- here.
-					vim.fn.stdpath("data") .. "/lazy",
-					"${3rd}/luv/library",
-					"${3rd}/busted/library",
-				},
-				-- Or pull in all of 'runtimepath'.
-				-- NOTE: this is a lot slower and will cause issues when working on
-				-- your own configuration.
-				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
-				-- library = {
-				--   vim.api.nvim_get_runtime_file('', true),
-				-- }
+
+			-- (Default) Only show the documentation popup when manually triggered
+			completion = { documentation = { auto_show = false } },
+
+			-- Default list of enabled providers defined so that you can extend it
+			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			sources = {
+				default = { "lsp", "path", "snippets" },
 			},
-		})
-	end,
-	settings = {
-		Lua = {},
+
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
 	},
 })
 
@@ -242,7 +229,9 @@ vim.diagnostic.config({
 	underline = true,
 	virtual_text = { current_line = true },
 	update_in_insert = false,
-	signs = { severity = { vim.diagnostic.severity.ERROR } },
+	signs = {
+		severity = { vim.diagnostic.severity.ERROR },
+	},
 })
 
 -- TREE SITTER

@@ -1,6 +1,6 @@
 "vimrc always overrides on session reload
 set sessionoptions-=options
-
+set mouse=a
 " vim not vi
 set nocompatible
 
