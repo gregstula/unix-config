@@ -2,23 +2,18 @@
 -- NOTE: Document why you ever enabled this before enabling again
 -- vim.opt.sessionoptions:remove("options")
 -----------
-
 -- in regular vim line numbers messes with mouse copying but not in nvim :)
 vim.opt.number = true
-
 -- Treats tabs like buffers ... questionable
 -- NOTE: Document why this was here before enabling it again
 --vim.cmd("tab sball")
-
 -- Visualize tabs
 -- vim.cmd('syntax match Tab /\\t/')
 vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
-
 -- globally use spaces instead of tabs
 vim.opt.expandtab = true
 vim.opt.ts = 4
 vim.opt.sw = 4
-
 -- default character width 100
 vim.opt.tw = 120
 --vim.opt.colorcolumn = "120"
@@ -29,7 +24,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
 })
-
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.showbreak = "> \\ \\ "
@@ -54,14 +48,15 @@ vim.opt.smartcase = true
 -- Pressing \ss will toggle and untoggle spell checking
 vim.keymap.set("n", "<Leader>ss", ":setlocal spell!<CR>")
 
--- \/ resets search highlighting
-vim.keymap.set("n", "<Leader>/", ":noh<CR>")
+-- \escape resets search highlighting
+vim.keymap.set("n", "<Leader><esc>", ":noh<CR>")
 
 -- NOTE: This remap allows you to move highlighted text from visual with up(k) and down(j)
 -- https://youtu.be/w7i4amO_zaE?si=UiyaDMFy7e5VJnoP&t=1534
 -- v = visual, J = Shift J
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Create a new line before put with Shift-\P or after with \p keep cursor position
 vim.keymap.set("n", "<Leader>p", "mz:put<CR>`z")
 vim.keymap.set("n", "<Leader>P", "mz:put!<CR>`z")
@@ -73,8 +68,6 @@ vim.keymap.set("n", "<Leader>O", "mz:put! _<CR>`z")
 
 -- \d Jump to the next diagnostic and show floating window
 vim.keymap.set("n", "<Leader>d", "]d <C-W>d", { remap = true })
--- \e Show diagnostic floating window under the cursor
-vim.keymap.set("n", "<Leader>w", "<C-W>d", { remap = true })
 
 -- Shift J appends the line under the cursor to the line where the cursor is
 -- This keymap makes the cursor stay in place so you can chain it
@@ -109,6 +102,19 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 -- Setup lazy.nvim
 require("lazy").setup({
+	-- Let's lua LSP understand neovim config files and plugins in a fast and performant way
+	-- NOTE: Do not try to solve this yourself just use the plugin... so much pain
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{ "rafamadriz/friendly-snippets" },
 	{
 		-- Parser packagemanager for treesitter
 		"nvim-treesitter/nvim-treesitter", -- TS parser package manager
@@ -119,24 +125,23 @@ require("lazy").setup({
 	{
 		-- Lualine, a status line like airline but for neovim
 		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			-- Nerdfont icons
-			"echasnovski/mini.icons",
-		},
+		dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
+		opts = {},
 		config = function(_, opts)
-			require("lualine").setup({ opts })
-			-- Setup mini icons with web_devicons api
+			require("lualine").setup(opts)
+			require("nvim-web-devicons").setup()
 			require("mini.icons").setup()
 			MiniIcons.mock_nvim_web_devicons()
 		end,
 	},
 	{
+		-- Adds a very cool pop up window with LSP start up information
+		-- Gives immediete feedback on file open that LSP is enabled and running on the file
 		"j-hui/fidget.nvim",
-		opts = {
-			-- options
-		},
+		opts = {},
 	},
 	{
+		-- Auto format on save
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
@@ -152,16 +157,32 @@ require("lazy").setup({
 		},
 	},
 	{
+		-- Automatically vim.lsp.enable() on the appropriate config file from neovim-lsp on lsps installed with Mason
+		-- Install lsp with Mason -> automatically enables -> config can still be extended here
+		-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
+	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = { "rafamadriz/friendly-snippets" },
 
 		-- use a release tag to download pre-built binaries
 		version = "1.*",
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
 
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
 		opts = {
-			-- 'default' (recommended)
-			-- for mappings similar to built-in completions (C-y to accept)
+			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 			-- 'super-tab' for mappings similar to vscode (tab to accept)
 			-- 'enter' for enter to accept
 			-- 'none' for no mappings
@@ -178,7 +199,7 @@ require("lazy").setup({
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "mono",
+				nerd_font_variant = "normal",
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
@@ -187,45 +208,17 @@ require("lazy").setup({
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				-- add lazydev to your completion providers
-				default = { "lazydev", "lsp", "path", "buffer" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 100,
-					},
-				},
+				default = { "lsp", "path", "snippets" },
 			},
 
-			-- (Default) Rust fuzzy matcher for typo resistance
-			-- and significantly better performance
-			-- You may use a lua implementation instead by using `implementation = "lua"`
-			-- or fallback to the lua implementation,
-			-- when the Rust fuzzy matcher is not available,
-			-- by using `implementation = "prefer_rust"`
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
-	},
-	{
-		-- Automatically enables the appropriate config file from the repo
-		-- When an LSP is installed with mason
-		-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
-		"mason-org/mason-lspconfig.nvim",
-		opts = {},
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-			"neovim/nvim-lspconfig",
-		},
-	},
-	{
-		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
-		opts = {},
 	},
 })
 
@@ -234,8 +227,11 @@ require("lazy").setup({
 vim.diagnostic.config({
 	severity_sort = true,
 	underline = true,
+	virtual_text = { current_line = true },
 	update_in_insert = false,
-	signs = { severity = { vim.diagnostic.severity.ERROR } },
+	signs = {
+		severity = { vim.diagnostic.severity.ERROR },
+	},
 })
 
 -- TREE SITTER
