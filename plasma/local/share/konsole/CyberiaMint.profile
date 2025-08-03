@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=CyberiaMint
-Font=Consolas Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Font=Consolas Nerd Font,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=1
 UseFontBrailleChararacters=false
@@ -18,7 +18,7 @@ UseCustomCursorColor=false
 Name=CyberiaMint
 Parent=FALLBACK/
 TerminalCenter=true
-TerminalMargin=10
+TerminalMargin=1
 
 [Interaction Options]
 AutoCopySelectedText=true

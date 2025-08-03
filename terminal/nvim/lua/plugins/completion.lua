@@ -7,15 +7,10 @@ function M.setup()
 		dependencies = { "rafamadriz/friendly-snippets" },
 		-- use a release tag to download pre-built rust binaries
 		version = "1.*",
-		opts_extend = { "sources.default" },
-	}
-end
 
-function M.configure()
-	require("blink.cmp").setup(
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
-		{
+		opts = {
 			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 			-- 'super-tab' for mappings similar to vscode (tab to accept)
 			-- 'enter' for enter to accept
@@ -51,8 +46,9 @@ function M.configure()
 			--
 			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
-		}
-	)
+		},
+		opts_extend = { "sources.default" },
+	}
 end
-
+function M.configure() end
 return M

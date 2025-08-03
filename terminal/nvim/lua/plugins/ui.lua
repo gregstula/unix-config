@@ -3,8 +3,7 @@ local M = {}
 function M.setup()
 	return {
 		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		"echasnovski/mini.icons",
+		{ "nvim-tree/nvim-web-devicons", lazy = true },
 		{ "nvim-tree/nvim-tree.lua", opts = {} },
 		{ "lewis6991/gitsigns.nvim", opts = {} },
 		"nvchad/volt",
@@ -29,11 +28,7 @@ function M.setup()
 	}
 end
 
--- Setup icons
 function M.configure()
-	require("nvim-web-devicons").setup()
-	require("mini.icons").setup()
-	require("mini.icons").mock_nvim_web_devicons()
 	-- Enable colorscheme
 	-- NOTE: Cyberia Mint is my own personal colorscheme that I've wrangled together over the years since 2020
 	-- vim.cmd("colorscheme cyberia_mint")
