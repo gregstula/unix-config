@@ -234,6 +234,15 @@ vim.diagnostic.config({
 	},
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client.server_capabilities and client.server_capabilities.semanticTokensProvider then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	end,
+})
+
 -- TREE SITTER
 -- NOTE: Using native implementation as much as possible and
 -- only using main of nvim-treesitter as parser manager
