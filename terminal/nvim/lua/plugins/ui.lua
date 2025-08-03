@@ -2,18 +2,16 @@ local M = {}
 
 function M.setup()
 	return {
-		"nvim-lua/plenary.nvim",
-		{ "nvim-tree/nvim-web-devicons", lazy = true },
-		{ "nvim-tree/nvim-tree.lua", opts = {} },
+		{ "nvim-tree/nvim-tree.lua", opts = require("plugins.settings.nvim-tree").opts },
 		{ "lewis6991/gitsigns.nvim", opts = {} },
-		"nvchad/volt",
-		"nvzone/menu",
 		{
-			"nvim-telescope/telescope.nvim",
-			tag = "0.1.8",
-			-- or                              , branch = '0.1.x',
-			dependencies = { "nvim-lua/plenary.nvim" },
+			"ibhagwan/fzf-lua",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			opts = {},
 		},
+		{ "nvchad/volt" },
+		{ "nvzone/menu" },
+
 		-- Using nvchad's amazing UI without rolling the whole distro
 		-- https://nvchad.com/news/nvui
 		{
@@ -21,6 +19,10 @@ function M.setup()
 			config = function()
 				require("nvchad")
 			end,
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-lua/nvim-web-devicons",
+			},
 		},
 		"nvchad/base46",
 		-- Colorscheme tool, ironically the former name of my colorscheme ..lol

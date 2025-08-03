@@ -24,22 +24,25 @@ function M.bootstrap()
 end
 
 function M.setup()
-    local completion = require("plugins.completion")
-    local lsp = require("plugins.lsp")
-    local treesitter = require("plugins.treesitter")
-    local ui = require("plugins.ui")
+	local completion = require("plugins.completion")
+	local editor = require("plugins.editor")
+	local lsp = require("plugins.lsp")
+	local treesitter = require("plugins.treesitter")
+	local ui = require("plugins.ui")
 	require("lazy").setup({
 		spec = {
 			completion.setup(),
+			editor.setup(),
 			lsp.setup(),
 			treesitter.setup(),
 			ui.setup(),
 		},
 	})
-    completion.configure()
-    lsp.configure()
-    treesitter.configure()
-    ui.configure()
+	completion.configure()
+	editor.configure()
+	lsp.configure()
+	treesitter.configure()
+	ui.configure()
 end
 
 return M
