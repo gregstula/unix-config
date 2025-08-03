@@ -39,7 +39,7 @@ function M.setup_other_ui()
 			require("lualine").setup(opts)
 			require("nvim-web-devicons").setup()
 			require("mini.icons").setup()
-			MiniIcons.mock_nvim_web_devicons()
+			require("mini.icons").mock_nvim_web_devicons()
 		end,
 	}
 end

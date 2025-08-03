@@ -58,7 +58,6 @@ Plugins.bootstrap()
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 -- Setup lazy.nvim
-
 Plugins.setup()
 
 -- (method 2, for non lazyloaders) to load all highlights at once
@@ -76,6 +75,16 @@ vim.diagnostic.config({
 	signs = {
 		severity = { vim.diagnostic.severity.ERROR },
 	},
+})
+
+-- Remove Semantic highlighting from LSP to use only treesitter
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client.server_capabilities and client.server_capabilities.semanticTokensProvider then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	end,
 })
 
 -- TREE SITTER
