@@ -21,7 +21,7 @@ function M.setup()
 			end,
 			dependencies = {
 				"nvim-lua/plenary.nvim",
-				"nvim-lua/nvim-web-devicons",
+				"nvim-tree/nvim-web-devicons",
 			},
 		},
 		"nvchad/base46",
