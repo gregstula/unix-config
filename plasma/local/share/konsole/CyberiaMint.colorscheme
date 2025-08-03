@@ -17,13 +17,13 @@ Color=24,24,24
 Color=104,104,104
 
 [Color1]
-Color=255,85,127
+Color=255,64,126
 
 [Color1Faint]
 Color=255,125,158
 
 [Color1Intense]
-Color=255,85,128
+Color=255,85,127
 
 [Color2]
 Color=75,255,159
@@ -92,7 +92,7 @@ Color=255,255,255
 Anchor=0.5,0.5
 Blur=false
 ColorRandomization=false
-Description=Minty
+Description=CyberiaMint
 FillStyle=Tile
 Opacity=1
 Wallpaper=

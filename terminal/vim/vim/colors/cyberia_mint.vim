@@ -1,7 +1,7 @@
-" Minty
-" Minty Colorscheme
+" cyberia_mint
+" Cyberia Mint Colorscheme
 
-let s:colors_name='minty'
+let s:colors_name='cyberia_mint'
 set background=dark
 
 if !has('gui_running') && &t_Co<256

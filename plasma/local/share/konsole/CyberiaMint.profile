@@ -1,6 +1,6 @@
 [Appearance]
-ColorScheme=Minty
-Font=Consolas Nerd Font,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+ColorScheme=CyberiaMint
+Font=Consolas Nerd Font,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=1
 UseFontBrailleChararacters=false
@@ -15,13 +15,17 @@ CursorShape=0
 UseCustomCursorColor=false
 
 [General]
-Name=MintyHiDPI
+Name=CyberiaMint
 Parent=FALLBACK/
-TerminalCenter=false
+TerminalCenter=true
 TerminalMargin=1
 
 [Interaction Options]
-OpenLinksByDirectClickEnabled=true
+AutoCopySelectedText=true
+CopyTextAsHTML=false
+OpenLinksByDirectClickEnabled=false
+TrimLeadingSpacesInSelectedText=true
+TrimTrailingSpacesInSelectedText=true
 UnderlineFilesEnabled=true
 
 [Scrolling]
@@ -32,5 +36,7 @@ ScrollBarPosition=2
 SearchLineOpacity=90
 
 [Terminal Features]
+BidiLineLTR=false
 BidiRenderingEnabled=false
+BidiTableDirOverride=false
 BlinkingCursorEnabled=true
