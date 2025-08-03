@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=Minty
+ColorScheme=CyberiaMint
 Font=Consolas Nerd Font,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=1
@@ -15,7 +15,7 @@ CursorShape=0
 UseCustomCursorColor=false
 
 [General]
-Name=MintyHiDPI
+Name=CyberiaMintHiDPI
 Parent=FALLBACK/
 TerminalCenter=false
 TerminalMargin=1

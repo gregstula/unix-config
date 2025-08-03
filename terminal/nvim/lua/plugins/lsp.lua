@@ -25,13 +25,53 @@ function M.setup()
 			-- Install lsp with Mason -> automatically enables -> config can still be extended here
 			-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 			"mason-org/mason-lspconfig.nvim",
-			opts = {},
+			opts = { ensure_installed = { "lua_ls" } },
 			dependencies = {
 				{ "mason-org/mason.nvim", opts = {} },
 				"neovim/nvim-lspconfig",
 			},
 		},
+		{
+			-- Auto format on save
+			"stevearc/conform.nvim",
+			opts = {
+				formatters_by_ft = {
+					lua = { "stylua" },
+					bash = { "shfmt" },
+					sh = { "shfmt" },
+					go = { "gofmt" },
+				},
+				format_on_save = {
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			},
+		},
 	}
+end
+
+function M.configure()
+	-- Diagnostic Config
+	-- See :help vim.diagnostic.Opts
+	vim.diagnostic.config({
+		severity_sort = true,
+		underline = true,
+		virtual_text = { current_line = true },
+		update_in_insert = false,
+		signs = {
+			severity = { vim.diagnostic.severity.ERROR },
+		},
+	})
+
+	-- Remove Semantic highlighting from LSP to use only treesitter
+	vim.api.nvim_create_autocmd("LspAttach", {
+		callback = function(args)
+			local client = vim.lsp.get_client_by_id(args.data.client_id)
+			if client and client.server_capabilities and client.server_capabilities.semanticTokensProvider then
+				client.server_capabilities.semanticTokensProvider = nil
+			end
+		end,
+	})
 end
 
 return M

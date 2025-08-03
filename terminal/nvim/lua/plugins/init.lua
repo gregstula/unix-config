@@ -1,5 +1,11 @@
 local M = {}
+
 function M.bootstrap()
+	-- Plugin theming
+	-- Set up base46 path theme plugin before Lazy so themes apply to plugins
+	vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
+
+	-- Set lazypath and bootstrap
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -18,14 +24,22 @@ function M.bootstrap()
 end
 
 function M.setup()
+    local completion = require("plugins.completion")
+    local lsp = require("plugins.lsp")
+    local treesitter = require("plugins.treesitter")
+    local ui = require("plugins.ui")
 	require("lazy").setup({
 		spec = {
-			require("plugins.completion").setup(),
-			require("plugins.formatting").setup(),
-			require("plugins.lsp").setup(),
-			require("plugins.treesitter").setup(),
-			require("plugins.ui").setup(),
+			completion.setup(),
+			lsp.setup(),
+			treesitter.setup(),
+			ui.setup(),
 		},
 	})
+    completion.configure()
+    lsp.configure()
+    treesitter.configure()
+    ui.configure()
 end
+
 return M
