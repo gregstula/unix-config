@@ -58,3 +58,4 @@ lazy-lock.json
 spell/
 *.zwc
 *.bak
+*.csed
