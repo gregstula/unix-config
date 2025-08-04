@@ -61,17 +61,6 @@ end
 
 function M.configure()
 	-- enabled lsps here
-	-- Diagnostic Config
-	-- See :help vim.diagnostic.Opts
-	vim.diagnostic.config({
-		severity_sort = true,
-		underline = true,
-		virtual_text = { current_line = true },
-		update_in_insert = false,
-		signs = {
-			severity = { vim.diagnostic.severity.ERROR },
-		},
-	})
 
 	-- Remove Semantic highlighting from LSP to use only treesitter
 	vim.api.nvim_create_autocmd("LspAttach", {
