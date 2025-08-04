@@ -20,19 +20,36 @@ vim.opt.showbreak = "└ "
 vim.opt.fillchars = { eob = " " }
 
 -- Keep one status across all splits (including file tree etc)
-vim.o.laststatus = 3
+vim.opt.laststatus = 3
 
 -- Don't show --- INSERT -- in command line since we have a status line for that
-vim.o.showmode = false
+vim.opt.showmode = false
 
 -- keep cursor position relative to screen when splitting
-vim.o.splitkeep = "screen"
+vim.opt.splitkeep = "screen"
 
 -- Hide the mouse pointer while typing
 vim.opt.mousehide = true
 
 -- Zee greatest shell
 vim.opt.shell = "zsh"
+-- Minimum width of line number column
+vim.o.numberwidth = 2
+
+-- Don't show cursor position in bottom right
+vim.opt.ruler = true
+
+-- Always show sign column to prevent text shifting
+vim.opt.signcolumn = "yes"
+
+-- New horizontal splits open below current window
+vim.opt.splitbelow = true
+
+-- New vertical splits open to the right of current window
+vim.o.splitright = true
+
+-- Enable persistent undo across sessions
+vim.opt.undofile = true
 
 --  If you search for something containing uppercase characters, it will do a case sensitive search;
 --  if you search for something purely lowercase, it will do a case insensitive search
@@ -41,6 +58,25 @@ vim.opt.smartcase = true
 
 -- Yank to wayland keyboard
 vim.opt.clipboard = "unnamedplus"
+
+-- Lua Onlyism
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Faster completion and git signs update
+vim.opt.updatetime = 250 -- (milliseconds)
+
+-- Diagnostic Config
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config({
+	severity_sort = true,
+	underline = true,
+	virtual_text = { current_line = true },
+	update_in_insert = false,
+	signs = true,
+})
 
 -- Plugin Manager aka Lazy
 -- NOTE: Make sure to setup `mapleader` and `maplocalleader` before
@@ -56,3 +92,5 @@ local Plugins = require("plugins")
 Plugins.bootstrap()
 -- Setup lazy.nvim
 Plugins.setup()
+-- rounded windows
+vim.opt.winborder = "rounded"
