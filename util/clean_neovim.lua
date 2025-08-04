@@ -1,4 +1,4 @@
-#!/bin/env lua
+#!/bin/env luajit
 
 function clean(junk)
 	local rm_rf_junk = string.format("rm -rf %s", junk)
