@@ -85,7 +85,6 @@ function M.setup()
 		local tree = require("nvim-tree.api").tree
 		tree.close() -- close file explorer to prevent glitching it's buffer
 		require("fzf-lua").files()
-		tree.toggle({ find_file = true, focus = false })
 	end
 	vim.keymap.set("n", "<leader>ff", fzf_cwd, { desc = "Launch fzf.lua to find files" })
 
@@ -95,7 +94,6 @@ function M.setup()
 		local tree = require("nvim-tree.api").tree
 		tree.close() -- close file explorer to prevent glitching it's buffer
 		require("fzf-lua").files({ cwd = "~/" })
-		tree.toggle({ find_file = true, focus = false })
 	end
 	vim.keymap.set("n", "<leader><Space><Space>", fzf_home, { desc = "Launch fzf.lua to find files" })
 end

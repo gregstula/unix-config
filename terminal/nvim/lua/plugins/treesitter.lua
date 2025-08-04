@@ -22,7 +22,7 @@ function M.configure()
 	-- Built in tree-sitter settings
 	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 	-- zsh doesn't have it's own parser yet
-	vim.treesitter.language.register("bash", { "zsh" })
+	vim.treesitter.language.register("bash", { "zsh", "sh" })
 	-- Enable built-in tree-sitter highlighting for all filetypes
 	-- https://neovim.io/doc/user/treesitter.html#vim.treesitter.start()
 	local filetypes = vim.fn.getcompletion("", "filetype")
@@ -30,7 +30,7 @@ function M.configure()
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = ft,
 			callback = function(args)
-				local success, _ = pcall(vim.treesitter.start, args.buf, ft)
+				local success, _ = pcall(vim.treesitter.start, args.buf, vim.treesitter.language.get_lang(ft))
 				if not success then
 					vim.bo[args.buf].syntax = "ON"
 				end
