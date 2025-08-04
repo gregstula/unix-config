@@ -46,6 +46,15 @@ function M.setup()
 					lsp_format = "fallback",
 				},
 			},
+			{ -- linters for where they still make more sense than lsps
+				"mfussenegger/nvim-lint",
+				config = function()
+					require("lint").linters_by_ft = {
+						systemd = { "systemd-analyze" },
+						vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
+					}
+				end,
+			},
 		},
 	}
 end

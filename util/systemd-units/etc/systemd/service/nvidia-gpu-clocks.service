@@ -5,7 +5,7 @@ Description = "Lock GPU clock minimum to 800"
 [Service]
 Type=oneshot
 ExecStart=nvidia-smi -pm 1
-ExecStart=nvidia-smi --lock-gpu-clocks=800,3150
+ExecStart=nvidia-smi --lock-gpu-clocks=1000,3150
 
 [Install]
 WantedBy=multi-user.target
