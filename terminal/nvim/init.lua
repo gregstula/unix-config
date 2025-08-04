@@ -10,9 +10,23 @@ vim.opt.cursorline = true
 -- Visualize tabs when file is not using spaces
 vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
 
+-- Line break settings
+-- Box drawing character  on line break
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.showbreak = "└ " -- Box drawing character  on line break
+vim.opt.showbreak = "└ "
+
+-- Replace end-of-buffer tildes (~) with spaces for cleaner look
+vim.opt.fillchars = { eob = " " }
+
+-- Keep one status across all splits (including file tree etc)
+vim.o.laststatus = 3
+
+-- Don't show --- INSERT -- in command line since we have a status line for that
+vim.o.showmode = false
+
+-- keep cursor position relative to screen when splitting
+vim.o.splitkeep = "screen"
 
 -- Hide the mouse pointer while typing
 vim.opt.mousehide = true
