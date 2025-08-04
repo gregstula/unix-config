@@ -10,16 +10,18 @@ M.opts = {
 	},
 	renderer = {
 		add_trailing = true, -- Appends a trailing slash to folder names.
-	},
-	icons = {
-		git = {
-			unstaged = "✗",
-			staged = "✓",
-			unmerged = "",
-			renamed = "➜",
-			untracked = "󰦍",
-			deleted = "",
-			ignored = "◌",
+		icons = {
+			glyphs = {
+				git = {
+					unstaged = "✗",
+					staged = "✓",
+					unmerged = "",
+					renamed = "➜",
+					untracked = "󰦍",
+					deleted = "",
+					ignored = "◌",
+				},
+			},
 		},
 	},
 	-- Update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file.
