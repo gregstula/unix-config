@@ -43,7 +43,6 @@ function M.setup()
 	-- vim.keymap.set("n", "J", "mzJ`z")
 
 	-- nvchad Key Maps
-	-- nvimtree
 	vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "nvimtree toggle window" })
 	vim.keymap.set("n", "<leader>th", function()
 		require("nvchad.themes").open()
@@ -59,7 +58,16 @@ function M.setup()
 	vim.keymap.set("n", "<Leader><Tab>", ":bnext<CR>", { desc = "Cycle to next buffer" })
 	vim.keymap.set("n", "<Leader><S-Tab>", ":bprev<CR>", { desc = "Cycle to next buffer" })
 
-	-- Fzf.luz fizzy fine
-	vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Launch fzf.lua to find files" })
+	-- Fzf.lua fuzzy find find files from cwd
+	vim.keymap.set("n", "<leader>ff", function()
+		require("nvim-tree.api").tree.close() -- close file explorer to prevent glitching it's buffer
+		require("fzf-lua").files()
+	end, { desc = "Launch fzf.lua to find files" })
+
+	-- Fzf.luz fizzy find files from $HOME
+	vim.keymap.set("n", "<leader><Space><Space>", function()
+		require("nvim-tree.api").tree.close() -- close file explorer to prevent glitching it's buffer
+		require("fzf-lua").files({ cwd = "~/" })
+	end, { desc = "Launch fzf.lua to find files" })
 end
 return M

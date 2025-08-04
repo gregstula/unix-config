@@ -25,7 +25,7 @@ function M.setup()
 			-- Install lsp with Mason -> automatically enables -> config can still be extended here
 			-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 			"mason-org/mason-lspconfig.nvim",
-			opts = { ensure_installed = { "lua_ls" } },
+			opts = { ensure_installed = { "lua_ls", "gopls", "bashls" } },
 			dependencies = {
 				{ "mason-org/mason.nvim", opts = {} },
 				"neovim/nvim-lspconfig",
@@ -51,6 +51,7 @@ function M.setup()
 end
 
 function M.configure()
+	-- enabled lsps here
 	-- Diagnostic Config
 	-- See :help vim.diagnostic.Opts
 	vim.diagnostic.config({
