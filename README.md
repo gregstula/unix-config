@@ -18,8 +18,8 @@ anything like keybinds etc
 ## NVIM
 Lazy will install itself on first use and NeoVim should just werk
 
-## ColorScheme
+## Cyberia Mint - Color Scheme
 `cyberia_mint` is the name of my colorscheme
 It is available for Konsole, Vim, and Neovim
-<img width="2149" height="1981" alt="image" src="https://github.com/user-attachments/assets/c76f2a64-bdb2-4127-a1be-3f52257d8e2e" />
 
+<img width="2147" height="1932" alt="image" src="https://github.com/user-attachments/assets/05dc39f3-3257-4cd5-9543-df842cf66139" />
