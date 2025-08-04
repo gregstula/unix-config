@@ -134,7 +134,7 @@ set clipboard=unnamedplus
 " the one and only colorscheme I ever use
 " color molokai
 " Actually I use this one now (I made it myself)
-color minty
+colorscheme cyberia_mint
 let g:airline_theme='base16_monokai'
 
 " Transparent
@@ -152,7 +152,7 @@ set encoding=utf-8
 " -- Pressing \ss will toggle and untoggle spell checking
 nnoremap <leader>ss :setlocal spell!<CR>
 " -- \/ resets search highlighting
-nnoremap <Leader>/ :noh<CR>
+nnoremap <Leader><Esc> :noh<CR>
 
 " -- NOTE: This remap allows you to move highlighted text from visual with up(k) and down(j)
 " -- https://youtu.be/w7i4amO_zaE?si=UiyaDMFy7e5VJnoP&t=1534
