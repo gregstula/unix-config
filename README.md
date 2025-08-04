@@ -18,12 +18,10 @@ anything like keybinds etc
 ## NVIM
 Lazy will install itself on first use and NeoVim should just werk
 
-`:TSInstall all` 
-to install the rest of the parsers
-
-
 ## ColorScheme
-Minty is the name of my colorscheme
+`cyberia_mint` is the name of my colorscheme
 It is available for Konsole, Vim, and Neovim
+<img width="2149" height="1981" alt="image" src="https://github.com/user-attachments/assets/c76f2a64-bdb2-4127-a1be-3f52257d8e2e" />
+
 
 `// TODO:` I would like to share code with vim and neovim in a way that doesn't fuck with my installation symlinks
