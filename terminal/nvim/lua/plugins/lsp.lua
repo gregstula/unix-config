@@ -47,20 +47,30 @@ function M.setup()
 				},
 			},
 			{ -- linters for where they still make more sense than lsps
-				"mfussenegger/nvim-lint",
-				config = function()
-					require("lint").linters_by_ft = {
-						systemd = { "systemd-analyze" },
-						vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
-					}
-				end,
-			},
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				systemd = { "systemd-analyze" },
+				vim.cmd("au BufWritePost * lua require('lint').try_lint()"),
+			}
+		end,
+	},
 		},
 	}
 end
 
 function M.configure()
-	-- enabled lsps here
+    -- linters setup here
+
+require("lint").linters_by_ft = { systemd = { "systemd-analyze" }}
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint()
+end
+})
+
 
 	-- Remove Semantic highlighting from LSP to use only treesitter
 	vim.api.nvim_create_autocmd("LspAttach", {

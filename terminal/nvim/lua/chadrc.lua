@@ -10,7 +10,7 @@ M.base46 = {
 	--     theme_toggle = { "cybera_mint", "one_light" },
 }
 --
--- M.ui = {
+M.ui = {
 -- 	cmp = {
 -- 		icons_left = false, -- only for non-atom styles!
 -- 		style = "default", -- default/flat_light/flat_dark/atom/atom_colored
@@ -32,14 +32,14 @@ M.base46 = {
 -- 	},
 --
 -- 	-- lazyload it when there are 1+ buffers
--- 	tabufline = {
--- 		enabled = true,
--- 		lazyload = true,
--- 		order = { "treeOffset", "buffers", "tabs", "btns" },
--- 		modules = nil,
--- 		bufwidth = 21,
--- 	},
--- }
+tabufline = {
+	enabled = true,
+	lazyload = true,
+	order = { "treeOffset", "buffers", "tabs", "btns" },
+	modules = nil,
+	bufwidth = 21,
+},
+
 --
 -- M.nvdash = {
 -- 	load_on_startup = false,
