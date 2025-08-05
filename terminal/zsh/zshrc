@@ -153,6 +153,8 @@ if [[ $UID -ne 0 ]]; then
 fi
 
 # Aliases
+alias see="tput cup 0 0"
+
 if [[ $KERNEL == "Linux" ]]; then
     alias ls="ls --color=auto"
 fi
@@ -162,6 +164,7 @@ if (($+commands[nvim])); then
     alias vim=nvim
     export nvimrc=${HOME}/.config/nvim/init.lua
 fi
+
 
 PSSAVE=$PS1
 

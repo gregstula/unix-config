@@ -67,7 +67,7 @@ link_new ${topleveldir}/terminal/nvim ${XDG_CONFIG_HOME}/nvim
 
 # Konsole themes
 remove_old "${XDG_DATA_HOME}/konsole"
-link_new ${topleveldir}/plasma/local/share/konsole "${XDG_DATA_HOME}/konsole"
+link_new ${topleveldir}/terminal/konsole "${XDG_DATA_HOME}/konsole"
 
 # Print message
 # -a print arguments with the column incrementing first. Only useful with the -c and -C options.
