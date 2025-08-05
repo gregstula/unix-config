@@ -1,92 +1,102 @@
 [Background]
 Color=1,2,2
-
+# Hex: #010202
 [BackgroundFaint]
 Color=1,2,2
-
+# Hex: #010202
 [BackgroundIntense]
 Color=1,2,2
+# Hex: #010202
 
 [Color0]
 Color=1,2,2
-
+# Hex: #010202
 [Color0Faint]
 Color=0,1,1
-
+# Hex: #000101
 [Color0Intense]
 Color=128,128,128
+# Hex: #808080
 
 [Color1]
 Color=255,64,126
-
+# Hex: #FF407E
 [Color1Faint]
 Color=204,51,101
-
+# Hex: #CC3365
 [Color1Intense]
 Color=255,102,153
+# Hex: #FF6699
 
 [Color2]
 Color=100,255,172
-
+# Hex: #64FFAC
 [Color2Faint]
 Color=80,204,138
-
+# Hex: #50CC8A
 [Color2Intense]
 Color=55,255,148
+# Hex: #37FF94
 
 [Color3]
 Color=255,135,2
-
+# Hex: #FF8702
 [Color3Faint]
 Color=204,108,2
-
+# Hex: #CC6C02
 [Color3Intense]
 Color=255,132,0
+# Hex: #FF8400
 
 [Color4]
 Color=25,255,255
-
+# Hex: #19FFFF
 [Color4Faint]
 Color=95,215,255
-
+# Hex: #5FD7FF
 [Color4Intense]
 Color=145,255,255
+# Hex: #91FFFF
 
 [Color5]
 Color=170,170,255
-
+# Hex: #AAAAFF
 [Color5Faint]
 Color=136,136,204
-
+# Hex: #8888CC
 [Color5Intense]
 Color=154,154,255
+# Hex: #9A9AFF
 
 [Color6]
 Color=95,255,202
-
+# Hex: #5FFFCA
 [Color6Faint]
 Color=115,255,209
-
+# Hex: #73FFD1
 [Color6Intense]
 Color=65,255,192
+# Hex: #41FFC0
 
 [Color7]
 Color=208,208,208
-
+# Hex: #D0D0D0
 [Color7Faint]
 Color=204,204,204
-
+# Hex: #CCCCCC
 [Color7Intense]
 Color=255,255,255
+# Hex: #FFFFFF
 
 [Foreground]
 Color=255,255,255
-
+# Hex: #FFFFFF
 [ForegroundFaint]
 Color=191,191,191
-
+# Hex: #BFBFBF
 [ForegroundIntense]
 Color=255,255,255
+# Hex: #FFFFFF
 
 [General]
 Anchor=0.5,0.5
