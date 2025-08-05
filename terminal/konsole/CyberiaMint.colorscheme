@@ -1,65 +1,65 @@
 [Background]
-Color=0,0,0
+Color=1,2,2
 
 [BackgroundFaint]
-Color=0,0,0
+Color=1,2,2
 
 [BackgroundIntense]
-Color=0,0,0
+Color=1,2,2
 
 [Color0]
-Color=0,0,0
+Color=1,2,2
 
 [Color0Faint]
-Color=24,24,24
+Color=0,1,1
 
 [Color0Intense]
-Color=104,104,104
+Color=126,142,145
 
 [Color1]
 Color=255,64,126
 
 [Color1Faint]
-Color=255,125,158
+Color=204,51,101
 
 [Color1Intense]
-Color=255,85,127
+Color=255,102,153
 
 [Color2]
-Color=75,255,159
-
-[Color2Faint]
 Color=100,255,172
 
+[Color2Faint]
+Color=80,204,138
+
 [Color2Intense]
-Color=30,255,135
+Color=55,255,148
 
 [Color3]
-Color=255,142,90
+Color=255,135,2
 
 [Color3Faint]
-Color=255,166,122
+Color=204,108,2
 
 [Color3Intense]
-Color=255,122,55
+Color=255,132,0
 
 [Color4]
-Color=135,255,255
-
-[Color4Faint]
-Color=145,255,255
-
-[Color4Intense]
 Color=25,255,255
 
+[Color4Faint]
+Color=95,215,255
+
+[Color4Intense]
+Color=145,255,255
+
 [Color5]
-Color=150,118,255
+Color=170,170,255
 
 [Color5Faint]
-Color=178,155,255
+Color=136,136,204
 
 [Color5Intense]
-Color=122,85,255
+Color=154,154,255
 
 [Color6]
 Color=95,255,202
@@ -71,19 +71,19 @@ Color=115,255,209
 Color=65,255,192
 
 [Color7]
-Color=171,165,166
+Color=208,208,208
 
 [Color7Faint]
-Color=166,166,166
+Color=204,204,204
 
 [Color7Intense]
-Color=130,126,126
+Color=255,255,255
 
 [Foreground]
 Color=255,255,255
 
 [ForegroundFaint]
-Color=255,255,255
+Color=191,191,191
 
 [ForegroundIntense]
 Color=255,255,255
