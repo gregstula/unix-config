@@ -33,12 +33,14 @@ M.ui = {
 --
 -- 	-- lazyload it when there are 1+ buffers
 tabufline = {
-	enabled = true,
-	lazyload = true,
+	enabled = false,
+	lazyload = false,
 	order = { "treeOffset", "buffers", "tabs", "btns" },
 	modules = nil,
 	bufwidth = 21,
-},
+    }
+}
+
 
 --
 -- M.nvdash = {
