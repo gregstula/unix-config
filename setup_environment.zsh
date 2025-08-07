@@ -6,11 +6,11 @@
 # Created in Ruby by Gregory D. Stula on 1/4/16.
 # Rewritten in zsh by Gregory D. Stula on 7/21/24.
 # NOTE: In July 2025 reconsidered writing this in bash for shellcheck+LSP to work but it was not worth it
-# zsh will be installed by the time this script needs to be run 
+# zsh will be installed by the time this script needs to be run
 # and zsh has better features for scripting this that outweigh the LSP shellcheck benefits
 
 XDG_CONFIG_HOME="${HOME}/.config"
-# Neovim and many other moder programs use the XDG BASE DIRECTORY standard 
+# Neovim and many other moder programs use the XDG BASE DIRECTORY standard
 # eg ~/.config, ~/.local, ~/.cache, etc.
 # Uncomment to use as needed
 # https://specifications.freedesktop.org/basedir-spec/latest/#basics
@@ -44,8 +44,8 @@ function link_new {
 }
 
 # This handles zsh and vim
-# NOTE: zsh and vim are currently set up to use dotfiles in home 
-# Which is jus the older (better) way of doing things 
+# NOTE: zsh and vim are currently set up to use dotfiles in home
+# Which is jus the older (better) way of doing things
 # Array of config files
 filenames=('zshrc' 'zsh' 'vimrc' 'vim')
 for file in $filenames; do
@@ -78,12 +78,12 @@ print -a -C 2 -P ${msg}
 if [[ $UID -ne 0 ]]; then
     # Get nerdfonts if missing
     mkdir -p "${HOME}/.local/share/fonts"
-    # (N) is a glob qualifier that makes pattern expand to nothing 
+    # (N) is a glob qualifier that makes pattern expand to nothing
     # (rather than remail a literal string) when no matches are found
     files=(${HOME}/.local/share/fonts/*NerdFont*.ttf(N))
 
     # Check length of array if empty, then we need nerdfonts
-    if [[ ${files[@]} -eq 0 ]]; then
+    if [[ ${#files[@]} -eq 0 ]]; then
         echo "Grabbing basic nerd font"
         ./fonts/fast_nerd_fonts.sh
     else
