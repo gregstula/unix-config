@@ -110,6 +110,11 @@ if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" 
     tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
 
+# If ssh connection, then start (or continue) a tmux session
+if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
+
 # shh-agent key utility when so you do not have to enter password 
 # on each git push if using passphrase for keys
 if hash keychain 2>/dev/null && [ "$USER" != "root" ]; then

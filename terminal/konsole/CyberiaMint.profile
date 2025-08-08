@@ -23,6 +23,7 @@ TerminalMargin=1
 [Interaction Options]
 AutoCopySelectedText=true
 CopyTextAsHTML=false
+MiddleClickPasteMode=0
 OpenLinksByDirectClickEnabled=false
 TrimLeadingSpacesInSelectedText=true
 TrimTrailingSpacesInSelectedText=true
@@ -32,7 +33,8 @@ UnderlineFilesEnabled=true
 HighlightScrolledLines=false
 HistoryMode=2
 ReflowLines=false
-ScrollBarPosition=2
+ScrollBarPosition=1
+ScrollFullPage=1
 SearchLineOpacity=90
 
 [Terminal Features]
