@@ -18,7 +18,7 @@ function M.configure()
 	-- install needed to config
 	-- Nvim includes these parsers:
 	-- https://neovim.io/doc/user/treesitter.html#treesitter-parsers
-	require("nvim-treesitter").install({ "all" })
+	require("nvim-treesitter").install({ "lua bash" })
 	-- Built in tree-sitter settings
 	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 	-- zsh doesn't have it's own parser yet
