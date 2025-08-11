@@ -1,6 +1,9 @@
 "vimrc always overrides on session reload
 set sessionoptions-=options
+
+" NOTE: HOLD SHIFT TO COPY PASTE
 set mouse=a
+
 " vim not vi
 set nocompatible
 

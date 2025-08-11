@@ -32,7 +32,7 @@ UnderlineFilesEnabled=true
 [Scrolling]
 HighlightScrolledLines=false
 HistoryMode=2
-ReflowLines=false
+ReflowLines=true
 ScrollBarPosition=1
 ScrollFullPage=true
 SearchLineOpacity=90

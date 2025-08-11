@@ -10,6 +10,11 @@ vim.opt.cursorline = true
 -- Visualize tabs when file is not using spaces
 vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
 
+-- Disable all mouse
+vim.cmd[[
+    set mouse=nv
+]]
+
 -- Line break settings
 -- Box drawing character  on line break
 vim.opt.wrap = true
