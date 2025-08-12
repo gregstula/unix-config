@@ -11,7 +11,7 @@ if (($+commands[nvidia-smi])); then
     fi
     cp ./systemd/nvidia-lock-clocks.service /etc/systemd/system/
     print -P "%F{green}󱜚 !! nvidia-lock-clocks.service file installed to /etc/systemd/system !!󱜚 %f"
-    print -P "%F{cyan}󱚤  ~ Please run 'systemctl enable nvidia-lock-clocks.service ~ 󱚤 "
+    print -P "%F{cyan}󱚤  ~ Please run 'systemctl enable nvidia-lock-clocks.service ~ 󱚤 %f"
 else 
     print -P "%F{yellow}󱚠  Nvidia-smi not found! Systemd service not installed! 󱚠 %f"
 fi

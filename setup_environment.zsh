@@ -24,7 +24,8 @@ XDG_DATA_HOME="${HOME}/.local/share"
 set -o rematchpcre
 
 # find out where repo is
-topleveldir=$(git rev-parse --show-toplevel 2>/dev/null)
+topleveldir="$(git rev-parse --show-toplevel 2>/dev/null)"
+dotfiles="${topleveldir}"/terminal
 msg=()
 
 mkdir -p ${XDG_CONFIG_HOME}
@@ -37,8 +38,8 @@ function remove_old {
 }
 
 function link_new {
-    local original=$1
-    local symlink=$2
+    local original="$1"
+    local symlink="$2"
     ln -s ${original} ${symlink}
     msg+="%F{white}|%f  %F{green}Created new symlink from ${original} to ${symlink}%f"
 }
@@ -51,12 +52,12 @@ filenames=('zshrc' 'zsh' 'vimrc' 'vim')
 for file in $filenames; do
     # Get name of config dir
     [[ ${file} =~ (zsh|vim) ]]
-    config=${match[1]}
+    config="${match[1]}"
 
     # install target
-    target=${HOME}/.${file} #prefix dot
+    target="${HOME}/.${file}" #prefix dot
     # source
-    src=${topleveldir}/terminal/${config}/${file}
+    src="${dotfiles}/${config}/${file}"
 
     remove_old ${target}
     link_new ${src} ${target}
@@ -65,9 +66,12 @@ done
 remove_old ${XDG_CONFIG_HOME}/nvim
 link_new ${topleveldir}/terminal/nvim ${XDG_CONFIG_HOME}/nvim
 
+remove_old ${XDG_CONFIG_HOME}/ghostty
+link_new ${dotfiles}/ghostty  ${XDG_CONFIG_HOME}/ghostty
+
 # Konsole themes
-remove_old "${XDG_DATA_HOME}/konsole"
-link_new ${topleveldir}/terminal/konsole "${XDG_DATA_HOME}/konsole"
+remove_old ${XDG_DATA_HOME}/konsole
+link_new ${dotfiles}/konsole ${XDG_DATA_HOME}/konsole
 
 # Print message
 # -a print arguments with the column incrementing first. Only useful with the -c and -C options.
