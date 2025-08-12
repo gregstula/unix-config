@@ -6,6 +6,7 @@ function M.setup()
 		lazy = false,
 		branch = "main", -- active development branch
 		build = ":TSUpdate",
+        opts = {},
 	}
 end
 
@@ -33,6 +34,8 @@ function M.configure()
 				local success, _ = pcall(vim.treesitter.start, args.buf, vim.treesitter.language.get_lang(ft))
 				if not success then
 					vim.bo[args.buf].syntax = "ON"
+                    --NOTE: 
+                    --TODO: 
 				end
 			end,
 		})

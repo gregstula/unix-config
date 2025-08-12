@@ -120,11 +120,13 @@ M.polish_hl = {
 		--		["@punctuation.special"] = { fg = M.base_16.base0D },
 		--
 		["@comment"] = { fg = M.base_16.base03, italic = true },
-		-- ["@comment.documentation"] = { fg = M.base_16.base03, italic = true },
-		--		["@comment.error"] = { fg = M.base_30.white, bg = M.base_30.red },
-		--		["@comment.warning"] = { fg = M.base_30.black, bg = M.base_30.yellow },
-		--		["@comment.todo"] = { fg = M.base_30.black, bg = M.base_30.yellow, bold = true },
-		--		["@comment.note"] = { fg = M.base_30.black, bg = M.base_16.base0D },
+	    ["@comment.documentation"] = { fg = M.base_16.base03, italic = true },
+		["@comment.error"] = { fg = M.base_30.white, bg = M.base_30.red },
+		["@comment.warning"] = { fg = M.base_30.black, bg = M.base_30.yellow },
+		["@comment.todo"] = { fg = M.base_30.black, bg = M.base_30.yellow, bold = true },
+		["@comment.note"] = { fg = M.base_30.black, bg = M.base_16.base0D, bold = true },
+        -- NOTE: 
+        -- TODO:
 		--
 		--		["@markup.strong"] = { bold = true },
 		--		["@markup.italic"] = { italic = true },
