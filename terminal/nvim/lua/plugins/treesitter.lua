@@ -19,7 +19,11 @@ function M.configure()
 	-- install needed to config
 	-- Nvim includes these parsers:
 	-- https://neovim.io/doc/user/treesitter.html#treesitter-parsers
-    -- require('nvim-treesitter').install({ 'all' }):wait(300000)
+    if vim.fn.executable("tree-sitter") then 
+    require('nvim-treesitter').install({ 'all' })
+else
+print("tree-sitter-cli is not installed! Your highlighting won't work! Please run :checkhealth!")
+end
 	-- Built in tree-sitter settings
 	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 	-- zsh doesn't have it's own parser yet

@@ -3,7 +3,7 @@
 A collection of dotfiles and scripts to bootstrap my zsh and vim environments
 
 #### Minimun Requirements:
-`pacman -S zsh git vim`
+`pacman -S zsh git vim luajit curl tree-sitter tree-sitter-cli`
 
 #### Basic Install 
 `./setup_environment.zsh`
@@ -17,6 +17,8 @@ anything like keybinds etc
 
 ## NVIM
 Lazy will install itself on first use and NeoVim should just werk
+*You need to run checkhealth if something isn't working, you need to install tree-sitter tree-sitter-cli, etc*
+
 
 ## Cyberia Mint - Color Scheme
 `cyberia_mint` is the name of my colorscheme
