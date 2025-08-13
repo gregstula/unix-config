@@ -32,9 +32,10 @@
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
 # # part of the value. For example, this will have a value of "#123abc":
-font-family = "Consolas Nerd Font"
-
+font-family = "Consolas Nerd Font Mono"
 alpha-blending = native
+scrollback-limit=4294967295
+image-storage-limit=4294967295
 #
 # # Empty values are used to reset config keys to default.
 # key =
@@ -44,16 +45,28 @@ alpha-blending = native
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = cyberia_mint_ghostty.conf
+theme=cyberia_mint_ghostty.conf
 
-background-opacity = 0.85
-background-blur=true
-maximize = false
-bold-is-bright = true
+background-opacity=0.85
+background-blur=false
+maximize=false
+bold-is-bright=true
 
-gtk-tabs-location = bottom
-gtk-wide-tabs = false
-gtk-adwaita = false
+gtk-tabs-location=bottom
+gtk-single-instance=true
+gtk-wide-tabs=false
+gtk-adwaita=false
+window-decoration=server
 
 quit-after-last-window-closed=false
 window-save-state=never
+
+
+clipboard-trim-trailing-spaces=true
+clipboard-paste-protection=true
+copy-on-select=true
+quick-terminal-position=top
+
+shell-integration=zsh
+shell-integration-features=true
+app-notifications=true
