@@ -1,0 +1,18 @@
+# Fix for Sleep-Resume on Gigabyte B550 Motherboard
+# https://wiki.archlinux.org/title/Power_management/Wakeup_triggers#Gigabyte_motherboards
+# https://pliszko.com/blog/post/2025-07-31-fixing-instant-wake-from-suspend-on-gigabyte-motherboards-on-arch-linux
+# 
+# If still not working add acpi_osi=\"!Windows 2015\" to kernel parameters
+#
+# Also note: for nvidia enable the suspend/resume services that come with the nvidia-open driver
+[Unit]
+Description=Disable GPP0 as ACPI wakeup source
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "echo GPP0 > /proc/acpi/wakeup"
+
+[Install]
+WantedBy=multi-user.target
+
