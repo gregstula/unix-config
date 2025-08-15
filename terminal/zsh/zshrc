@@ -133,7 +133,7 @@ fi
 if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
     if [[ $(keychain -l) == "The agent has no identities." ]]; then
         command -v fastfetch &>/dev/null && fastfetch
-        eval "$(keychain --eval id_ed25519)"
+        eval "$(keychain --lockwait 0 --eval id_ed25519)"
     else
         eval "$(keychain --quiet --eval id_ed25519)"
     fi
