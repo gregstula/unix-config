@@ -23,7 +23,8 @@ Vim is less maintained for now as I try to use NeoVim more but I will backport
 anything like keybinds etc
 
 ## NVIM Setup
-Lazy will install itself on first use and NeoVim should just werk
-*You need to run checkhealth if something isn't working, you need to install tree-sitter tree-sitter-cli, etc*
+Lazy will install itself on first use and NeoVim should just werk [0]
+
+*[0] You need to run checkhealth if something isn't working, you need to install tree-sitter tree-sitter-cli, etc*
 
 
