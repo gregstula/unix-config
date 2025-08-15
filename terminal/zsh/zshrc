@@ -62,8 +62,9 @@ PROMPT='%2~ -> '
 #                                  user@hostname
 RPROMPT='%F{8}%n@%m%f'
 
+# Make it clear we've done sudo -s -E
 if [[ $EUID = 0 ]]; then
-    PROMPT="%F{red}%n :: ${PROMPT}%f"
+    PROMPT="%F{red}  %n  :: ${PROMPT}%f"
 fi
 
 # zsh command history file
