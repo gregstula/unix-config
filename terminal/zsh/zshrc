@@ -130,11 +130,11 @@ fi
 # shh-agent key utility when so you do not have to enter password
 # on each git push if using passphrase for keys
 if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
-    if [[ $(keychain -l) == "The agent has no identities" ]]; then
+    if [[ $(keychain -l) == "The agent has no identities." ]]; then
         command -v fastfetch &>/dev/null && fastfetch
-        keychain --eval id_ed25519
+        eval "$(keychain --eval id_ed25519)"
     else
-        keychain --quiet
+        eval "$(keychain --quiet --eval id_ed25519)"
     fi
 fi
 
