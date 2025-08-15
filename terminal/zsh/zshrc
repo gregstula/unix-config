@@ -1,3 +1,9 @@
+# If ssh connection, then start (or continue) a tmux session before doing anything
+if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+    exit
+fi
+
 #Profiler for performance issues
 zmodload zsh/zprof
 
@@ -56,7 +62,7 @@ PROMPT='%2~ -> '
 #                                  user@hostname
 RPROMPT='%F{8}%n@%m%f'
 
-if [[ $EUID = 0 ]]; then 
+if [[ $EUID = 0 ]]; then
     PROMPT="%F{red}%n :: ${PROMPT}%f"
 fi
 
@@ -113,23 +119,22 @@ setopt menu_complete    # Cycle through completions with repeated tabs
 setopt interactive_comments # Allows comments in the command line
 unsetopt beep               # Shhhh
 
-# If ssh connection, then start (or continue) a tmux session
-if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-    exit
-fi
-
-# shh-agent key utility when so you do not have to enter password 
-# on each git push if using passphrase for keys
-if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
-    eval "$(keychain --eval id_ed25519)"
-fi
-
 # Run fastfetch only once per session if available
 if [[ ! -f /tmp/fastfetch_run ]]; then
     if command -v fastfetch &>/dev/null; then
         fastfetch
         touch /tmp/fastfetch_run
+    fi
+fi
+
+# shh-agent key utility when so you do not have to enter password
+# on each git push if using passphrase for keys
+if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
+    if [[ $(keychain -l) == "The agent has no identities" ]]; then
+        command -v fastfetch &>/dev/null && fastfetch
+        keychain --eval id_ed25519
+    else
+        keychain --quiet
     fi
 fi
 
