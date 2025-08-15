@@ -1,8 +1,7 @@
 # UNIX-config
+A collection of dotfiles and scripts to bootstrap my unix environments
 
 <img width="2147" height="1932" alt="image" src="https://github.com/user-attachments/assets/05dc39f3-3257-4cd5-9543-df842cf66139" />
-
-A collection of dotfiles and scripts to bootstrap my unix environments
 
 #### Minimun Requirements:
 `pacman -S zsh git vim luajit curl tree-sitter tree-sitter-cli`
