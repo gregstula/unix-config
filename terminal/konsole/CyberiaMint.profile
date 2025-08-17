@@ -1,8 +1,9 @@
 [Appearance]
+BorderWhenActive=false
 ColorScheme=CyberiaMint
 Font=Consolas Nerd Font Mono,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
-LineSpacing=1
+LineSpacing=0
 UseFontBrailleChararacters=false
 UseFontLineChararacters=true
 WordMode=true
@@ -18,7 +19,7 @@ UseCustomCursorColor=false
 Name=CyberiaMint
 Parent=FALLBACK/
 TerminalCenter=true
-TerminalMargin=1
+TerminalMargin=6
 
 [Interaction Options]
 AutoCopySelectedText=true

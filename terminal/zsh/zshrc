@@ -8,8 +8,14 @@ fi
 zmodload zsh/zprof
 
 # Vim or Emacs
-#bindkey -v
-bindkey -e
+bindkey -v
+#bindkey -e
+
+# zsh-vi-mode for better vi bindings
+# yay -S zsh-vi-mode
+if [[ -f /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+fi
 
 # Auto compile if script changed or first source
 function autozcompile() {
