@@ -4,11 +4,14 @@ vim.opt.expandtab = true
 vim.opt.ts = 4
 vim.opt.sw = 4
 -- default character width 100
-vim.opt.tw = 120
-vim.opt.colorcolumn = "120"
+vim.opt.tw = 100
+vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
 -- Visualize tabs when file is not using spaces
 vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
+
+-- trim trailing whitespece (confirmed, do not remove, not all formatters work like zsh)
+vim.cmd [[autocmd BufWritePre * %s/\s\+$//e ]]
 
 -- Disable all mouse
 vim.cmd[[

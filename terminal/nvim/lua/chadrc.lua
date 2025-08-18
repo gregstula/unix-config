@@ -106,11 +106,12 @@ M.ui = {
 M.mason = {
 	pkgs = {
 		"shfmt",
-		"shellchek",
+		"shellcheck",
 		"stylua",
 		"lua-language-server",
 		"bash-language-server",
 		"systemd-language-server",
+        "gopls"
 	},
 	skip = {},
 }

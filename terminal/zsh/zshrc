@@ -1,31 +1,27 @@
+# Copyright (C) 2016-2025 Gregory Stula
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 # If ssh connection, then start (or continue) a tmux session before doing anything
 if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-    exit
+	tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+	exit
 fi
 
 #Profiler for performance issues
 zmodload zsh/zprof
 
-# Vim or Emacs
-bindkey -v
-#bindkey -e
-
-# zsh-vi-mode for better vi bindings
-# yay -S zsh-vi-mode
-if [[ -f /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-fi
-
-# Auto compile if script changed or first source
-function autozcompile() {
-    local zsh_file="$1"
-    if [[ ! -f "${zsh_file}.zwc" || "$zsh_file" -nt "${zsh_file}.zwc" ]]; then
-        zcompile "$zsh_file"
-    fi
-}
-
-# Auto-compile if source is newer
+# the autozcompile function is defined in ~/.zshenv
 autozcompile "${HOME}/.zshrc"
 
 # Essential exports for config functionality
@@ -34,19 +30,6 @@ export zsh_folder="$HOME/.zsh"
 
 # See: https://github.com/gregstula/unix-config
 export unixconfig="$HOME/unix-config/"
-
-# Load zsh completions from local if missing
-if [[ ! -f "/usr/share/zsh/site-functions/_golang" ]]; then
-    fpath=($fpath "$zsh_folder/completions/src")
-fi
-
-# Get system syntax highlighting or fallback to local
-syntax_highlighting="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [[ ! -f "${syntax_highlighting}" ]]; then
-    syntax_highlighting="${zsh_folder}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    # Compile if source is newer
-    autozcompile "${syntax_highlighting}"
-fi
 
 # Enable built-in zsh auto completion
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -70,7 +53,7 @@ RPROMPT='%F{8}%n@%m%f'
 
 # Make it clear we've done sudo -s -E
 if [[ $EUID = 0 ]]; then
-    PROMPT="%F{red}  %n  :: ${PROMPT}%f"
+	PROMPT="%F{red}  %n  :: ${PROMPT}%f"
 fi
 
 # zsh command history file
@@ -126,90 +109,81 @@ setopt menu_complete    # Cycle through completions with repeated tabs
 setopt interactive_comments # Allows comments in the command line
 unsetopt beep               # Shhhh
 
-# Run fastfetch only once per session if available
-if [[ ! -f /tmp/fastfetch_run ]]; then
-    if command -v fastfetch &>/dev/null; then
-        fastfetch
-        touch /tmp/fastfetch_run
-    fi
-fi
-
-# shh-agent key utility when so you do not have to enter password
-# on each git push if using passphrase for keys
-if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
-    if [[ $(keychain -l) == "The agent has no identities." ]]; then
-        command -v fastfetch &>/dev/null && fastfetch
-        eval "$(keychain --lockwait 0 --eval id_ed25519)"
-    else
-        eval "$(keychain --quiet --eval id_ed25519)"
-    fi
-fi
-
-# set vim as editor for everything ever
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export SYSTEMD_EDITOR="$VISUAL"
-KERNEL=$(uname)
-
-# Scripting Language Version Managers
+# Don't do any of this if root
 if [[ $(id -u) -ne 0 ]]; then
-    if [[ $KERNEL == "Darwin" ]]; then
-        # for homebrew and local executables
-        export PATH=/usr/local/bin:$PATH:~/bin
-    fi
+	# Run fastfetch only once per session if available
+	if [[ ! -f /tmp/fastfetch_run ]]; then
+		if command -v fastfetch &>/dev/null; then
+			fastfetch
+			touch /tmp/fastfetch_run
+		fi
+	fi
 
-    # Ruby version manager
-    export PATH=$HOME/.rbenv/bin:$PATH
-    test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
+	# shh-agent key utility when so you do not have to enter password
+	# on each git push if using passphrase for keys
+	if command -v keychain &>/dev/null && [[ $(id -u) -ne 0 ]]; then
+		if [[ $(keychain -l) == "The agent has no identities." ]]; then
+			command -v fastfetch &>/dev/null && fastfetch
+			eval "$(keychain --lockwait 0 --eval id_ed25519)"
+		else
+			eval "$(keychain --quiet --eval id_ed25519)"
+		fi
+	fi
 
-    # Elixir version manager
-    # shellcheck source=/dev/null
-    test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+	# set vim as editor for everything ever
+	export VISUAL=vim
+	export EDITOR="$VISUAL"
+	export SYSTEMD_EDITOR="$VISUAL"
+	KERNEL=$(uname)
 
-    # NodeJS version manager
-    # zsh speed up https://varun.ch/posts/slow-nvm/
-    export NVM_LAZY_LOAD=true
-    export NVM_COMPLETION=true
-    nvm_plugin="${zsh_folder}/zsh-nvm/zsh-nvm.plugin.zsh"
-    autozcompile "${nvm_plugin}"
-    # shellcheck source=/dev/null
-    source "${nvm_plugin}"
+	if [[ $KERNEL == "Darwin" ]]; then
+		# for homebrew and local executables
+		export PATH=/usr/local/bin:$PATH:~/bin
+	fi
 
-    # Rust cargo
-    export PATH="$HOME/.cargo/bin:$PATH"
+	# Scripting Language Version Managers
 
-    # Go path
-    export PATH=$PATH:$HOME/bin:$HOME/go/bin
+	# Ruby version manager
+	export PATH=$HOME/.rbenv/bin:$PATH
+	test -s "$HOME/.rbenv/bin/rbenv" && eval "$(rbenv init -)"
+
+	# Elixir version manager
+	# shellcheck source=/dev/null
+	test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+	# NodeJS version manager
+	# zsh speed up https://varun.ch/posts/slow-nvm/
+	export NVM_LAZY_LOAD=true
+	export NVM_COMPLETION=true
+
+	# Rust cargo
+	export PATH="$HOME/.cargo/bin:$PATH"
+
+	# Go path
+	export PATH=$PATH:$HOME/bin:$HOME/go/bin
+
+	# Aliases
+	# TODO: it's just supposed to put the line at the top, like clear but without clearing the terminal
+	alias see="tput cup 0 0"
+
+	if [[ $KERNEL == "Linux" ]]; then
+		alias ls="ls --color=auto"
+	fi
+
+	if command -v nvim &>/dev/null; then
+		alias vi=/usr/bin/vim
+		alias vim=nvim
+		export nvimrc=${HOME}/.config/nvim/init.lua
+	fi
 fi
 
-# Aliases
-# TODO: make this better it's just supposed to put the line at the top like clear does but without clearing the terminal
-alias see="tput cup 0 0"
-
-if [[ $KERNEL == "Linux" ]]; then
-    alias ls="ls --color=auto"
+# Root should just depend on what is installed at the OS level
+if [[ $(id -u) -eq 0 ]]; then
+    system_plugins=($(ls /usr/share/zsh/plugins/*/*plugin*.zsh))
+    for plug in $system_plugins; do
+        source $plug
+    done
+else
+    # load plugins
+    source ${zsh_folder}/load_plugins.zsh
 fi
-
-if command -v nvim &>/dev/null; then
-    alias vi=/usr/bin/vim
-    alias vim=nvim
-    export nvimrc=${HOME}/.config/nvim/init.lua
-fi
-
-
-PSSAVE=$PS1
-
-# fzf integration
-# made with fzf --zsh > fzf.zsh
-# https://thevaluable.dev/fzf-shell-integration/
-# <Ctrl-t> Fuzzy find all files and directories at .
-# <Alt-c> Fuzzy find all directories at . and cd into the one you pick
-# <Ctrl-r> Fuzzy fid through zsh history and output the selection
-if command -v fzf &>/dev/null; then
-    local fzf_zsh=$zsh_folder/fzf.zsh
-    autozcompile $zsh_folder/fzf.zsh
-    source  $zsh_folder/fzf.zsh
-fi
-
-# Syntax highlighting
-source "${syntax_highlighting}"

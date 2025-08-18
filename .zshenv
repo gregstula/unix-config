@@ -1,0 +1,1 @@
+/home/g/unix-config/terminal/zsh/.zshenv

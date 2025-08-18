@@ -26,3 +26,5 @@ lazy-lock.json
 *.zwc
 *.bak
 *.csed
+__pycache__
+zsh/plugins

@@ -1,13 +1,23 @@
 #!/bin/env zsh
 # setup-environment
-# The MIT License (MIT) [https://opensource.org/licenses/MIT]
-# Copyright (c) 2016 Gregory D. Stula
 #
 # Created in Ruby by Gregory D. Stula on 1/4/16.
 # Rewritten in zsh by Gregory D. Stula on 7/21/24.
-# NOTE: In July 2025 reconsidered writing this in bash for shellcheck+LSP to work but it was not worth it
-# zsh will be installed by the time this script needs to be run
-# and zsh has better features for scripting this that outweigh the LSP shellcheck benefits
+#
+# Copyright (c) 2016-2025 Gregory D. Stula
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>
+#
 
 XDG_CONFIG_HOME="${HOME}/.config"
 # Neovim and many other moder programs use the XDG BASE DIRECTORY standard
@@ -63,6 +73,9 @@ for file in $filenames; do
     link_new ${src} ${target}
 done
 
+remove_old ${HOME}/.zshenv
+link_new ${dotfiles}/zsh/zshenv ${HOME}/.zshenv
+
 remove_old ${XDG_CONFIG_HOME}/nvim
 link_new ${topleveldir}/terminal/nvim ${XDG_CONFIG_HOME}/nvim
 
@@ -94,3 +107,6 @@ if [[ $UID -ne 0 ]]; then
         echo "All good!"
     fi
 fi
+
+./terminal/zsh/zsh/install_plugins.zsh
+

@@ -1,0 +1,10 @@
+
+# Auto compile if script changed or first source
+function autozcompile() {
+	local zsh_file="$1"
+	if [[ ! -f "${zsh_file}.zwc" || "$zsh_file" -nt "${zsh_file}.zwc" ]]; then
+		zcompile "$zsh_file"
+	fi
+}
+
+
