@@ -40,6 +40,11 @@ function M.setup()
 		desc = "insert new line above without entering insert mode",
 	})
 
+    -- \WF
+   	vim.keymap.set("n", "<Leader>WF", ":w !sudo tee %", {
+		desc = "Force save as sudo",
+	})
+
 	-- Save myself from my sloppy typing of :q
 	vim.keymap.set("n", "q", "<nop>", { noremap = true })
 	vim.keymap.set("n", "q", "<nop>", { noremap = true })
