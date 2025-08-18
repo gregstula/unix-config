@@ -10,12 +10,12 @@ if [[ $(id -u) -eq 0 ]]; then
 fi
 
 # Auto compile if script changed or first source
-zsh_plugins=(
-    "./plugins/zsh-nvm/zsh-nvm.plugin.zsh"
-    "./plugins/fzf/fzf.zsh"
-    "./plugins/zsh-vi-mode/zsh-vi-mode.zsh"
-    "./plugins/zsh-completions/zsh-completions.plugin.zsh"
-    "./plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+plugins=(
+    "plugins/zsh-nvm/zsh-nvm.plugin.zsh"
+    "plugins/fzf/fzf.zsh"
+    "plugins/zsh-vi-mode/zsh-vi-mode.zsh"
+    "plugins/zsh-completions/zsh-completions.plugin.zsh"
+    "plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 )
 
 for plug in $plugins; do
