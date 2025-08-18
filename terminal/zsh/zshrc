@@ -179,11 +179,25 @@ fi
 
 # Root should just depend on what is installed at the OS level
 if [[ $(id -u) -eq 0 ]]; then
-    system_plugins=($(ls /usr/share/zsh/plugins/*/*plugin*.zsh))
-    for plug in $system_plugins; do
-        source $plug
-    done
+	system_plugins=($(ls /usr/share/zsh/plugins/*/*plugin*.zsh))
+	for plug in $system_plugins; do
+		source $plug
+	done
 else
     # load plugins
-    source ${zsh_folder}/load_plugins.zsh
+	plugins_dir=$zsh_folder/plugins
+
+	plugins=(
+		"$plugins_dir/zsh-nvm/zsh-nvm.plugin.zsh"
+		"$plugins_dir/fzf/fzf.zsh"
+		"$plugins_dir/zsh-vi-mode/zsh-vi-mode.zsh"
+		"$plugins_dir/zsh-completions/zsh-completions.plugin.zsh"
+		"$plugins_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+	)
+
+	for plug in $plugins; do
+		autozcompile $plug
+		source $plug
+	done
+
 fi
