@@ -40,8 +40,8 @@ function M.setup()
 		desc = "insert new line above without entering insert mode",
 	})
 
-    -- \WF
-   	vim.keymap.set("n", "<Leader>WF", ":w !sudo tee %", {
+	-- \WF
+	vim.keymap.set("n", "<Leader>WF", ":w !sudo tee %", {
 		desc = "Force save as sudo",
 	})
 
@@ -101,5 +101,15 @@ function M.setup()
 		require("fzf-lua").files({ cwd = "~/" })
 	end
 	vim.keymap.set("n", "<leader><Space><Space>", fzf_home, { desc = "Launch fzf.lua to find files" })
+
+	vim.keymap.set("n", "<leader>fs", function()
+		require("fzf-lua").lsp_document_symbols()
+	end, {desc = "Find symbols in document"})
+	vim.keymap.set("n", "<leader>fS", function()
+		require("fzf-lua").lsp_workspace_symbols()
+	end)
+	vim.keymap.set("n", "<leader>fw", function()
+		require("fzf-lua").lsp_live_workspace_symbols()
+	end)
 end
 return M
