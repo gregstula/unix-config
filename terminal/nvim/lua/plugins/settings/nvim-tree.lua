@@ -8,6 +8,9 @@ M.opts = {
 	view = {
 		preserve_window_proportions = true, -- Preserves window proportions when opening a file.
 	},
+	git = {
+		ignore = false,
+	},
 	renderer = {
 		add_trailing = true, -- Appends a trailing slash to folder names.
 		icons = {
