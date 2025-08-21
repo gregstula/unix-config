@@ -24,11 +24,12 @@ function M.setup()
             -- file from neovim-lsp on lsps installed with Mason
             -- Install lsp with Mason -> automatically enables -> config can still be extended here
             -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+            -- TODO: I think want to migrate away from this eventually
             "mason-org/mason-lspconfig.nvim",
             opts = {
                 automatic_enable = {
+                    -- Manually enable these meaning use and condigure system wide version
                     exclude = {
-                        "rust_analyzer",
                         "clangd",
                     },
                 },
@@ -47,10 +48,10 @@ function M.setup()
                     bash = { "shfmt" },
                     sh = { "shfmt" },
                     go = { "gofmt" },
+                    cpp = { "clang-format" },
                 },
                 format_on_save = {
                     timeout_ms = 500,
-                    lsp_format = "fallback",
                 },
             },
         },
@@ -68,7 +69,6 @@ end
 
 function M.configure()
     -- linters setup here
-
     require("lint").linters_by_ft = { systemd = { "systemd-analyze" } }
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
@@ -78,17 +78,8 @@ function M.configure()
         end,
     })
 
+    -- lsp setup here
     vim.lsp.enable "clangd"
-
-    --	-- Remove Semantic highlighting from LSP to use only treesitter
-    --	vim.api.nvim_create_autocmd("LspAttach", {
-    --		callback = function(args)
-    --			local client = vim.lsp.get_client_by_id(args.data.client_id)
-    --			if client and client.server_capabilities and client.server_capabilities.semanticTokensProvider then
-    --				client.server_capabilities.semanticTokensProvider = nil
-    --			end
-    --		end,
-    --	})
 end
 
 return M
