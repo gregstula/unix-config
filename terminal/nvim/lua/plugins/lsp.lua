@@ -78,6 +78,8 @@ function M.configure()
         end,
     })
 
+    vim.lsp.enable "clangd"
+
     --	-- Remove Semantic highlighting from LSP to use only treesitter
     --	vim.api.nvim_create_autocmd("LspAttach", {
     --		callback = function(args)
