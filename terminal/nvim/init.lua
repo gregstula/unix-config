@@ -8,13 +8,13 @@ vim.opt.tw = 100
 vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
 -- Visualize tabs when file is not using spaces
-vim.cmd("hi Tab gui=underline guifg=blue ctermbg=blue")
+vim.cmd "hi Tab gui=underline guifg=blue ctermbg=blue"
 
 -- trim trailing whitespece (confirmed, do not remove, not all formatters work like zsh)
 vim.cmd [[autocmd BufWritePre * %s/\s\+$//e ]]
 
 -- Disable all mouse
-vim.cmd[[
+vim.cmd [[
     set mouse=nv
 ]]
 
@@ -78,13 +78,13 @@ vim.opt.updatetime = 250 -- (milliseconds)
 
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
-vim.diagnostic.config({
-	severity_sort = true,
-	underline = true,
-	virtual_text = { current_line = true },
-	update_in_insert = false,
-	signs = true,
-})
+vim.diagnostic.config {
+    severity_sort = true,
+    underline = true,
+    virtual_text = { current_line = true },
+    update_in_insert = false,
+    signs = true,
+}
 
 -- Plugin Manager aka Lazy
 -- NOTE: Make sure to setup `mapleader` and `maplocalleader` before
@@ -93,10 +93,10 @@ require("keymaps").setup() -- my keymaps
 
 -- This is also a good place to setup other settings (vim.opt)
 -- Ensure base46 path is set before plugin setup since they apply to plugins
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 
 --- ENABLED PLUGINS AND CONFIG SETTINGS
-local Plugins = require("plugins")
+local Plugins = require "plugins"
 Plugins.bootstrap()
 -- Setup lazy.nvim
 Plugins.setup()

@@ -1,44 +1,44 @@
 local M = {}
 
 M.base46 = {
-	theme = "cyberia_mint", -- default theme
-	-- 	hl_add = {},
-	-- 	hl_override = {},
-	-- 	integrations = {},
-	-- 	changed_themes = {},
-	-- 	transparency = false,
-	--     theme_toggle = { "cybera_mint", "one_light" },
+    theme = "cyberia_mint", -- default theme
+    -- 	hl_add = {},
+    -- 	hl_override = {},
+    -- 	integrations = {},
+    -- 	changed_themes = {},
+    -- 	transparency = false,
+    --     theme_toggle = { "cybera_mint", "one_light" },
 }
 --
 M.ui = {
-	-- 	cmp = {
-	-- 		icons_left = false, -- only for non-atom styles!
-	-- 		style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-	-- 		abbr_maxwidth = 60,
-	-- 		-- for tailwind, css lsp etc
-	-- 		format_colors = { lsp = true, icon = "󱓻" },
-	-- 	},
-	--
-	-- 	telescope = { style = "borderless" }, -- borderless / bordered
-	--
-	-- 	statusline = {
-	-- 		enabled = true,
-	-- 		theme = "default", -- default/vscode/vscode_colored/minimal
-	-- 		-- default/round/block/arrow separators work only for default statusline theme
-	-- 		-- round and block will work for minimal theme only
-	-- 		separator_style = "default",
-	-- 		order = nil,
-	-- 		modules = nil,
-	-- 	},
-	--
-	-- 	-- lazyload it when there are 1+ buffers
-	tabufline = {
-		enabled = true,
-		lazyload = true,
-		order = { "treeOffset", "buffers", "tabs", "btns" },
-		modules = nil,
-		bufwidth = 21,
-	},
+    -- 	cmp = {
+    -- 		icons_left = false, -- only for non-atom styles!
+    -- 		style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    -- 		abbr_maxwidth = 60,
+    -- 		-- for tailwind, css lsp etc
+    -- 		format_colors = { lsp = true, icon = "󱓻" },
+    -- 	},
+    --
+    -- 	telescope = { style = "borderless" }, -- borderless / bordered
+    --
+    -- 	statusline = {
+    -- 		enabled = true,
+    -- 		theme = "default", -- default/vscode/vscode_colored/minimal
+    -- 		-- default/round/block/arrow separators work only for default statusline theme
+    -- 		-- round and block will work for minimal theme only
+    -- 		separator_style = "default",
+    -- 		order = nil,
+    -- 		modules = nil,
+    -- 	},
+    --
+    -- 	-- lazyload it when there are 1+ buffers
+    tabufline = {
+        enabled = true,
+        lazyload = true,
+        order = { "treeOffset", "buffers", "tabs", "btns" },
+        modules = nil,
+        bufwidth = 21,
+    },
 }
 
 --
@@ -104,16 +104,16 @@ M.ui = {
 -- }
 --
 M.mason = {
-	pkgs = {
-		"shfmt",
-		"shellcheck",
-		"stylua",
-		"lua-language-server",
-		"bash-language-server",
-		"systemd-language-server",
-        "gopls"
-	},
-	skip = {},
+    pkgs = {
+        "shfmt",
+        "shellcheck",
+        "stylua",
+        "lua-language-server",
+        "bash-language-server",
+        "systemd-language-server",
+        "gopls",
+    },
+    skip = {},
 }
 --
 -- M.colorify = {
