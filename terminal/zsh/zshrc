@@ -163,8 +163,7 @@ if [[ $(id -u) -ne 0 ]]; then
 	export PATH=$PATH:$HOME/bin:$HOME/go/bin
 
 	# Aliases
-	# TODO: it's just supposed to put the line at the top, like clear but without clearing the terminal
-	alias see="tput cup 0 0"
+	alias clear="clear -x"
 
 	if [[ $KERNEL == "Linux" ]]; then
 		alias ls="ls --color=auto"

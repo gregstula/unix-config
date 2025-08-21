@@ -15,6 +15,9 @@ WordModeBrahmic=false
 CursorShape=0
 UseCustomCursorColor=false
 
+[Encoding Options]
+DefaultEncoding=Locale
+
 [General]
 Name=CyberiaMint
 Parent=FALLBACK/
@@ -34,8 +37,8 @@ UnderlineFilesEnabled=true
 HighlightScrolledLines=false
 HistoryMode=2
 ReflowLines=true
-ScrollBarPosition=1
-ScrollFullPage=true
+ScrollBarPosition=2
+ScrollFullPage=1
 SearchLineOpacity=90
 
 [Terminal Features]
