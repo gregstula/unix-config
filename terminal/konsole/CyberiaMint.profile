@@ -42,6 +42,7 @@ ScrollFullPage=true
 SearchLineOpacity=90
 
 [Terminal Features]
+BellMode=3
 BidiLineLTR=false
 BidiRenderingEnabled=false
 BidiTableDirOverride=false
