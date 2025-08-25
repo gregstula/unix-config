@@ -81,9 +81,17 @@ vim.opt.updatetime = 250 -- (milliseconds)
 vim.diagnostic.config {
     severity_sort = true,
     underline = true,
-    virtual_text = { current_line = true },
+    virtual_lines = { current_line = true },
+    float = true,
     update_in_insert = false,
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰛩",
+        },
+    },
 }
 
 -- Plugin Manager aka Lazy

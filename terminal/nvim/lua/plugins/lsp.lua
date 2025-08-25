@@ -31,6 +31,7 @@ function M.setup()
                     -- Manually enable these meaning use and condigure system wide version
                     exclude = {
                         "clangd",
+                        "rust-analyzer",
                     },
                 },
             },
@@ -80,6 +81,7 @@ function M.configure()
 
     -- lsp setup here
     vim.lsp.enable "clangd"
+    vim.lsp.enable "rust_analyzer"
 end
 
 return M

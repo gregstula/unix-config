@@ -1,7 +1,7 @@
 [Appearance]
 BorderWhenActive=false
 ColorScheme=CyberiaMint
-Font=Consolas Nerd Font Mono,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Font=Consolas Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=0
 UseFontBrailleChararacters=false
@@ -38,7 +38,7 @@ HighlightScrolledLines=false
 HistoryMode=2
 ReflowLines=true
 ScrollBarPosition=2
-ScrollFullPage=1
+ScrollFullPage=true
 SearchLineOpacity=90
 
 [Terminal Features]
