@@ -11,6 +11,10 @@ if ! command -v fontforge >/dev/null 2>&1; then
     fi
 fi
 
+#!/bin/sh
+curl -L -H "User-Agent: Mozilla/5.0" -O https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip
+unzip FontPatcher.zip -d FontPatcher
+
 # Patches the fonts using the files on windows
 tmp=$(mktemp -d)
 cp /mnt/C/Windows/Fonts/consola*.ttf "$tmp"
@@ -21,6 +25,9 @@ for file in "${tmp}"/*.ttf; do
     #Complete patch mono
     ./FontPatcher/font-patcher -cs --outputdir . "$file"
 done
+
+rm -rf FontPatcher.zip
+rm -rf FontPatcher
 
 echo "Fonts patched."
 read -r -n1 -s -p "Press any key to proceed with install..."

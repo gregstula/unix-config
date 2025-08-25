@@ -92,6 +92,9 @@ link_new ${dotfiles}/konsole ${XDG_DATA_HOME}/konsole
 # Perform prompt expansion (see Prompt Expansion) e.g zsh colors: %F{red}I'm Red%f
 print -a -C 2 -P ${msg}
 
+./terminal/zsh/zsh/install_plugins.zsh
+print -P "%F{cyan} Submoduling installed %f"
+
 if [[ $UID -ne 0 ]]; then
     # Get nerdfonts if missing
     mkdir -p "${HOME}/.local/share/fonts"
@@ -107,6 +110,4 @@ if [[ $UID -ne 0 ]]; then
         echo "All good!"
     fi
 fi
-
-./terminal/zsh/zsh/install_plugins.zsh
 

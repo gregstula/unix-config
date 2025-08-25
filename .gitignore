@@ -10,7 +10,7 @@
 spell/
 cscope.out
 # Mac
-.DS_Store 
+.DS_Store
 DerivedData
 # KDE Dolphin
 .directory
@@ -28,3 +28,5 @@ lazy-lock.json
 *.csed
 __pycache__
 zsh/plugins
+fonts/FontPatcher/
+FontPatcher.zip
