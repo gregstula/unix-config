@@ -1,7 +1,7 @@
 local M = {}
 function M.setup()
     return {
-        -- Let's lua LSP understand neovim config files and plugins in a fast and performant way
+        -- Let's lua LSP understand neovim config files - in a fast and performant way
         -- NOTE: Do not try to solve this yourself just use the plugin... so much pain
         {
             "folke/lazydev.nvim",
@@ -15,31 +15,11 @@ function M.setup()
         },
         {
             -- Adds a very cool pop up window with LSP start up information
-            -- Gives immediete feedback on file open that LSP is enabled and running on the file
             "j-hui/fidget.nvim",
             opts = {},
         },
-        {
-            -- Automatically vim.lsp.enable() on the appropriate config
-            -- file from neovim-lsp on lsps installed with Mason
-            -- Install lsp with Mason -> automatically enables -> config can still be extended here
-            -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
-            -- TODO: I think want to migrate away from this eventually
-            "mason-org/mason-lspconfig.nvim",
-            opts = {
-                automatic_enable = {
-                    -- Manually enable these meaning use and condigure system wide version
-                    exclude = {
-                        "clangd",
-                        "rust-analyzer",
-                    },
-                },
-            },
-            dependencies = {
-                { "mason-org/mason.nvim", opts = {} },
-                "neovim/nvim-lspconfig",
-            },
-        },
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
         {
             -- Auto format on save
             "stevearc/conform.nvim",
@@ -47,8 +27,10 @@ function M.setup()
                 formatters_by_ft = {
                     lua = { "stylua" },
                     bash = { "shfmt" },
+                    zsh = { "shfmt" },
                     sh = { "shfmt" },
                     go = { "gofmt" },
+                    rust = { "rustfmt", lsp_format = "fallback" },
                     cpp = { "clang-format" },
                 },
                 format_on_save = {
@@ -69,19 +51,13 @@ function M.setup()
 end
 
 function M.configure()
-    -- linters setup here
-    require("lint").linters_by_ft = { systemd = { "systemd-analyze" } }
-    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-            -- try_lint without arguments runs the linters defined in `linters_by_ft`
-            -- for the current filetype
-            require("lint").try_lint()
-        end,
-    })
-
     -- lsp setup here
     vim.lsp.enable "clangd"
     vim.lsp.enable "rust_analyzer"
+    vim.lsp.enable "systemd-language-server"
+    vim.lsp.enable "bash-language-server"
+    vim.lsp.enable "lua-language-server"
+    vim.lsp.enable "gopls"
 end
 
 return M
