@@ -11,8 +11,8 @@ plugins_dir="${topleveldir}"/terminal/zsh/zsh/plugins
 # <Ctrl-t> Fuzzy find all files and directories at .
 # <Alt-c> Fuzzy find all directories at . and cd into the one you pick
 # <Ctrl-r> Fuzzy fid through zsh history and output the selection
-mkdir -p plugins/fzf
-command -v fzf &>/dev/null && fzf --zsh > plugins/fzf/fzf.zsh
+mkdir -p $plugins_dir/fzf
+command -v fzf &>/dev/null && fzf --zsh >$plugins_dir/fzf/fzf.zsh
 
 git submodule init
 git submodule update
@@ -20,4 +20,3 @@ git submodule update
 if [[ ! -f $plugins_dir/zsh-completions/src/_git ]]; then
     curl https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh -o $plugins_dir/zsh-completions/src/_git
 fi
-

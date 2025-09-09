@@ -77,7 +77,7 @@ remove_old ${HOME}/.zshenv
 link_new ${dotfiles}/zsh/zshenv ${HOME}/.zshenv
 
 remove_old ${XDG_CONFIG_HOME}/nvim
-link_new ${topleveldir}/terminal/nvim ${XDG_CONFIG_HOME}/nvim
+link_new ${dotfiles}/nvim ${XDG_CONFIG_HOME}/nvim
 
 remove_old ${XDG_CONFIG_HOME}/ghostty
 link_new ${dotfiles}/ghostty  ${XDG_CONFIG_HOME}/ghostty
@@ -92,7 +92,7 @@ link_new ${dotfiles}/konsole ${XDG_DATA_HOME}/konsole
 # Perform prompt expansion (see Prompt Expansion) e.g zsh colors: %F{red}I'm Red%f
 print -a -C 2 -P ${msg}
 
-./terminal/zsh/zsh/install_plugins.zsh
+exec $dotfiles/zsh/zsh/install_plugins.zsh
 print -P "%F{cyan} Submoduling installed %f"
 
 if [[ $UID -ne 0 ]]; then
