@@ -54,9 +54,9 @@ function M.configure()
     -- lsp setup here
     vim.lsp.enable "clangd"
     vim.lsp.enable "rust_analyzer"
-    vim.lsp.enable "systemd-language-server"
-    vim.lsp.enable "bash-language-server"
-    vim.lsp.enable "lua-language-server"
+    vim.lsp.enable "systemd_ls"
+    vim.lsp.enable "bashls"
+    vim.lsp.enable "lua_ls"
     vim.lsp.enable "gopls"
 end
 

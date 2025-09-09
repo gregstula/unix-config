@@ -110,3 +110,6 @@ Plugins.bootstrap()
 Plugins.setup()
 -- rounded windows
 vim.opt.winborder = "rounded"
+
+-- visual hilight color
+--vim.cmd [[ hi Visual guibg=#0078d4 guifg=#ffffff ]]

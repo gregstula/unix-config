@@ -38,8 +38,8 @@ M.base_30 = {
 M.base_16 = {
     base00 = "#010202", -- Default Background
     base01 = "#0a0a0a", -- Lighter Background (Used for status bars, line number and folding marks)
-    base02 = "#303030", -- Selection Background
-    base03 = "#808080", -- Comments, Invisibles, Line Highlighting
+    base02 = "#5fd7ff", -- Selection Background
+    base03 = "#b0b0b0", -- Comments, Invisibles, Line Highlighting
     base04 = "#585858", -- Dark Foreground (Used for status bars)
     base05 = "#d0d0d0", -- Default Foreground, Caret, Delimiters, Operators
     base06 = "#e0e0e0", -- Light Foreground (Not often used)
@@ -55,6 +55,11 @@ M.base_16 = {
 }
 
 M.polish_hl = {
+
+    defaults = {
+        Visual = { fg = "#000000" },
+    },
+
     treesitter = {
         --		["@variable.builtin"] = { fg = M.base_16.base09, italic = true },
         --		["@variable.parameter"] = { fg = M.base_16.base09 },
