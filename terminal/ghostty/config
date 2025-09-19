@@ -56,7 +56,6 @@ bold-is-bright=true
 gtk-tabs-location=top
 gtk-single-instance=true
 gtk-wide-tabs=false
-gtk-adwaita=false
 window-decoration=server
 
 clipboard-trim-trailing-spaces=true
