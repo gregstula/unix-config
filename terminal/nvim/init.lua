@@ -81,7 +81,8 @@ vim.opt.updatetime = 250 -- (milliseconds)
 vim.diagnostic.config {
     severity_sort = true,
     underline = true,
-    virtual_lines = { current_line = true },
+    --virtual_lines = { current_line = true },
+    virtual_text = { current_line = true },
     float = true,
     update_in_insert = false,
     signs = {
@@ -92,6 +93,15 @@ vim.diagnostic.config {
             [vim.diagnostic.severity.HINT] = "󰛩",
         },
     },
+}
+
+-- Set listchars to use dots for spaces and tabs
+-- Use set list! to disable
+vim.opt.list = true
+vim.opt.listchars = {
+    lead = "·",
+    tab = "→ ", -- Arrows for tabs
+    trail = "·", -- Dots for trailing spaces
 }
 
 -- Plugin Manager aka Lazy
@@ -108,8 +118,3 @@ local Plugins = require "plugins"
 Plugins.bootstrap()
 -- Setup lazy.nvim
 Plugins.setup()
--- rounded windows
-vim.opt.winborder = "rounded"
-
--- visual hilight color
---vim.cmd [[ hi Visual guibg=#0078d4 guifg=#ffffff ]]
