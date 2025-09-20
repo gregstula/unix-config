@@ -28,6 +28,8 @@
 # key= value
 # key =value
 # key = value
+
+
 #
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
@@ -50,18 +52,25 @@ theme=cyberia_mint_ghostty.conf
 
 background-opacity=0.85
 background-blur=false
-maximize=false
-bold-is-bright=true
+maximize=true
+window-padding-x = 6,6
+
 
 gtk-tabs-location=top
-gtk-single-instance=true
-gtk-wide-tabs=false
-window-decoration=server
+window-decoration=none
+confirm-close-surface=false
 
 clipboard-trim-trailing-spaces=true
 clipboard-paste-protection=true
 copy-on-select=true
+
+keybind=global:backquote=toggle_quick_terminal
+gtk-quick-terminal-layer=overlay
+quick-terminal-screen=mouse
+quick-terminal-autohide=true
+quick-terminal-size=95%,60%
 quick-terminal-position=top
+quick-terminal-autohide=true
 
 shell-integration=zsh
 shell-integration-features=true

@@ -96,8 +96,8 @@ vim.diagnostic.config {
 }
 
 -- Set listchars to use dots for spaces and tabs
--- Use set list! to disable
-vim.opt.list = true
+-- Use set list! to enable/disable
+vim.opt.list = false
 vim.opt.listchars = {
     lead = "·",
     tab = "→ ", -- Arrows for tabs
