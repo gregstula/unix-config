@@ -41,13 +41,13 @@ M.base_16 = {
     base02 = "#5fd7ff", -- Selection Background
     base03 = "#b0b0b0", -- Comments, Invisibles, Line Highlighting
     base04 = "#585858", -- Dark Foreground (Used for status bars)
-    base05 = "#FFFFFF", -- Default Foreground, Caret, Delimiters, Operators
+    base05 = "#ffffff", -- Default Foreground, Caret, Delimiters, Operators
     base06 = "#e0e0e0", -- Light Foreground (Not often used)
     base07 = "#edeeeb", -- Light Background (Not often used)
     base08 = "#FFFFFF", -- Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
     base09 = "#ff8702", -- Integers, Boolean, Constants, XML Attributes, Markup Link Url
     base0A = "#5FFFCA", -- Classes, Markup Bold, Search Text Background
-    base0B = "#4BFF9F", -- Strings, Inherited Class, Markup Code, Diff Inserted
+    base0B = "#37ff94", -- Strings, Inherited Class, Markup Code, Diff Inserted
     base0C = "#aaaaff", -- Support, Regular Expressions, Escape Characters, Markup Quotes
     base0D = "#19FFFF", -- Functions, Methods, Attribute IDs, Headings
     base0E = "#FF407E", -- Keywords, Storage, Selector, Markup Italic, Diff Changed
@@ -65,9 +65,9 @@ M.polish_hl = {
         --      ["@variable.builtin"] = { fg = M.base_16.base09, italic = true },
         --      ["@variable.parameter"] = { fg = M.base_16.base09 },
         --
-        ["@constant"] = { fg = M.base_16.base09, bold = true },
-        ["@constant.builtin"] = { fg = M.base_16.base09, bold = true },
-        ["@constant.macro"] = { fg = M.base_16.base09 },
+        -- ["@constant"] = { fg = M.base_16.base09, bold = true },
+        ["@constant.builtin"] = { fg = M.base_16.base0E, bold = true },
+        -- ["@constant.macro"] = { fg = M.base_16.base09 },
         --
         ["@module"] = { fg = M.base_16.base09 },
         ["@module.builtin"] = { fg = M.base_16.base09, bold = true },

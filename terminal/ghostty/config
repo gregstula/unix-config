@@ -54,17 +54,19 @@ background-opacity=0.85
 background-blur=false
 maximize=true
 window-padding-x = 6,6
+window-height=44
+window-width=144
 
 
 gtk-tabs-location=top
-window-decoration=none
+window-decoration=server
 confirm-close-surface=false
 
 clipboard-trim-trailing-spaces=true
 clipboard-paste-protection=true
 copy-on-select=true
 
-keybind=global:backquote=toggle_quick_terminal
+keybind=global:alt+backquote=toggle_quick_terminal
 gtk-quick-terminal-layer=overlay
 quick-terminal-screen=mouse
 quick-terminal-autohide=true

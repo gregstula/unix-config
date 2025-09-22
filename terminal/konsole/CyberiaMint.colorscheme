@@ -79,11 +79,11 @@ Color=65,255,192
 # Hex: #41FFC0
 
 [Color7]
-Color=208,208,208
-# Hex: #D0D0D0
+Color=225,225,225
+# Hex: #FFFFFF
 [Color7Faint]
-Color=204,204,204
-# Hex: #CCCCCC
+Color=255,255,255
+# Hex: #FFFFFF
 [Color7Intense]
 Color=255,255,255
 # Hex: #FFFFFF

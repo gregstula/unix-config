@@ -32,6 +32,7 @@ function M.setup()
                     go = { "gofmt" },
                     rust = { "rustfmt", lsp_format = "fallback" },
                     cpp = { "clang-format" },
+                    c = { "clang-format" },
                 },
                 format_on_save = {
                     timeout_ms = 500,
