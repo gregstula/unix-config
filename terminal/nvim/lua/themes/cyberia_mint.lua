@@ -117,7 +117,7 @@ M.polish_hl = {
         --      ["@keyword.repeat"] = { fg = M.base_30.red, bold = true },
         -- ["@keyword.return"] = { fg = M.base_30.red, bold = true },
         --      ["@keyword.debug"] = { fg = M.base_30.red },
-        -- ["@keyword.exception"] = { fg = M.base_30.red, bold = true },
+        ["@keyword.exception"] = { fg = M.base_16.base0E, italic = true },
         -- ["@keyword.conditional"] = { fg = M.base_30.red, bold = true },
         --      ["@keyword.conditional.ternary"] = { fg = M.base_30.red },
         --      ["@keyword.directive"] = { fg = M.base_16.base0D },
@@ -126,7 +126,7 @@ M.polish_hl = {
         --      ["@punctuation.special"] = { fg = M.base_16.base0D },
         --
         ["@comment"] = { fg = M.base_16.base03, italic = true },
-        ["@comment.documentation"] = { fg = M.base_16.base03, italic = true },
+        ["@comment.documentation"] = { fg = M.base_16.base03 },
         ["@comment.error"] = { fg = M.base_30.white, bg = M.base_30.red },
         ["@comment.warning"] = { fg = M.base_30.black, bg = M.base_30.yellow },
         ["@comment.todo"] = { fg = M.base_30.black, bg = M.base_30.yellow, bold = true },
