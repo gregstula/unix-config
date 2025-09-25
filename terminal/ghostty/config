@@ -57,6 +57,10 @@ window-padding-x = 6,6
 window-height=44
 window-width=144
 
+# Conventions from Konsole
+keybind=ctrl+(=new_split:right
+keybind=ctrl+)=new_split:down
+keybind=ctrl+shift+8=new_split:auto
 
 gtk-tabs-location=top
 window-decoration=server

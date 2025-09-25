@@ -6,6 +6,7 @@
 *.orig
 # vim swap files
 .*.swp
+.netrwhist
 .sw?
 spell/
 cscope.out
