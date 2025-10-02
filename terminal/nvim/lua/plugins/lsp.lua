@@ -33,6 +33,7 @@ function M.setup()
                     rust = { "rustfmt", lsp_format = "fallback" },
                     cpp = { "clang-format" },
                     c = { "clang-format" },
+                    zig = { "zigfmt" },
                 },
                 format_on_save = {
                     timeout_ms = 500,
@@ -59,6 +60,7 @@ function M.configure()
     vim.lsp.enable "bashls"
     vim.lsp.enable "lua_ls"
     vim.lsp.enable "gopls"
+    vim.lsp.enable "zls"
 end
 
 return M
