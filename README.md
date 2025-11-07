@@ -6,7 +6,7 @@ A collection of dotfiles and scripts to bootstrap my unix environments
 #### Minimun Requirements:
 `pacman -S zsh git vim luajit curl tree-sitter tree-sitter-cli`
 
-#### Basic Install 
+#### Basic Install
 `./setup_environment.zsh`
 
 ## VIM Setup
@@ -14,7 +14,7 @@ A collection of dotfiles and scripts to bootstrap my unix environments
 
 Should automatically setup YCM with LSPs unless missing python or cmake
 
-Vim is less maintained for now as I try to use NeoVim more but I will backport 
+Vim is less maintained for now as I try to use NeoVim more but I will backport
 anything like keybinds etc
 
 ## NVIM Setup
@@ -27,3 +27,9 @@ Lazy will install itself on first use and NeoVim should just werk [0]
 
 It is available for Konsole, Vim, and Neovim
 
+
+### Directories
+fonts - Patches consolas font with nerdfont patcher (git submodule)
+terminal - terminal settings and cli app config including nvim
+linux - Arch linux specific scripts and hooks for SecureBoot, dracut, UKI, SystemdBoot and grub-btrfs
+utils - Clean up scripts, useful for nuking all dispersed XDG directory config files for neovim
