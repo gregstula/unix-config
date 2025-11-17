@@ -1,0 +1,10 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = boot/memtest86+/memtest.efi
+
+[Action]
+Description = Copying memtest.efi to ESP...
+When = PostTransaction
+Exec = /bin/sh -c 'cp /boot/memtest86+/memtest.efi /efi/EFI/tools/memtest.efi'
