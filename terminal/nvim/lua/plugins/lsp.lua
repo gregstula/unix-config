@@ -34,6 +34,7 @@ function M.setup()
                     cpp = { "clang-format" },
                     c = { "clang-format" },
                     zig = { "zigfmt" },
+                    cs = { "csharpier", lsp_format = "fallback" },
                 },
                 format_on_save = {
                     timeout_ms = 500,
